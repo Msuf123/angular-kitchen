@@ -1,0 +1,10 @@
+.topBarOptions {
+    display: flex;
+    margin-right: 30px;
+    align-items: center;
+    justify-content: space-around;
+    width: 200px;
+}
+.topBarOptions img{
+    width: 30px;
+}
