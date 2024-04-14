@@ -1,5 +1,6 @@
 <label class="outerBox">
-    <input type="checkbox" class="switch">
+    <input type="checkbox" [(ngModel)]="name" (ngModelChange)="changeTheme()" class="switch">
     <span class="state"></span>
     <span class="background"></span>
 </label>
+

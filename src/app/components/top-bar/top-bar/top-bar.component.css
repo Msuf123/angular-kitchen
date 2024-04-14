@@ -4,11 +4,17 @@
     margin: 0px;
     align-items: center;
     justify-content: space-between;
-    
+    background-color: var(--background-color);
+}
+.topBarUserIcon{
+   
 }
 .topBar img{
     width: 70px;
     margin: 5px 10px;
+    border: var(--border);
+    border-radius: 50%;
+    background-color: var(--common-png-background-color);
 }
 :host{
     margin: 0px;

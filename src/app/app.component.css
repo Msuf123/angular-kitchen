@@ -1,2 +1,11 @@
 :host{
+background-color: black;
+}
+
+.parent[data-mode='true']{
+    --background-color: rgb(36, 36, 36);
+    --common-png-background-color:white;
+}
+.parent{
+ background-color: white;
 }

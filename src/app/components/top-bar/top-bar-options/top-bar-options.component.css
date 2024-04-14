@@ -7,4 +7,8 @@
 }
 .topBarOptions img{
     width: 30px;
+    border: var(--border);
+    border-radius: 50%;
+    padding: 5px;
+    background-color: var(--common-png-background-color);
 }
