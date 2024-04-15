@@ -5,7 +5,11 @@ background-color: black;
 .parent[data-mode='true']{
     --background-color: rgb(36, 36, 36);
     --common-png-background-color:white;
+   
 }
 .parent{
- background-color: white;
+    display: grid;
+    grid-template-rows: max-content 1fr;
+    height: 100vh;
+    --background-color: white;
 }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { IconsService } from '../../../services/icons/icons.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -8,5 +9,6 @@ import { Component } from '@angular/core';
   styleUrl: './search-bar.component.css'
 })
 export class SearchBarComponent {
-
+ icons=inject(IconsService)
+ searchIcon=this.icons.searchBar
 }

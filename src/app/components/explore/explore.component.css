@@ -1,3 +1,11 @@
 .explore{
-    background-color: var(--background-color);
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-template-rows: 1fr;
+    height: 100%;
+   
+}
+:host{
+    
+    height: 100%;
 }
