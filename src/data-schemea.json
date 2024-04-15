@@ -1,0 +1,11 @@
+[
+    {
+        "id":"VEG001",
+        "name":"Pasta",
+        "difficultyLevel":3,
+        "healthyLevel":3,
+        "ruppes":200,
+        "img":"",
+        "veg":true
+    }
+]

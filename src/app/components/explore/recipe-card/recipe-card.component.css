@@ -1,0 +1,15 @@
+.outerDiv{
+    width: max-content;
+    padding: 5px;
+    display: block;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+.imageOfDish{
+    width: 300px;
+    border-radius: 5px;
+}
+.itemName{
+    display: block;
+}

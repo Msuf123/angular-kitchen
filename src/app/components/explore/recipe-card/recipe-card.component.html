@@ -1,8 +1,8 @@
-<div>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlM17-zxYOLkKbUhIoZS99NDjLlfS5fnXtVoiVCW3cBQ&s">
-    <span>Pasta</span>
-    <span>Difficulty level</span>
-    <span>Healty Level</span>
-    <span>122</span>
+<div *ngFor="let item of items" class="outerDiv">
+    <img src="{{item.img}}" class="imageOfDish">
+    <span class="itemName">{{item.name}}</span>
+    <app-difficulty-level [level]="item.difficultyLevel" type="difficultyLevel"></app-difficulty-level>
+    <app-difficulty-level [level]="item.healthyLevel"></app-difficulty-level>
+    <span>{{item.ruppes|currency:'INR'}}</span>
     <img src="">
 </div>
