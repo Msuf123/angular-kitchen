@@ -1,8 +1,12 @@
 <div *ngFor="let item of items" class="outerDiv">
     <img src="{{item.img}}" class="imageOfDish">
     <span class="itemName">{{item.name}}</span>
-    <app-difficulty-level [level]="item.difficultyLevel" type="difficultyLevel"></app-difficulty-level>
+    <app-difficulty-level [level]="item.difficultyLevel" type="Difficulty Level"></app-difficulty-level>
     <app-difficulty-level [level]="item.healthyLevel"></app-difficulty-level>
-    <span>{{item.ruppes|currency:'INR'}}</span>
+    <div class="priceOfItem">
+        
+        <span>Approx. {{item.ruppes|currency:'INR'}}</span>
+        <img src="../../../../assets/priceTag.png">
+    </div>
     <img src="">
 </div>
