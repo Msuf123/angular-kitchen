@@ -10,6 +10,7 @@
 }
 .imageOfDish{
     width: 300px;
+    height: 200px;
     border-radius: 5px;
 }
 .itemName{
@@ -24,4 +25,9 @@
     transform: rotate(270deg);
     width: 20px;
     margin-left: 2px;
+}
+:host{
+    border: 2px solid black;
+    display: grid;
+    grid-template-columns: max-content max-content;
 }
