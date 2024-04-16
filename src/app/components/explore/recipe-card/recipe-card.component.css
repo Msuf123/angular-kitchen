@@ -1,0 +1,33 @@
+.outerDiv{
+    width: max-content;
+    padding: 5px;
+    display: block;
+    width: 300px;
+    height: 315px;
+    background-color: white;
+    box-shadow: 0px 0px 10px 2px  rgb(192, 192, 192);
+    border-radius: 5px;
+}
+.imageOfDish{
+    width: 300px;
+    height: 200px;
+    border-radius: 5px;
+}
+.itemName{
+    display: block;
+}
+.priceOfItem{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.priceOfItem img{
+    transform: rotate(270deg);
+    width: 20px;
+    margin-left: 2px;
+}
+:host{
+    border: 2px solid black;
+    display: grid;
+    grid-template-columns: max-content max-content;
+}

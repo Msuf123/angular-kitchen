@@ -37,7 +37,7 @@
     position: absolute;
     left: 4px;
     transition: all 0.2s linear ;
-    background-image:url('../../../../../../assets/sun.png') ;
+    background-image:url('./../../../../../assets/sun.png') ;
     background-position: 0%;
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -46,8 +46,8 @@
   transform: translate(-100%,0%);
   left: 96%;
   z-index: 3;
-  background-image:url('../../../../../../assets/crescent-moon.png') ;
+  background-image:url('./../../../../../assets/crescent-moon.png') ;
 }
 .switch:checked~.background{
-    background-color: rgb(48, 47, 47);
+    background-color: rgb(175, 175, 175);
 }
