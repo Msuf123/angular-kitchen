@@ -6,6 +6,7 @@
         "healthyLevel":3,
         "ruppes":200,
         "img":"",
-        "veg":true
+        "veg":true,
+        "views":45
     }
 ]

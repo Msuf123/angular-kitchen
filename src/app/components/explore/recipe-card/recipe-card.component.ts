@@ -14,7 +14,4 @@ import { ClickNavigationDirective } from '../../../directives/click-nav-directiv
 export class RecipeCardComponent {
   individualCard=inject(IndividualCardService)
   items=this.individualCard.recipies
-  funcc(){
-    console.log('Clicked')
-  }
 }
