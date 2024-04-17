@@ -2,7 +2,7 @@
     "name":"Pasta",
     "ingridients":["Pnad","oil"],
     "description":{"isThere":true,"data":"dffaefffffffffffff"},
-    "procedure":[{"data":"dffaefffffffffffff","img":"https"},{"data":"dffaefffffffffffff","img":"https"}],
+    "procedure":[{"heading":"fff","data":"dffaefffffffffffff","containsImage":true,"img":"https"}],
     "aboutCreator":{"creatorImageUrl":"https","creatorName":"Msuf123","numberOfFollowers":24},
-    "comments":[{"userName":"Msuf123","userProfielUrl":"https","data":"ood video","likes":45,"dislikes":40}]
+    "comments":[{"userName":"Msuf123","userProfielUrl":"https","data":"ood video","likes":45,"dislikes":40,"furtherReplies":[{"userName":"Msuf123","userProfielUrl":"https","data":"No so cool","likes":45,"dislikes":40,"repliedToUser":"@Msuf"}]}]
 }
