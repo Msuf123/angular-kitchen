@@ -1,15 +1,16 @@
-<div>
-    <span>Pasta</span>
-    <app-description-component></app-description-component>
+<div class="upperPortion">
+    <span>{{data.name}}</span>
     <app-multi-media-details-intro></app-multi-media-details-intro>
+    <app-description-component *ngIf="data.description.isThere"  [data]="data.description.data">
+    </app-description-component>
 </div>
-<div>
+<div class="listOfIngridients">
     <span>Incideinets</span>
     <ul>
-        <li>hi</li>
+        <li *ngFor="let item of data.ingridients;">{{item}}</li>
     </ul>
 </div>
-<div>
+<div class="procedureSection">
     <span>Procdeure</span>
     <app-procedure-component></app-procedure-component>
 </div>

@@ -22,13 +22,17 @@ interface IndividualComment{
     data:string,
     likes:number,
     dislikes:number
-    furtherReplies:FurtherReplies[]
+    furtherReplies?:FurtherReplies[]
+}
+interface Video{
+    isThere:boolean,url:string,poster:string
 }
 export interface RecipeDataFromServer {
     name:string,
     ingridients:string[],
+    video:Video,
     description:Description,
     procedure:Procedure[]
     aboutCreator:CreatorDescription
-    comments:IndividualComment[]
+    comments?:IndividualComment[]
 }

@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './multi-media-details-intro.component.css'
 })
 export class MultiMediaDetailsIntroComponent {
-
+ 
 }
