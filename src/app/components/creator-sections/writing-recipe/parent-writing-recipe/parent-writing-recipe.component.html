@@ -1,0 +1,7 @@
+<form [formGroup]="form" (ngSubmit)="submitForm($event)">
+    
+<app-writing-top-bar></app-writing-top-bar>
+<app-writing-first-section [formGroup]="form" [questions]="listOfQuestioins" ></app-writing-first-section>
+<app-writing-second-section [form]="form"></app-writing-second-section>
+<app-writing-third-section [form]="form"></app-writing-third-section>
+</form>

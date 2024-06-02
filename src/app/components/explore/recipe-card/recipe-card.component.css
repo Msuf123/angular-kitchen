@@ -1,0 +1,77 @@
+.outerDiv{
+    
+    width: max-content;
+    padding: 5px;
+    display: block;
+    width: 300px;
+    height: 315px;
+    background-color: white;
+    box-shadow: 0px 0px 8px 2px  rgb(177, 176, 176);
+    border-radius: 5px;
+}
+.imageOfDish{
+    width: 300px;
+    height: 200px;
+    border-radius: 5px;
+}
+.itemName{
+    display: block;
+    font-size: 22px;
+    font-weight: 600;
+}
+.priceOfItem{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-weight: 550;
+}
+.priceOfItem img{
+    transform: rotate(270deg);
+    width: 20px;
+    margin-left: 2px;
+}
+.infoPortion{
+    padding-left: 3px;
+}
+:host{
+    padding: 15px;
+    display: grid;
+    gap: 16px 16px;
+    justify-content: center;
+    grid-template-columns: repeat(5,max-content);
+}
+@media only screen and (max-width:1786px) {
+    :host{grid-template-columns: repeat(4,max-content);
+        
+}
+.outerDiv{
+    width: 20vw;
+    aspect-ratio: 1;
+}
+.imageOfDish{
+    width: 100%;
+    aspect-ratio: 1;
+}
+}
+@media only screen and (max-width:1380px) {
+    :host{
+        grid-template-columns: repeat(3,max-content);
+    }
+    .outerDiv{
+        width: 25vw;
+        aspect-ratio: 1;
+    }
+}
+@media only screen and (max-width:1030px) {
+    :host{
+        grid-template-columns: repeat(2,max-content); 
+    }
+    .outerDiv{
+        width: 35vw;
+        aspect-ratio: 1;
+    }
+    .imageOfDish{
+        width: 100%;
+        aspect-ratio:1;
+    }
+}

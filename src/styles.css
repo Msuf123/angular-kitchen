@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+:root{
+    --border: 2px solid transparent;
+    --creator-write-validInput:rgb(150, 150, 13);
+    --creator-write-invalid:red;
+}
+body{
+    padding: 0px;
+    margin: 0px;
+}

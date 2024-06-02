@@ -1,0 +1,21 @@
+<h1>Enter steps</h1>
+<div [formGroup]="form" class="descriptionSection">
+  <div formArrayName="steps" class="eachStepDiv">
+    <div *ngFor="let i of steps.controls;let index=index" class="individualDesc" [formGroupName]="index">
+      <div class="">
+        <div class="fomrsSection">
+          <label class="lable">Step {{index+1}}</label>
+          
+          <input formControlName="heading" placeholder="Enter the name of the step">
+        </div>
+      <div class="description">
+        <textarea placeholder="Enter the procedure" formControlName="about" wrap="hard" (ngModelChange)="run($event)" rows="10" maxlength="600" [placeholder]="'Expalin about the procesdure of step'">
+
+        </textarea>
+        <input type="file">
+      </div>
+      </div>
+    </div>
+  </div>
+  <button (click)="addSteps()">+</button>
+</div>

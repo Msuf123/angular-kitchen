@@ -1,0 +1,42 @@
+.descriptionSection{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+    align-items: center;
+}
+
+.individualStepHeading{
+    display: flex;
+    align-items: center;
+}
+.fomrsSection{
+
+    display: block;
+    margin: 5px auto;
+}
+.description{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+    width:100%;
+   
+}
+textarea{
+    resize:vertical;
+    width: 80%;
+    height: auto;
+}
+.eachStepDiv{
+   width: min(900px,70vw);
+
+  
+}
+:host{
+    display: block;
+    flex-direction: column;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

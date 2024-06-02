@@ -1,0 +1,26 @@
+<div [formGroup]="formGroup" class="fomrsSection" [ngClass]="classNames">
+    <label class="lable">{{question.lable}}</label>
+    <ng-container [ngSwitch]="question.type" class="Outercontainer">
+      <input *ngSwitchCase="'text'"  class="inputTypeText" [formControlName]="question.key" type="text">
+      <input *ngSwitchCase="'slider'" [formControlName]="question.key" type="range" [min]="1" [max]="3" [step]="1" value=0>
+      <ng-template [ngIf]="!url">
+      <input *ngSwitchCase="'file'"  (change)="fileUploaded($event)" type="file">
+    </ng-template>
+      
+      <ng-template [ngIf]="url">
+        <div class="imagePreviewDiv">
+          <img src="../../../../../assets/kitchen-trash-bin.png" (click)="deleteImage()">
+          <img *ngSwitchCase="'file'" class="uploadedImage"   [src]="url">
+        </div>
+        </ng-template>
+      
+
+
+      <ng-container *ngSwitchCase="'textbox'">
+        <textarea>
+          Default value
+        </textarea>
+          </ng-container>
+    </ng-container>
+    
+</div>

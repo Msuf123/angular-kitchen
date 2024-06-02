@@ -1,0 +1,50 @@
+.outerdiv{
+  
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+ 
+}
+textarea{
+    resize: vertical;
+}
+.indexValue{
+    font-size: 18px;
+    justify-self: end;
+    padding: 0px;
+    position: relative;
+    top:5px;
+    margin: 5px;
+}
+button{
+    margin: auto;
+}
+.ingridents{
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    justify-content: center;
+    align-items: start;
+}
+input{
+    border: 0px solid black;
+    border-bottom: 2px solid black;
+    
+    margin: 5px 5px;
+}
+input:focus{
+    outline: none;
+}
+.ingridents img{
+    width: 16px;
+    padding: 4px;
+    position: relative;
+    top: 12px;
+    margin: 5px;
+    border-radius: 5px;
+    
+}
+.ingridents img:hover{
+  background-color: rgb(243, 62, 62);
+}

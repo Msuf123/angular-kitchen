@@ -1,0 +1,17 @@
+<div class="upperPortion">
+    <span>{{data.name}}</span>
+    <app-multi-media-details-intro></app-multi-media-details-intro>
+    <app-description-component *ngIf="data.description.isThere"  [data]="data.description.data">
+    </app-description-component>
+</div>
+<div class="listOfIngridients">
+    <span>Incideinets</span>
+    <ul>
+        <li *ngFor="let item of data.ingridients;">{{item}}</li>
+    </ul>
+</div>
+<div class="procedureSection">
+    <span>Procdeure</span>
+    <app-procedure-component></app-procedure-component>
+</div>
+<app-comment-section></app-comment-section>

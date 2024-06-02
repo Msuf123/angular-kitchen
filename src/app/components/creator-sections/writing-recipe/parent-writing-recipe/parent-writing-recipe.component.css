@@ -1,0 +1,20 @@
+.fomrsSection{
+    border: 2px solid black;
+    padding: 15px;
+    width: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: relative;
+    margin-top: 10px;
+    
+}
+.lable{
+    font-size: 16px;
+    position: absolute;
+    background-color: white;
+    top: -12.5px;
+    padding:0px 4px;
+    left: 6px;
+    font-weight: 600;
+}
