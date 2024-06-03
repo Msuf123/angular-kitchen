@@ -6,6 +6,19 @@
     height: 100%;
    
 }
+.bottombar{
+    display: none;
+    position: fixed;
+    bottom: 0px;
+}
+@media only screen and (max-width:454px) {
+    .sidebar{
+        display: none;
+    }
+    .bottombar{
+        display: block;
+    }
+}
 :host{
     
     height: 100%;
