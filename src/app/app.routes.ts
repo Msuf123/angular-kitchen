@@ -11,6 +11,9 @@ export const routes: Routes = [
     {
         path:'',
         component:ExploreComponent,
+        children:[
+            {path:'',component:RecipeCardComponent}
+        ]
         
     }
     ,{
