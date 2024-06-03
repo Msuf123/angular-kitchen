@@ -9,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './bottom-bar.component.css'
 })
 export class BottomBarComponent {
- buttons:{path:string,img:string}[]=[{path:'Home',img:'../../../../assets/home.png'},{path:'Inbox',img:'inbox.png'},{path:'Write',img:'edit.png'},{path:'Profile',img:'user.png'}]
+ buttons:{path:string,img:string}[]=[{path:'Home',img:'home.png'},{path:'Inbox',img:'inbox.png'},{path:'Write',img:'edit.png'},{path:'Profile',img:'user.png'}]
 }
