@@ -30,10 +30,7 @@ export class AppComponent implements DoCheck {
     this.currentTheme=this.themeService.theme.subscribe((e)=>{
       this.darkMode=e
     })
-    this.http.getRequest().subscribe((a)=>console.log(a,'LL'))
-    this.loadingService.state.subscribe((a)=>{
-      console.log('Loading '+a)
-    })
+    
   }
   ngDoCheck(){
  

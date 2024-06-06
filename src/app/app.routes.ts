@@ -10,9 +10,9 @@ import { LogInComponent } from './components/authentication/log-in/log-in.compon
 export const routes: Routes = [
     {
         path:'',
-        component:ExploreComponent,
+        component:LogInComponent,
         children:[
-            {path:'',component:RecipeCardComponent}
+            {path:'kk',component:RecipeCardComponent}
         ]
         
     }
