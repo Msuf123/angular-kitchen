@@ -19,7 +19,7 @@ export class HttpServiceService {
   httpService=inject(HttpClient)
   get(url_t:string){
     console.log(url_t)
-    return this.httpService.get(url_t,{observe:'body',responseType:'json'})
+    return this.httpService.get(url_t,{observe:'body',responseType:'json',withCredentials:true})
   }
   constructor(private service:HttpClient,@Inject(url)private url:string) { }
   question(){

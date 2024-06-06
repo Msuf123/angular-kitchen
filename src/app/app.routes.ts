@@ -6,13 +6,14 @@ import { AppComponent } from './app.component';
 import { ParentWritingRecipeComponent } from './components/creator-sections/writing-recipe/parent-writing-recipe/parent-writing-recipe.component';
 import { loadWritingGuard } from './guards/creator/parent-writing/load-writing.guard';
 import { LogInComponent } from './components/authentication/log-in/log-in.component';
+import { SignUpComponent } from './components/authentication/sign-up/sign-up.component';
 
 export const routes: Routes = [
     {
         path:'',
-        component:LogInComponent,
+        component:ExploreComponent,
         children:[
-            {path:'kk',component:RecipeCardComponent}
+            {path:'',component:RecipeCardComponent}
         ]
         
     }
@@ -23,5 +24,9 @@ export const routes: Routes = [
 {
     path:'login',
     component:LogInComponent
+},
+{
+    path:'signUp',
+    component:SignUpComponent
 }
 ];

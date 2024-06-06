@@ -8,3 +8,30 @@ body{
     padding: 0px;
     margin: 0px;
 }
+.forms{
+   
+    transform: translate(0px,-50%);
+    box-shadow: 0px 0px 14px 1px black;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: max-content;
+    padding: 25px;
+}
+a:visited{
+    color: rgb(80, 80, 247);
+}
+input::placeholder{
+    font-size: 16px;
+}
+input{
+    margin: 5px 0px;
+    font-size: 18px;
+}
+.formHeading{
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom:5px ;
+}
+
