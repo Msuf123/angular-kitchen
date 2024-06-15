@@ -1,5 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { HttpServiceService } from '../../../services/global-http/http-service.service';
+import { url } from '../../../app.config';
+
 
 @Component({
   selector: 'app-sign-up',
@@ -10,12 +13,15 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 })
 export class SignUpComponent {
  formBuilder=inject(FormBuilder)
+ httpService=inject(HttpServiceService)
+
  signUpForm=this.formBuilder.group({
   username:[''],
   password:[''],
   email:['']
  })
  formSubmitted(){
-  console.log(this.signUpForm.value)
+  
+  this.httpService.post('http://localhost:3000/sign-up/send-mail',this.signUpForm.value).subscribe((a)=>console.log(a))
  }
 }

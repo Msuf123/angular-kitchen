@@ -12,6 +12,6 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 export class LogInComponent {
   clientService=inject(HttpServiceService)
  constructor(){
-  this.clientService.get('http://localhost:3000/tokenGen').subscribe((a)=>console.log(a))
+ // this.clientService.post('http://localhost:3000/tokenGen').subscribe((a)=>console.log(a))
  }
 }
