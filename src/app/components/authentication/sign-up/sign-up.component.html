@@ -5,7 +5,7 @@
         <input placeholder="Username" formControlName="email">
         <input placeholder="Password" formControlName="password">
         <div class="visualFiles">
-            <input type="file" class="fileUploader">
+            <input (change)="fileUploaded($event)"  type="file" class="fileUploader">
         </div>
         <button class="submitButton">Sign-Up</button>
     </form>
