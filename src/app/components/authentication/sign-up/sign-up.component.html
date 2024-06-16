@@ -4,9 +4,11 @@
         <input placeholder="Email Address" formControlName="username">
         <input placeholder="Username" formControlName="email">
         <input placeholder="Password" formControlName="password">
-        <div class="visualFiles">
+        <div class="visualFiles" *ngIf="!fileDataUrl">
             <input (change)="fileUploaded($event)"  type="file" class="fileUploader">
         </div>
+
+        <img class="imageUploaded" *ngIf="fileDataUrl" [src]="fileDataUrl" [alt]="'loo'">
         <button class="submitButton">Sign-Up</button>
     </form>
 

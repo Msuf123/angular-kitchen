@@ -1,19 +1,21 @@
-import { Component, Inject, inject } from '@angular/core';
+import { Component, DoCheck, Inject, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { HttpServiceService } from '../../../services/global-http/http-service.service';
 import { url } from '../../../app.config';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
 })
-export class SignUpComponent {
+export class SignUpComponent implements DoCheck{
  formBuilder=inject(FormBuilder)
  httpService=inject(HttpServiceService)
+ fileDataUrl=''
 
  signUpForm=this.formBuilder.group({
   username:[''],
@@ -21,17 +23,21 @@ export class SignUpComponent {
   email:[''],
   files:['']
  })
+ ngDoCheck(): void {
+   console.log(this.fileDataUrl)
+ }
  fileUploaded(evnet:any){
-  //log the input elemnt
+  
   const files:File=evnet.target.files[0]
   const reder=new FileReader()
-  console.log(files)
+
   reder.readAsDataURL(files)
-  reder.onload=function(){
-    console.log(reder.result);
+  reder.onload=()=>{
+    this.fileDataUrl=reder.result as string
   }
-  reder.onerror = function() {
-    console.log(reder.error);
+  
+  reder.onerror = ()=>{
+    this.fileDataUrl=''
   };
 
   
