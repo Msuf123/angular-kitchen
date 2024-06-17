@@ -28,6 +28,9 @@ ngAfterViewInit(){
 fileUploaded(event:any){
 let files:File[]=event.target.files
 const reader=new FileReader()
+const arrayBuffer:any=files[0].arrayBuffer().then((a)=>{
+  console.log(a)
+})
 reader.readAsDataURL(files[0])
 reader.onload=(event: ProgressEvent<FileReader>)=>{
   this.url=reader.result as string
