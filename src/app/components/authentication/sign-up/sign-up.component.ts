@@ -32,11 +32,19 @@ export class SignUpComponent{
     const arrayBufferViewer=new Int8Array(a)
     console.log(arrayBufferViewer.length,arrayBufferViewer.byteLength)
     let sizeOfArrays=50000
-    let noOfChunks=arrayBufferViewer.byteLength/sizeOfArrays
-    for(let i=0;i<noOfChunks+1;i++){
-    
-    this.httpService.post('http://localhost:3000/sign-up//upload-image',{kaks:'jj'},{'Content-length':arrayBufferViewer.length}).subscribe((a)=>console.log(a))
+    let timesToMakeRequest=arrayBufferViewer.byteLength/sizeOfArrays
+    let currentCounter=0
+    const makeRequest=()=>{
+    this.httpService.post('http://localhost:3000/sign-up//upload-image',{text:`${currentCounter}`,fileName:'image.txt'}).subscribe((a)=>{
+      ++currentCounter
+      if(a==='okay'&&currentCounter<timesToMakeRequest){
+          makeRequest()
+      }else{
+        console.log('File uploaded')
+      }
+    })
     }
+    makeRequest()
   })
   reder.readAsDataURL(files)
   reder.onload=()=>{

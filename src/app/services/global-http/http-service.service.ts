@@ -19,7 +19,7 @@ export class HttpServiceService {
   httpService=inject(HttpClient)
   post(url_t:string,body:any,header?:any){
     header=header?header:null
-    return this.httpService.post(url_t,body,{observe:'body',responseType:'text',withCredentials:true,headers:header})
+    return this.httpService.post(url_t,body,{observe:'body',responseType:'text',withCredentials:true})
   }
   constructor(private service:HttpClient,@Inject(url)private url:string) { }
   question(){
