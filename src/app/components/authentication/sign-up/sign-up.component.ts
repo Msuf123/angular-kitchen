@@ -34,8 +34,8 @@ export class SignUpComponent{
     let sizeOfArrays=50000
     let noOfChunks=arrayBufferViewer.byteLength/sizeOfArrays
     for(let i=0;i<noOfChunks+1;i++){
-     
-    console.log(arrayBufferViewer.slice(i*sizeOfArrays,(i+1)*sizeOfArrays))
+    
+    this.httpService.post('http://localhost:3000/sign-up//upload-image',{kaks:'jj'},{'Content-length':arrayBufferViewer.length}).subscribe((a)=>console.log(a))
     }
   })
   reder.readAsDataURL(files)

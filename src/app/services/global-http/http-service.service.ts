@@ -17,9 +17,9 @@ import { TextArea } from '../../custom-class/questions-class/creator-write-sec/C
 export class HttpServiceService {
   loadingService=inject(LoadingService)
   httpService=inject(HttpClient)
-  post(url_t:string,body:any){
-    console.log(url_t)
-    return this.httpService.post(url_t,body,{observe:'body',responseType:'text',withCredentials:true})
+  post(url_t:string,body:any,header?:any){
+    header=header?header:null
+    return this.httpService.post(url_t,body,{observe:'body',responseType:'text',withCredentials:true,headers:header})
   }
   constructor(private service:HttpClient,@Inject(url)private url:string) { }
   question(){
