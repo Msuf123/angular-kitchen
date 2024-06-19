@@ -12,7 +12,7 @@
         <div class="" *ngFor="let i of ingridients.controls;let index=index">
           <span class="indexValue">{{index+1}}.</span>
           <input  [formControlName]="index">
-          <img *ngIf="index!==0" (click)="deleteIngridents(index)"  src="../../../../../../assets/kitchen-trash-bin.png">
+          <img *ngIf="index!==0" (click)="deleteIngridents(index)"  src="kitchen-trash-bin.png">
         </div>
       <button (click)="addIngridients()" [disabled]="displayButton">Add</button>
     </div>
