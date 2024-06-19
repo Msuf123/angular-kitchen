@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { HttpServiceService } from '../../../services/global-http/http-service.service';
 import { url } from '../../../app.config';
 import { CommonModule } from '@angular/common';
+import { ReadFilesService } from '../../../services/readFile-single/read-files.service';
 
 
 @Component({
@@ -15,6 +16,7 @@ import { CommonModule } from '@angular/common';
 export class SignUpComponent{
  formBuilder=inject(FormBuilder)
  httpService=inject(HttpServiceService)
+ fileReadingService=inject(ReadFilesService)
  fileDataUrl=''
 
  signUpForm=this.formBuilder.group({
@@ -24,38 +26,9 @@ export class SignUpComponent{
   files:['']
  })
  
- fileUploaded(evnet:any){
-  
-  const files:File=evnet.target.files[0]
-  const reder=new FileReader()
-  const arrayBuffer:any=files.arrayBuffer().then((a)=>{
-    const arrayBufferViewer=new Int8Array(a)
-    console.log(arrayBufferViewer.length,arrayBufferViewer.byteLength)
-    let sizeOfArrays=50000
-    let timesToMakeRequest=arrayBufferViewer.byteLength/sizeOfArrays
-    let currentCounter=0
-    const makeRequest=()=>{
-    this.httpService.post('http://localhost:3000/sign-up//upload-image',{text:`${currentCounter}`,fileName:'image.txt'}).subscribe((a)=>{
-      ++currentCounter
-      if(a==='okay'&&currentCounter<timesToMakeRequest){
-          makeRequest()
-      }else{
-        console.log('File uploaded')
-      }
-    })
-    }
-    makeRequest()
-  })
-  reder.readAsDataURL(files)
-  reder.onload=()=>{
-    this.fileDataUrl=reder.result as string
-  }
-  
-  reder.onerror = ()=>{
-    this.fileDataUrl=''
-  };
-
-  
+ async fileUploaded(evnet:any){
+  const res=await this.fileReadingService.raedFile(evnet.target)
+  this.fileDataUrl=res as string
 }
  formSubmitted(){
   
