@@ -28,7 +28,7 @@ ngAfterViewInit(){
   })
 }
 async fileUploaded(event:any){
-const response=await this.filereaderService.raedFile(event.target)
+const response=await this.filereaderService.readFile(event.target)
 this.url=response as string
 }
 

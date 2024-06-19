@@ -25,10 +25,18 @@ export class SignUpComponent{
   email:[''],
   files:['']
  })
- 
+ constructor(){
+  let a=[3]
+  console.log(a.slice(3,5))
+ }
  async fileUploaded(evnet:any){
-  const res=await this.fileReadingService.raedFile(evnet.target)
+  const filesExtension=(evnet.target.files[0].type as string).split('/')[1]
+  console.log(filesExtension)
+  const res=await this.fileReadingService.readFile(evnet.target)
   this.fileDataUrl=res as string
+  const buffer=await this.fileReadingService.readBuffer(evnet.target) as ArrayBuffer
+  this.httpService.uploadImageToServer(buffer,'http://localhost:3000/sign-up/upload-image','ll.jpg',filesExtension)
+  
 }
  formSubmitted(){
   

@@ -5,7 +5,7 @@
         <input placeholder="Username" formControlName="email">
         <input placeholder="Password" formControlName="password">
         <div class="visualFiles" *ngIf="!fileDataUrl">
-            <input (change)="fileUploaded($event)"  type="file" class="fileUploader">
+            <input (change)="fileUploaded($event)" accept="image/jpeg,image/png,image/webp"  type="file" class="fileUploader">
         </div>
 
         <img class="imageUploaded" *ngIf="fileDataUrl" [src]="fileDataUrl" [alt]="'loo'">
