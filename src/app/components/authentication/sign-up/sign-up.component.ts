@@ -26,8 +26,6 @@ export class SignUpComponent{
   files:['']
  })
  constructor(){
-  let a=[3]
-  console.log(a.slice(3,5))
  }
  async fileUploaded(evnet:any){
   const filesExtension=(evnet.target.files[0].type as string).split('/')[1]
