@@ -38,7 +38,7 @@ export class HttpServiceService {
     ]
     return arrayOfQuestions
   }
-  uploadImageToServer(dataToUpload:ArrayBuffer,url:string,fileNames:string,fileEntension:string){
+  uploadImageToServer(dataToUpload:ArrayBuffer,url:string,fileEntension:string){
     const chunks=10000
     let timesItRan=0
     const totalChunks=dataToUpload.byteLength/chunks
@@ -47,7 +47,7 @@ export class HttpServiceService {
     const makeRequest=(index:number,endIndex:number,nameOfFile:string)=>{
       this.httpService.post(url,dataToUpload.slice(index,endIndex),{responseType:'text',withCredentials:true,observe:'body',headers:new HttpHeaders({'file-name':nameOfFile+'.'+fileEntension,'total-length':totalChunks+1})}).subscribe((res)=>{
         timesItRan++
-        console.log(`I ran ${timesItRan}`)
+        console.log(`Upload percantage=${(timesItRan/Math.round(totalChunks+1))*100}`)
         if(res==='okay'&&timesItRan<=totalChunks+1){
           makeRequest(index+chunks,endIndex+chunks,nameOfFile)
         }
