@@ -42,12 +42,14 @@ export class HttpServiceService {
     const chunks=10000
     let timesItRan=0
     const totalChunks=dataToUpload.byteLength/chunks
+    console.log(totalChunks+1,Math.floor(totalChunks+1))
     const shortName = uniqueNamesGenerator({ dictionaries: [adjectives, colors, animals] });
    
     const makeRequest=(index:number,endIndex:number,nameOfFile:string)=>{
       this.httpService.post(url,dataToUpload.slice(index,endIndex),{responseType:'text',withCredentials:true,observe:'body',headers:new HttpHeaders({'file-name':nameOfFile+'.'+fileEntension,'total-length':totalChunks+1})}).subscribe((res)=>{
         timesItRan++
-        console.log(`Upload percantage=${(timesItRan/Math.round(totalChunks+1))*100}`)
+        console.log(res)
+        console.log(`Upload percantage=${(timesItRan/Math.round(totalChunks+1))*100}`,'nUMBER OF TIMES '+timesItRan)
         if(res==='okay'&&timesItRan<=totalChunks+1){
           makeRequest(index+chunks,endIndex+chunks,nameOfFile)
         }
