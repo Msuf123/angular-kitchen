@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, Injector, inject } from '@angular/core';
 import { HttpServiceService } from '../../../../../public/http-service.service';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-log-in',
@@ -11,7 +11,15 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class LogInComponent {
   clientService=inject(HttpServiceService)
- constructor(){
- // this.clientService.post('http://localhost:3000/tokenGen').subscribe((a)=>console.log(a))
- }
+  googleUrl=new URL("/o/oauth2/v2/auth","https://accounts.google.com")
+  searchPrams=new URLSearchParams({
+    client_id:'1018052408121-d8lvo3m0pt9601n5m8m9k9u4jlbm78of.apps.googleusercontent.com',
+    redirect_uri:'http://localhost:4200/oauth/google',
+    response_type:'token',
+    scope:'https://www.googleapis.com/auth/userinfo.email'
+  })
+  twitterLogin='https://twitter.com/i/oauth2/authorize'
+  constructor(){
+    this.googleUrl.search=this.searchPrams.toString()
+  }
 }
