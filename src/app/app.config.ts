@@ -6,5 +6,5 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { provideCloudflareLoader } from '@angular/common';
 export const url=new InjectionToken<string>('backendUrl')
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes),importProvidersFrom(HttpClientModule),provideCloudflareLoader("https://res.cloudinary.com/dhm03owaz/image/upload"),{provide:url,useValue:'http://localhost:3000'}]
+  providers: [provideRouter(routes),importProvidersFrom(HttpClientModule),{provide:url,useValue:'http://localhost:3000'}]
 };
