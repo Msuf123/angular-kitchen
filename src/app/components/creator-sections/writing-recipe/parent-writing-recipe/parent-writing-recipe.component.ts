@@ -5,7 +5,7 @@ import { WritingSecondSectionComponent } from './writing-second-section/writing-
 import { WritingThirdSectionComponent } from './writing-third-section/writing-third-section.component';
 import { IndividualInputFormComponent } from '../individual-input-form/individual-input-form.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { HttpServiceService } from '../../../../services/global-http/http-service.service';
+import { HttpServiceService } from '../../../../../../public/http-service.service';
 import { FormGeneratorServiceService } from '../../../../services/creator-sections/writing-recipe/form-generator-service.service';
 import { CommonModule } from '@angular/common';
 import { LoadingService } from '../../../../services/loading/loading.service';

@@ -1,6 +1,6 @@
 import { CSP_NONCE, Component, DoCheck, Inject, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { HttpServiceService } from '../../../services/global-http/http-service.service';
+import { HttpServiceService } from '../../../../../public/http-service.service';
 import { url } from '../../../app.config';
 import { CommonModule } from '@angular/common';
 import { ReadFilesService } from '../../../services/readFile-single/read-files.service';

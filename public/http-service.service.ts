@@ -1,15 +1,15 @@
 import { Inject, Injectable, inject } from '@angular/core';
-import BaseQuestion from '../../custom-class/questions-class/creator-write-sec/base.question';
-import TextBox from '../../custom-class/questions-class/creator-write-sec/ChildClasses/text.box';
+import BaseQuestion from '../src/app/custom-class/questions-class/creator-write-sec/base.question';
+import TextBox from '../src/app/custom-class/questions-class/creator-write-sec/ChildClasses/text.box';
 import { Validator,Validators } from '@angular/forms';
-import Slider from '../../custom-class/questions-class/creator-write-sec/ChildClasses/slider.box';
-import { Files } from '../../custom-class/questions-class/creator-write-sec/ChildClasses/file.box';
+import Slider from '../src/app/custom-class/questions-class/creator-write-sec/ChildClasses/slider.box';
+import { Files } from '../src/app/custom-class/questions-class/creator-write-sec/ChildClasses/file.box';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { url } from '../../app.config';
+import { url } from '../src/app/app.config';
 import { Observable, switchMap } from 'rxjs';
-import { setLoadingTrue } from '../../pipe-operators/creator-section/http-loading.pipe';
-import { LoadingService } from '../loading/loading.service';
-import { TextArea } from '../../custom-class/questions-class/creator-write-sec/ChildClasses/TextArea.box';
+import { setLoadingTrue } from '../src/app/pipe-operators/creator-section/http-loading.pipe';
+import { LoadingService } from '../src/app/services/loading/loading.service';
+import { TextArea } from '../src/app/custom-class/questions-class/creator-write-sec/ChildClasses/TextArea.box';
 import { uniqueNamesGenerator ,adjectives, colors, animals} from 'unique-names-generator';
 
 @Injectable({

@@ -4,7 +4,7 @@ import { TopBarComponent } from './components/top-bar/top-bar/top-bar.component'
 import { ThemeService } from './services/theme/theme.service';
 import { ExploreComponent } from './components/explore/explore.component';
 import { LoadingService } from './services/loading/loading.service';
-import { HttpServiceService } from './services/global-http/http-service.service';
+import { HttpServiceService } from '../../public/http-service.service';
 import { LoadingComponent } from './components/global-component/loading/loading.component';
 import { CommonModule } from '@angular/common';
 
