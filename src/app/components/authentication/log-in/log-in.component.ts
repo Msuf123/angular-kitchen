@@ -18,8 +18,18 @@ export class LogInComponent {
     response_type:'token',
     scope:'https://www.googleapis.com/auth/userinfo.email'
   })
-  twitterLogin='https://twitter.com/i/oauth2/authorize'
+  twitterLogin=new URL('https://twitter.com/i/oauth2/authorize')
+  twitterSearchPrams=new URLSearchParams({
+    response_type:"code",
+    client_id:"Rmd2OG42UE5qeXBuX3FyMUN6REY6MTpjaQ",
+    redirect_uri:"https://angular-kitchen.vercel.app/oauth/x",
+    state:"2",
+    code_challenge:'jkda;f',
+    code_challenge_method:'plain',scope:'users.read'
+  })
   constructor(){
     this.googleUrl.search=this.searchPrams.toString()
+    this.twitterLogin.search=this.searchPrams.toString()
+    
   }
 }
