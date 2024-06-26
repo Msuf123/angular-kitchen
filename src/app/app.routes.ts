@@ -8,6 +8,7 @@ import { loadWritingGuard } from './guards/creator/parent-writing/load-writing.g
 import { LogInComponent } from './components/authentication/log-in/log-in.component';
 import { SignUpComponent } from './components/authentication/sign-up/sign-up.component';
 import { OauthComponent } from './components/authentication/oauth/oauth.component';
+import { XOauthComponent } from './components/authentication/x-oauth/x-oauth.component';
 
 export const routes: Routes = [
     {
@@ -32,5 +33,8 @@ export const routes: Routes = [
 {
     path:'signUp',
     component:SignUpComponent
+},{
+    path:'oauth/x'
+    ,component:XOauthComponent
 }
 ];
