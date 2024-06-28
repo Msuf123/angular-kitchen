@@ -1,5 +1,5 @@
 import { Component, Injector, inject } from '@angular/core';
-import { HttpServiceService } from '../../../../../public/http-service.service';
+import { HttpServiceService } from '../../../services/global-http/http-service.service';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
