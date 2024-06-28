@@ -22,6 +22,9 @@ export const routes: Routes = [
     ,{
         path:'write',
         component:ParentWritingRecipeComponent,canActivate:[]
+    },{
+        path:'articles/:id',
+        component:DetailsAboutArticlesComponent
     },
 {
     path:'login',
