@@ -8,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrl: './x-oauth.component.css'
 })
 export class XOauthComponent {
-
+  constructor(){
+    console.log(window.location.href)
+   const accessToken=new URL(window.location.href)
+   const searchPrmas=new URLSearchParams(accessToken.searchParams)
+   if(searchPrmas.has('code')){
+    console.log('Contains code ')
+   }
+   else{
+    console.log('Try again')
+   }
+  }
 }

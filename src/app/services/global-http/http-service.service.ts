@@ -18,7 +18,9 @@ import { uniqueNamesGenerator ,adjectives, colors, animals} from 'unique-names-g
 export class HttpServiceService {
   loadingService=inject(LoadingService)
   httpService=inject(HttpClient)
- 
+  get(url:string){
+    return this.httpService.get(url,{observe:'body',responseType:'json',withCredentials:true})
+  }
   post(url_t:string,body:any,header?:any){
     header=header?header:null
     return this.httpService.post(url_t,body,{observe:'body',responseType:'text',withCredentials:true})
@@ -57,6 +59,7 @@ export class HttpServiceService {
     }
     makeRequest(0,chunks,shortName)
   }
+  
   getRequest(){
     return new Observable((emmiter)=>{emmiter.next('Sending req')}).pipe(setLoadingTrue(this.loadingService.state),switchMap(()=>this.service.get(this.url)))
   }

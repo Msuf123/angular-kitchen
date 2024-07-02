@@ -10,11 +10,12 @@ import { FormGeneratorServiceService } from '../../../../services/creator-sectio
 import { CommonModule } from '@angular/common';
 import { LoadingService } from '../../../../services/loading/loading.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SignInMsgComponent } from '../../../authentication/sign-in-msg/sign-in-msg.component';
 
 @Component({
   selector: 'app-parent-writing-recipe',
   standalone: true,
-  imports: [WritingTopBarComponent,CommonModule,WritingFirstSectionComponent,WritingSecondSectionComponent,WritingThirdSectionComponent,ReactiveFormsModule],
+  imports: [WritingTopBarComponent,CommonModule,WritingFirstSectionComponent,WritingSecondSectionComponent,WritingThirdSectionComponent,ReactiveFormsModule,SignInMsgComponent],
   templateUrl: './parent-writing-recipe.component.html',
   styleUrl: './parent-writing-recipe.component.css',
   encapsulation:ViewEncapsulation.ShadowDom

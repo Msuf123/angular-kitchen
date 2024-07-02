@@ -9,6 +9,7 @@ import { LogInComponent } from './components/authentication/log-in/log-in.compon
 import { SignUpComponent } from './components/authentication/sign-up/sign-up.component';
 import { OauthComponent } from './components/authentication/oauth/oauth.component';
 import { XOauthComponent } from './components/authentication/x-oauth/x-oauth.component';
+import { AccountComponent } from './components/components-for-logged-in-users/account/account.component';
 
 export const routes: Routes = [
     {
@@ -21,10 +22,14 @@ export const routes: Routes = [
     }
     ,{
         path:'write',
-        component:ParentWritingRecipeComponent,canActivate:[]
+        component:ParentWritingRecipeComponent
     },{
         path:'articles/:id',
         component:DetailsAboutArticlesComponent
+    },
+    {
+        path:'account',
+        component:AccountComponent
     },
 {
     path:'login',

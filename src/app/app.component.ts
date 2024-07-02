@@ -1,4 +1,4 @@
-import { Component, DoCheck, inject } from '@angular/core';
+import { Component, DoCheck, Inject, Injector, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TopBarComponent } from './components/top-bar/top-bar/top-bar.component';
 import { ThemeService } from './services/theme/theme.service';
@@ -7,6 +7,7 @@ import { LoadingService } from './services/loading/loading.service';
 import { HttpServiceService } from './services/global-http/http-service.service';
 import { LoadingComponent } from './components/global-component/loading/loading.component';
 import { CommonModule } from '@angular/common';
+import { url } from './app.config';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,7 @@ export class AppComponent implements DoCheck {
   darkMode:boolean
   loadingState:boolean
   constructor(){
-    console.log(this.loadingService.state.value)
+    
     this.loadingState=this.loadingService.state.value
     this.darkMode=this.themeService.theme.getValue()
     this.currentTheme=this.themeService.theme.subscribe((e)=>{

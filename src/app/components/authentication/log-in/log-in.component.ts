@@ -24,7 +24,7 @@ export class LogInComponent {
     client_id:"Rmd2OG42UE5qeXBuX3FyMUN6REY6MTpjaQ",
     redirect_uri:"https://angular-kitchen.vercel.app/oauth/x",
     state:"2",
-    code_challenge:'jkda;f',
+    code_challenge:'jkdaf',
     code_challenge_method:'plain',scope:'users.read'
   })
   constructor(){
