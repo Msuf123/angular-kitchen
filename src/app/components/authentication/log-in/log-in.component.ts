@@ -30,5 +30,6 @@ export class LogInComponent {
   constructor(){
     this.googleUrl.search=this.searchPrams.toString()
     this.twitterLogin.search=this.twitterSearchPrams.toString()
+    
      }
 }
