@@ -25,11 +25,11 @@ export class LogInComponent {
     redirect_uri:"https://angular-kitchen.vercel.app/oauth/x",
     state:"2",
     code_challenge:'jkdaf',
-    code_challenge_method:'plain',scope:'users.read'
+    code_challenge_method:'plain',scope:'tweet.read%20users.read'
   })
   constructor(){
     this.googleUrl.search=this.searchPrams.toString()
     this.twitterLogin.search=this.twitterSearchPrams.toString()
-    
+
      }
 }
