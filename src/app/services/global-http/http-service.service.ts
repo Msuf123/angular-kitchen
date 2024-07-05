@@ -1,4 +1,4 @@
-import { Inject, Injectable, inject } from '@angular/core';
+import { Inject, Injectable, Injector, inject } from '@angular/core';
 import BaseQuestion from '../../custom-class/questions-class/creator-write-sec/base.question';
 import TextBox from '../../custom-class/questions-class/creator-write-sec/ChildClasses/text.box';
 import { Validator,Validators } from '@angular/forms';
@@ -18,14 +18,16 @@ import { uniqueNamesGenerator ,adjectives, colors, animals} from 'unique-names-g
 export class HttpServiceService {
   loadingService=inject(LoadingService)
   httpService=inject(HttpClient)
+  injector=inject(Injector)
+  urlOfServer=this.injector.get(url)
   get(url:string){
     return this.httpService.get(url,{observe:'body',responseType:'json',withCredentials:true})
   }
-  post(url_t:string,body:any,header?:any){
-    header=header?header:null
-    return this.httpService.post(url_t,body,{observe:'body',responseType:'text',withCredentials:true})
+  post(url:string,body:any){
+    
+    return this.httpService.post(`${this.urlOfServer}${url}`,body,{observe:'body',responseType:'text',withCredentials:true})
   }
-  constructor(private service:HttpClient,@Inject(url)private url:string) { }
+  constructor(private service:HttpClient) { }
   question(){
    
     let arrayOfQuestions:BaseQuestion[]=[
@@ -61,6 +63,6 @@ export class HttpServiceService {
   }
   
   getRequest(){
-    return new Observable((emmiter)=>{emmiter.next('Sending req')}).pipe(setLoadingTrue(this.loadingService.state),switchMap(()=>this.service.get(this.url)))
+    return new Observable((emmiter)=>{emmiter.next('Sending req')}).pipe(setLoadingTrue(this.loadingService.state),switchMap(()=>this.service.get(this.urlOfServer)))
   }
 }

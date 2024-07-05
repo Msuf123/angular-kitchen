@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpServiceService } from '../../../services/global-http/http-service.service';
+import { adjectives, colors, uniqueNamesGenerator } from 'unique-names-generator';
 
 @Component({
   selector: 'app-x-oauth',
@@ -7,16 +10,42 @@ import { Component } from '@angular/core';
   templateUrl: './x-oauth.component.html',
   styleUrl: './x-oauth.component.css'
 })
-export class XOauthComponent {
-  constructor(){
-    console.log(window.location.href)
-   const accessToken=new URL(window.location.href)
-   const searchPrmas=new URLSearchParams(accessToken.searchParams)
-   if(searchPrmas.has('code')){
-    console.log('Contains code ')
-   }
-   else{
-    console.log('Try again')
-   }
+export class XOauthComponent implements OnInit{
+  router=inject(ActivatedRoute)
+  http=inject(HttpServiceService)
+  twitterLogin=new URL('https://twitter.com/i/oauth2/authorize')
+  twitterSearchPrams=new URLSearchParams({
+    response_type:"code",
+    client_id:"Rmd2OG42UE5qeXBuX3FyMUN6REY6MTpjaQ",
+    redirect_uri:"https://angular-kitchen.vercel.app/oauth/x",
+    state:"2",
+    code_challenge:'jkdaf',
+    code_challenge_method:'plain',scope:'users.read+tweet.read'
+  })
+  ngOnInit(): void {
+    if(this.router.snapshot.queryParams){
+      const code=uniqueNamesGenerator({dictionaries:[adjectives,colors]})
+        this.http.post('/x-oauth/codeChallange',{code}).subscribe((a)=>{
+          if(a==='okay'){
+            this.twitterSearchPrams.set('code_challenge',code)
+            console.log(this.twitterLogin.toString())
+          }
+        })
+      }
+     else{
+     const accessToken=new URL(window.location.href)
+     const searchPrmas=new URLSearchParams(accessToken.searchParams)
+     if(searchPrmas.has('code')){
+      const code=searchPrmas.get('code')
+      this.http.post('/x-oauth/code',{code})
+     }
+     else{
+      console.log('Try again')
+     }
+    }
   }
+  constructor(){
+    
+  }
+    
 }
