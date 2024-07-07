@@ -24,7 +24,6 @@ export class HttpServiceService {
     return this.httpService.get(url,{observe:'body',responseType:'json',withCredentials:true})
   }
   post(url:string,body:any){
-    
     return this.httpService.post(`${this.urlOfServer}${url}`,body,{observe:'body',responseType:'text',withCredentials:true})
   }
   constructor(private service:HttpClient) { }

@@ -23,21 +23,26 @@ export class XOauthComponent implements OnInit{
     code_challenge_method:'plain',scope:'users.read+tweet.read'
   })
   ngOnInit(): void {
-    if(this.router.snapshot.queryParams){
+    const accessToken=new URL(window.location.href)
+     const searchPrmas=new URLSearchParams(accessToken.searchParams)
+    
+    if(!searchPrmas.has('code')){
       const code=uniqueNamesGenerator({dictionaries:[adjectives,colors]})
+      console.log('Mkaing request with code',code)
         this.http.post('/x-oauth/codeChallange',{code}).subscribe((a)=>{
           if(a==='okay'){
             this.twitterSearchPrams.set('code_challenge',code)
-            console.log(this.twitterLogin.toString())
+           console.log(this.twitterSearchPrams.get(code))
+            window.location.href=this.twitterLogin.toString()+'?'+this.twitterSearchPrams.toString()
           }
         })
       }
      else{
-     const accessToken=new URL(window.location.href)
-     const searchPrmas=new URLSearchParams(accessToken.searchParams)
      if(searchPrmas.has('code')){
       const code=searchPrmas.get('code')
-      this.http.post('/x-oauth/code',{code})
+      this.http.post('/x-oauth/code',{code}).subscribe((a)=>{
+        console.log(a)
+      })
      }
      else{
       console.log('Try again')
