@@ -7,7 +7,7 @@ import { ParentWritingRecipeComponent } from './components/creator-sections/writ
 import { loadWritingGuard } from './guards/creator/parent-writing/load-writing.guard';
 import { LogInComponent } from './components/authentication/log-in/log-in.component';
 import { SignUpComponent } from './components/authentication/sign-up/sign-up.component';
-import { OauthComponent } from './components/authentication/oauth/oauth.component';
+import { GoogleOauthComponent } from './components/authentication/google-oauth/oauth.component';
 import { XOauthComponent } from './components/authentication/x-oauth/x-oauth.component';
 import { AccountComponent } from './components/components-for-logged-in-users/account/account.component';
 
@@ -36,7 +36,7 @@ export const routes: Routes = [
     component:LogInComponent
 },{
     path:'oauth/google',
-    component:OauthComponent
+    component:GoogleOauthComponent
 },
 {
     path:'signUp',
