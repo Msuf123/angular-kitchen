@@ -1,0 +1,11 @@
+.options{
+display:flex;
+flex-direction: row-reverse;
+width: max-content;
+align-items: center;
+justify-content: space-around;
+}
+.options img{
+    width: 20px;
+    margin: 3px;
+}

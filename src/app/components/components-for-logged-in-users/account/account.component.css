@@ -1,6 +1,6 @@
 .outerDiv{
     border: 2px solid black;
-    width: 1700px;
+    width: 80vw;
     display: block;
-    margin: auto;
+    margin: 20px auto;
 }
