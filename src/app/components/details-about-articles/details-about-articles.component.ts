@@ -6,6 +6,7 @@ import { CommentSectionComponent } from './comment-section/comment-section.compo
 import { DetailsRecipeService } from '../../services/details-recipe/details-recipe.service';
 import { RecipeDataFromServer } from '../../services/details-recipe/interface-of-details-data/recipe-data-from-server';
 import { CommonModule } from '@angular/common';
+import { LoadingService } from '../../services/loading/loading.service';
 
 @Component({
   selector: 'app-details-about-articles',
@@ -16,8 +17,18 @@ import { CommonModule } from '@angular/common';
 })
 export class DetailsAboutArticlesComponent {
  service=inject(DetailsRecipeService)
- data:RecipeDataFromServer
+ loading=inject(LoadingService)
+ data?:any
  constructor(){
-  this.data=this.service.recipiesData
+  this.loading.state.next(true)
+  this.service.getRecipesDetails().subscribe((responseFromServer)=>{
+    this.loading.state.next(false)
+    if(responseFromServer!=='Unable to reach to server'&&responseFromServer!=='Something went wrong'){
+    this.data=responseFromServer
+  }
+  else{
+    this.data=null
+  }  
+  })
  }
 }

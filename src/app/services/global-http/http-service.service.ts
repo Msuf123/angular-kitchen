@@ -1,15 +1,13 @@
-import { Inject, Injectable, Injector, inject } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import BaseQuestion from '../../custom-class/questions-class/creator-write-sec/base.question';
 import TextBox from '../../custom-class/questions-class/creator-write-sec/ChildClasses/text.box';
-import { Validator,Validators } from '@angular/forms';
 import Slider from '../../custom-class/questions-class/creator-write-sec/ChildClasses/slider.box';
 import { Files } from '../../custom-class/questions-class/creator-write-sec/ChildClasses/file.box';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { url } from '../../app.config';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, catchError, switchMap } from 'rxjs';
 import { setLoadingTrue } from '../../pipe-operators/creator-section/http-loading.pipe';
 import { LoadingService } from '../loading/loading.service';
-import { TextArea } from '../../custom-class/questions-class/creator-write-sec/ChildClasses/TextArea.box';
 import { uniqueNamesGenerator ,adjectives, colors, animals} from 'unique-names-generator';
 
 @Injectable({
@@ -20,13 +18,35 @@ export class HttpServiceService {
   httpService=inject(HttpClient)
   injector=inject(Injector)
   urlOfServer=this.injector.get(url)
-  get(url:string){
-    return this.httpService.get(url,{observe:'body',responseType:'json',withCredentials:true})
+
+  errorHandling=(errors:HttpErrorResponse)=>{
+     if(errors.status===0){
+      return new Observable((a)=>a.next('Unable to reach to server'))
+     }
+     else{
+      return new Observable((a)=>a.next('Something went wrong'))
+     }
   }
+
+
+
+
+  get(url:string){
+    return this.httpService.get(`${this.urlOfServer}${url}`,{observe:'body',responseType:'json',withCredentials:true}).pipe(catchError(this.errorHandling))
+  }
+
+
+
+
   post(url:string,body:any){
     return this.httpService.post(`${this.urlOfServer}${url}`,body,{observe:'body',responseType:'text',withCredentials:true})
   }
+
   constructor(private service:HttpClient) { }
+  
+  
+  
+  
   question(){
    
     let arrayOfQuestions:BaseQuestion[]=[
@@ -41,6 +61,10 @@ export class HttpServiceService {
     ]
     return arrayOfQuestions
   }
+
+
+
+
   uploadImageToServer(dataToUpload:ArrayBuffer,url:string,fileEntension:string){
     const chunks=10000
     let timesItRan=0
@@ -60,6 +84,8 @@ export class HttpServiceService {
     }
     makeRequest(0,chunks,shortName)
   }
+  
+
   
   getRequest(){
     return new Observable((emmiter)=>{emmiter.next('Sending req')}).pipe(setLoadingTrue(this.loadingService.state),switchMap(()=>this.service.get(this.urlOfServer)))

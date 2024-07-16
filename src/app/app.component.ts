@@ -27,6 +27,9 @@ export class AppComponent implements DoCheck {
   constructor(){
     
     this.loadingState=this.loadingService.state.value
+    this.loadingService.state.subscribe((a)=>{
+      this.loadingState=a
+    })
     this.darkMode=this.themeService.theme.getValue()
     this.currentTheme=this.themeService.theme.subscribe((e)=>{
       this.darkMode=e
