@@ -1,14 +1,14 @@
 <div *ngIf="data">
 <div class="upperPortion">
     <span>{{data.name}}</span>
-    <app-multi-media-details-intro></app-multi-media-details-intro>
-    <app-description-component *ngIf="data.description.isThere"  [data]="data.description.data">
+    <app-multi-media-details-intro [imageUrl]="data.image_url"></app-multi-media-details-intro>
+    <app-description-component *ngIf="data.description"  [data]="data.description">
     </app-description-component>
 </div>
 <div class="listOfIngridients">
     <span>Incideinets</span>
     <ul>
-        <li *ngFor="let item of data.ingridients;">{{item}}</li>
+        <li *ngFor="let item of ingredients;">{{item.name}}</li>
     </ul>
 </div>
 <div class="procedureSection">

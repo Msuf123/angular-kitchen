@@ -3,10 +3,14 @@ video{
 }
 :host{
     background-color: transparent;
+    
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 3;
+}
+img{
+    width: 500px;
 }
 @media screen and (max-width:1547px) {
     :host{

@@ -8,7 +8,7 @@ import { HttpServiceService } from '../global-http/http-service.service';
 export class DetailsRecipeService {
   http=inject(HttpServiceService)
   constructor() { }
-  getRecipesDetails(){
-    return this.http.get('/recipes/details')
+  getRecipesDetails(id:string){
+    return this.http.post('/recipes/details',{id})
   }
 }
