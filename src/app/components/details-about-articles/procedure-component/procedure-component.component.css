@@ -1,3 +1,32 @@
 .stepNumberHeading{
     font-size: 22px;
+    display: block;
+    font-weight: 700;
+}
+.nameHeading{
+    display: block;
+    font-size: 19px;
+    font-weight: 490;
+    margin-top: 2px;
+}
+p{
+    margin-top: 5px;
+    font-size: 18px;
+}
+img{
+    width: 300px;
+    height: 250px;
+    object-fit: fill;
+    border-radius: 5px;
+    display: block;
+    margin: auto;
+}
+.outerBox{
+  margin: 20px 0px;
+  display: block;
+}
+:host{
+    display: block;
+    width: 90%;
+    margin: auto;
 }

@@ -23,6 +23,7 @@ export class DetailsAboutArticlesComponent {
  router=inject(ActivatedRoute)
  data?:any
  ingredients?:any
+ steps?:any
  constructor(){
   this.loading.state.next(true)
   const id=this.router.snapshot.params['id']
@@ -32,6 +33,7 @@ export class DetailsAboutArticlesComponent {
     console.log(responseFromServer)
     this.data=responseFromServer[0][0]
     this.ingredients=responseFromServer[0].listOfIngredients
+    this.steps=responseFromServer[0].steps
     console.log(this.data,this.ingredients,responseFromServer.listOfIngredients)
   
   }
