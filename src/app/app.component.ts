@@ -8,11 +8,13 @@ import { HttpServiceService } from './services/global-http/http-service.service'
 import { LoadingComponent } from './components/global-component/loading/loading.component';
 import { CommonModule } from '@angular/common';
 import { url } from './app.config';
+import { ErrorFromServerComponent } from './components/global-component/error-from-server/error-from-server.component';
+import { ErrorFromServerService } from './services/error/error-from-server.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,TopBarComponent,CommonModule,ExploreComponent,LoadingComponent],
+  imports: [RouterOutlet,TopBarComponent,CommonModule,ExploreComponent,LoadingComponent,ErrorFromServerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   providers:[ThemeService]
@@ -20,16 +22,12 @@ import { url } from './app.config';
 export class AppComponent implements DoCheck {
   themeService=inject(ThemeService)
   loadingService=inject(LoadingService)
+  errorService=inject(ErrorFromServerService)
   http=inject(HttpServiceService)
   currentTheme:any
   darkMode:boolean
-  loadingState:boolean
   constructor(){
     
-    this.loadingState=this.loadingService.state.value
-    this.loadingService.state.subscribe((a)=>{
-      this.loadingState=a
-    })
     this.darkMode=this.themeService.theme.getValue()
     this.currentTheme=this.themeService.theme.subscribe((e)=>{
       this.darkMode=e

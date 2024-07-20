@@ -10,7 +10,7 @@ import { range } from 'rxjs';
   styleUrl: './difficulty-level.component.css'
 })
 export class DifficultyLevelComponent implements OnInit{
-@Input() level!:number
+@Input() level!:string
 @Input() type!:string
 colorArray:string[]=['rgb(255, 63, 63)','rgb(252, 210, 23)','rgb(99, 230, 12)']
 colorValue!:string
@@ -21,16 +21,16 @@ constructor(){
  
 }
 ngOnInit(): void {
-  this.numbersArray=Array.from({length:this.level},(_,index)=>index+1)
+  this.numbersArray=Array.from({length:Number(this.level)},(_,index)=>index+1)
  
     switch (this.level){
-      case 1:
+      case "1":
         this.type==='Healthiness'?this.colorValue=this.colorArray[0]:this.colorValue=this.colorArray[2]
         break;
-      case 2:
+      case "2":
         this.type==='Healthiness'?this.colorValue=this.colorArray[1]:this.colorValue=this.colorArray[1]
         break
-      case 3:
+      case "3":
         this.type==='Healthiness'? this.colorValue=this.colorArray[2]:this.colorValue=this.colorArray[0]
         break
       default:

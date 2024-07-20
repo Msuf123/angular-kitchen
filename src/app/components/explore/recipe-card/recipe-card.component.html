@@ -1,15 +1,17 @@
 <div *ngFor="let item of items" class="outerDiv" appClickNavigation url="{{item.id}}" (click)="navigate(item.id)">
-    <div style="background-repeat:  no-repeat; background-size: cover; filter: blur(1.5rem);" [ngStyle]="placeholder">
-        <img src="{{item.img}}" class="imageOfDish" (load)="imageLoaded()" loading="lazy">
+    <div>
+        <img src="{{item.thumbnail}}" class="imageOfDish">
     </div>
     <div class="infoPortion">
         <span class="itemName">{{item.name}}</span>
-        <app-difficulty-level [level]="item.difficultyLevel" type="Difficulty Level"></app-difficulty-level>
-        <app-difficulty-level [level]="item.healthyLevel"></app-difficulty-level>
+        <app-difficulty-level [level]="item.difficulty_level" type="Difficulty Level"></app-difficulty-level>
+        <app-difficulty-level [level]="item.healthiness"></app-difficulty-level>
         <div class="priceOfItem">
             
-            <span>Approx. <span class="price">{{item.ruppes|currency:'INR'}}</span></span>
+            <span>Approx. <span class="price">{{item.price|currency:'INR'}}</span></span>
             
         </div>
     </div>
 </div>
+<app-loading-cards *ngIf="laodingState"></app-loading-cards>
+<app-error-from-server *ngIf="errorState"></app-error-from-server>

@@ -9,11 +9,14 @@ import { CommonModule, JsonPipe } from '@angular/common';
 import { LoadingService } from '../../services/loading/loading.service';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
+import { ErrorFromServerService } from '../../services/error/error-from-server.service';
+import { ErrorFromServerComponent } from '../global-component/error-from-server/error-from-server.component';
+import { LoadingComponent } from '../global-component/loading/loading.component';
 
 @Component({
   selector: 'app-details-about-articles',
   standalone: true,
-  imports: [DescriptionComponentComponent,CommonModule,MultiMediaDetailsIntroComponent,ProcedureComponentComponent,CommentSectionComponent],
+  imports: [DescriptionComponentComponent,CommonModule,MultiMediaDetailsIntroComponent,ProcedureComponentComponent,CommentSectionComponent,ErrorFromServerComponent,LoadingComponent],
   templateUrl: './details-about-articles.component.html',
   styleUrl: './details-about-articles.component.css'
 })
@@ -21,15 +24,25 @@ export class DetailsAboutArticlesComponent {
  service=inject(DetailsRecipeService)
  loading=inject(LoadingService)
  router=inject(ActivatedRoute)
+ errorService=inject(ErrorFromServerService)
  data?:any
  ingredients?:any
  steps?:any
+ errorState=false
+ loadingState=false
  constructor(){
+  this.loading.state.subscribe((currentState)=>{
+    this.loadingState=currentState
+  })
+  this.errorService.erroStatus.subscribe((currentError)=>{
+    this.errorState=currentError
+  })
   this.loading.state.next(true)
   const id=this.router.snapshot.params['id']
-  this.service.getRecipesDetails(id).pipe(map((data)=>JSON.parse(data))).subscribe((responseFromServer)=>{
+  this.service.getRecipesDetails(id).subscribe((responseFromServer:any)=>{
     this.loading.state.next(false)
     if(responseFromServer!=='Unable to reach to server'&&responseFromServer!=='Something went wrong'){
+    responseFromServer=JSON.parse(responseFromServer)
     console.log(responseFromServer)
     this.data=responseFromServer[0][0]
     this.ingredients=responseFromServer[0].listOfIngredients
@@ -38,6 +51,7 @@ export class DetailsAboutArticlesComponent {
   
   }
   else{
+    this.errorService.erroStatus.next(true)
     this.data=null
   }  
   })

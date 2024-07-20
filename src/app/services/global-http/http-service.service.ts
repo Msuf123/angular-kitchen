@@ -5,7 +5,7 @@ import Slider from '../../custom-class/questions-class/creator-write-sec/ChildCl
 import { Files } from '../../custom-class/questions-class/creator-write-sec/ChildClasses/file.box';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { url } from '../../app.config';
-import { Observable, catchError, switchMap } from 'rxjs';
+import { Observable, catchError, delay, pipe, retry, switchMap, timer } from 'rxjs';
 import { setLoadingTrue } from '../../pipe-operators/creator-section/http-loading.pipe';
 import { LoadingService } from '../loading/loading.service';
 import { uniqueNamesGenerator ,adjectives, colors, animals} from 'unique-names-generator';
@@ -28,18 +28,18 @@ export class HttpServiceService {
      }
   }
 
-
+ 
 
 
   get(url:string){
-    return this.httpService.get(`${this.urlOfServer}${url}`,{observe:'body',responseType:'json',withCredentials:true}).pipe(catchError(this.errorHandling))
+    return this.httpService.get(`${this.urlOfServer}${url}`,{observe:'body',responseType:'json',withCredentials:true}).pipe(catchError(this.errorHandling),retry(4))
   }
 
 
 
 
   post(url:string,body:any){
-    return this.httpService.post(`${this.urlOfServer}${url}`,body,{observe:'body',responseType:'text',withCredentials:true})
+    return this.httpService.post(`${this.urlOfServer}${url}`,body,{observe:'body',responseType:'text',withCredentials:true}).pipe(retry({count:4,delay:(error:any,count:any)=>timer(2000)}),catchError(this.errorHandling))
   }
 
   constructor(private service:HttpClient) { }
