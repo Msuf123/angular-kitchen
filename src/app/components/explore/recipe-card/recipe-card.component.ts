@@ -22,7 +22,7 @@ export class RecipeCardComponent {
   loadingService=inject(LoadingService)
   router=inject(Router)
   errorService=inject(ErrorFromServerService)
-  laodingState=false
+ 
   errorState=false
   
   items=this.individualCard.recipies
@@ -33,9 +33,7 @@ export class RecipeCardComponent {
     this.errorService.erroStatus.subscribe((currentErrorState)=>{
       this.errorState=currentErrorState
     })
-    this.loadingService.state.subscribe((currentLoadingState)=>{
-      this.laodingState=currentLoadingState
-    })
+    
     this.loadingService.state.next(true)
     this.individualCard.makeRequest().subscribe((responseFromServer)=>{
       this.loadingService.state.next(false)

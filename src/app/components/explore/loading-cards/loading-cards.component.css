@@ -1,4 +1,5 @@
 .outerDiv{
+  
     animation-name: effect;
     animation-iteration-count: infinite;
     animation-duration: 5s;
@@ -27,4 +28,34 @@
     to {
       background-position-x: -20%;
     }
+  }
+ :host{
+    padding: 15px;
+    display: grid;
+    gap: 16px 16px;
+    justify-content: center;
+    grid-template-columns: repeat(5,max-content);
+ }
+ @media only screen and (max-width:1786px) {
+  :host{grid-template-columns: repeat(4,max-content);
+  }
+.divFive{
+  display: none;
+}
+}
+@media only screen and (max-width:1380px) {
+  :host{
+      grid-template-columns: repeat(3,max-content);
+  }
+  .divFour{
+    display: none;
+  }
+}
+  @media only screen and (max-width:1030px) {
+    :host{
+        grid-template-columns: repeat(2,max-content); 
+    }
+  .divThree{
+    display: none;
+  }
   }
