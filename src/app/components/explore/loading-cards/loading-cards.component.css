@@ -39,6 +39,10 @@
  @media only screen and (max-width:1786px) {
   :host{grid-template-columns: repeat(4,max-content);
   }
+  .outerDiv{
+    width: 20vw;
+    aspect-ratio: 1;
+}
 .divFive{
   display: none;
 }
@@ -50,6 +54,10 @@
   .divFour{
     display: none;
   }
+  .outerDiv{
+    width: 25vw;
+    aspect-ratio: 1;
+}
 }
   @media only screen and (max-width:1030px) {
     :host{
@@ -58,4 +66,8 @@
   .divThree{
     display: none;
   }
+  .outerDiv{
+    width: 35vw;
+    aspect-ratio: 1;
+}
   }
