@@ -33,18 +33,7 @@ export class RecipeCardComponent {
     this.errorService.erroStatus.subscribe((currentErrorState)=>{
       this.errorState=currentErrorState
     })
-    
     this.loadingService.state.next(true)
-    this.individualCard.makeRequest().subscribe((responseFromServer)=>{
-      this.loadingService.state.next(false)
-      console.log(responseFromServer)
-      if(responseFromServer!=="Something went wrong"&&responseFromServer!=="Unable to reach to server"){
-         this.individualCard.addRecipes(responseFromServer as RecipeCard[])
-         this.items=this.individualCard.recipies
-      }else{
-        this.errorService.erroStatus.next(true)
-      }
-    })
   }
   
  
