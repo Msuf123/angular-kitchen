@@ -5,10 +5,8 @@ import { DifficultyLevelComponent } from './difficulty-level/difficulty-level.co
 import { ClickNavigationDirective } from '../../../directives/click-nav-directive/click-navigation.directive';
 import { Router } from '@angular/router';
 import { LoadingCardsComponent } from '../loading-cards/loading-cards.component';
-import { LoadingService } from '../../../services/loading/loading.service';
 import { ErrorFromServerComponent } from '../../global-component/error-from-server/error-from-server.component';
 import { ErrorFromServerService } from '../../../services/error/error-from-server.service';
-import { RecipeCard } from '../../../services/explore-card/interface/recipe-card';
 
 @Component({
   selector: 'app-recipe-card',
@@ -19,7 +17,7 @@ import { RecipeCard } from '../../../services/explore-card/interface/recipe-card
 })
 export class RecipeCardComponent {
   individualCard=inject(IndividualCardService)
-  loadingService=inject(LoadingService)
+  
   router=inject(Router)
   errorService=inject(ErrorFromServerService)
  
@@ -28,7 +26,9 @@ export class RecipeCardComponent {
   items=this.individualCard.recipies.getValue()
   
   constructor(){
-    this.loadingService.state.next(false)
+    this.individualCard.recipies.next([])
+
+    
     this.errorService.erroStatus.next(false)
     this.errorService.erroStatus.subscribe((currentErrorState)=>{
       this.errorState=currentErrorState
@@ -36,7 +36,7 @@ export class RecipeCardComponent {
     this.individualCard.recipies.subscribe((a)=>{
       this.items=a
     })
-    this.loadingService.state.next(true)
+    
   }
   
  

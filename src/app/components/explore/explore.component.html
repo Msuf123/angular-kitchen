@@ -5,6 +5,6 @@
     <div class="exploreChangeableContent">
         <app-search-bar></app-search-bar>
         <router-outlet></router-outlet>
-        <app-loading-cards class="loadingOne"></app-loading-cards>
+        <app-loading-cards *ngIf="load" class="loadingOne"></app-loading-cards>
     </div>
 </div>
