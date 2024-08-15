@@ -25,13 +25,16 @@ export class RecipeCardComponent {
  
   errorState=false
   
-  items=this.individualCard.recipies
+  items=this.individualCard.recipies.getValue()
   
   constructor(){
     this.loadingService.state.next(false)
     this.errorService.erroStatus.next(false)
     this.errorService.erroStatus.subscribe((currentErrorState)=>{
       this.errorState=currentErrorState
+    })
+    this.individualCard.recipies.subscribe((a)=>{
+      this.items=a
     })
     this.loadingService.state.next(true)
   }

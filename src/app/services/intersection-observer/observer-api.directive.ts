@@ -9,18 +9,19 @@ import { RecipeCard } from '../explore-card/interface/recipe-card';
   standalone: true
 })
 export class ObserverApiDirective {
-  errorService=inject(ErrorFromServerService)
-  individualCard=inject(IndividualCardService)
+ private errorService=inject(ErrorFromServerService)
+ private individualCard=inject(IndividualCardService)
 constructor(el:ElementRef,http:HttpServiceService){
   let offset=0
-  function callback(entries:any,observer:any){
+  const callback=(entries:any,observer:any)=>{
     entries.forEach((entry:any) => {
        if(entry.isIntersecting){
         
         http.get(`/get-recipes?offset=${offset}`).subscribe((responseFromServer)=>{
           if(responseFromServer!=="Something went wrong"&&responseFromServer!=="Unable to reach to server"){
-            this.individualCard.addRecipes(responseFromServer as RecipeCard[])
-            this.items=this.individualCard.recipies
+            console.log(responseFromServer)
+           this.individualCard.addRecipes(responseFromServer as RecipeCard[])
+            
          }else{
            this.errorService.erroStatus.next(true)
          }
