@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { CanActivateFn } from '@angular/router';
 
-import { loadWritingGuard } from './load-writing.guard';
+import { writingGuard } from './writing.guard';
 
-describe('loadWritingGuard', () => {
+describe('writingGuard', () => {
   const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => loadWritingGuard(...guardParameters));
+      TestBed.runInInjectionContext(() => writingGuard(...guardParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

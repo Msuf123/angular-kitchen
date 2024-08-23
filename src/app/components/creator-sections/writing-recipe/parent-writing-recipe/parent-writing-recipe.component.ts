@@ -11,11 +11,13 @@ import { CommonModule } from '@angular/common';
 import { LoadingService } from '../../../../services/loading/loading.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SignInMsgComponent } from '../../../authentication/sign-in-msg/sign-in-msg.component';
+import { SaveChangesService } from '../../../../services/creator-sections/should-save-changes/save-changes.service';
+import { DisplaySaveDraftComponent } from '../../display-save-draft/display-save-draft.component';
 
 @Component({
   selector: 'app-parent-writing-recipe',
   standalone: true,
-  imports: [WritingTopBarComponent,CommonModule,WritingFirstSectionComponent,WritingSecondSectionComponent,WritingThirdSectionComponent,ReactiveFormsModule,SignInMsgComponent],
+  imports: [WritingTopBarComponent,DisplaySaveDraftComponent,CommonModule,WritingFirstSectionComponent,WritingSecondSectionComponent,WritingThirdSectionComponent,ReactiveFormsModule,SignInMsgComponent],
   templateUrl: './parent-writing-recipe.component.html',
   styleUrl: './parent-writing-recipe.component.css',
   encapsulation:ViewEncapsulation.ShadowDom
@@ -24,13 +26,23 @@ export class ParentWritingRecipeComponent {
   form:FormGroup
   listOfQuestioins
   loadingService=inject(LoadingService)
-  
-   
+  canDeactivate=inject(SaveChangesService)
+  saveOption=this.canDeactivate.saveCahnges.value
    constructor(private questions:HttpServiceService,private formService:FormGeneratorServiceService){
-    console.log(this.loadingService.state.value)
-  
-     this.listOfQuestioins=this.questions.question()
+    let counter=0
+    this.listOfQuestioins=this.questions.question()
      this.form=formService.getFormObject(this.listOfQuestioins)
+     this.canDeactivate.saveCahnges.subscribe((state)=>{
+      this.saveOption=state
+     })
+     this.form.valueChanges.subscribe((a)=>{
+      if(counter===0){
+          this.canDeactivate.saveCahnges.next(true)
+          console.log("Made changes")
+          counter++
+      }
+      
+     })
     
    }
    submitForm(e:any){

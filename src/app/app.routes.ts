@@ -8,6 +8,7 @@ import { SignUpComponent } from './components/authentication/sign-up/sign-up.com
 import { GoogleOauthComponent } from './components/authentication/google-oauth/oauth.component';
 import { XOauthComponent } from './components/authentication/x-oauth/x-oauth.component';
 import { AccountComponent } from './components/components-for-logged-in-users/account/account.component';
+import { writingGuard } from './guards/creator/can-deactivate-writing/writing.guard';
 
 export const routes: Routes = [
     {
@@ -20,7 +21,8 @@ export const routes: Routes = [
     }
     ,{
         path:'write',
-        component:ParentWritingRecipeComponent
+        component:ParentWritingRecipeComponent,
+        canDeactivate:[writingGuard]
     },{
         path:'articles/:id',
         component:DetailsAboutArticlesComponent

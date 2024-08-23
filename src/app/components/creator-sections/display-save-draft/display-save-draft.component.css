@@ -1,0 +1,32 @@
+span{
+    font-size: 25px;
+    background-color: none;
+    color: white;
+}
+.box{
+    margin-top: 150px;
+}
+button{
+    padding: 3px 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-weight: 600;
+}
+.buttons{
+    
+    width: 60%;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-around;
+}
+:host{
+    display: flex;
+
+    justify-content: center;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: rgba(0, 0, 0, 0.849);
+}
