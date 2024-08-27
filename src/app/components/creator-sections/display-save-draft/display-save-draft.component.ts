@@ -1,4 +1,4 @@
-import { CSP_NONCE, Component, inject } from '@angular/core';
+import { CSP_NONCE, Component, Input, inject } from '@angular/core';
 import { DisplayMessageService } from '../../../services/creator-sections/display-save-draft/display-message.service';
 import { Subject } from 'rxjs';
 
@@ -11,17 +11,14 @@ import { Subject } from 'rxjs';
 })
 export class DisplaySaveDraftComponent {
  saveDraftState=inject(DisplayMessageService)
+ @Input() obser!:Subject<boolean>
  shouldSave(){
   console.log("Saving the text on the backed")
-  this.saveDraftState.exit.next(true)
+  this.obser.next(true)
  }
  exit(){
-  this.saveDraftState.exit.next(true)
+  console.log("exiting without saving")
+  this.obser.next(true)
  }
- canDeactivate(){
-  if(this.saveDraftState.shouldDisplay){
-    return this.saveDraftState
-  }
-  return true
- }
+
 }

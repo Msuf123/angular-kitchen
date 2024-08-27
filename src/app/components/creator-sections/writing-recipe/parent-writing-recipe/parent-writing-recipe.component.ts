@@ -3,7 +3,6 @@ import { WritingTopBarComponent } from './writing-top-bar/writing-top-bar.compon
 import { WritingFirstSectionComponent } from './writing-first-section/writing-first-section.component';
 import { WritingSecondSectionComponent } from './writing-second-section/writing-second-section.component';
 import { WritingThirdSectionComponent } from './writing-third-section/writing-third-section.component';
-import { IndividualInputFormComponent } from '../individual-input-form/individual-input-form.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HttpServiceService } from '../../../../services/global-http/http-service.service';
 import { FormGeneratorServiceService } from '../../../../services/creator-sections/writing-recipe/form-generator-service.service';
@@ -13,8 +12,7 @@ import { SignInMsgComponent } from '../../../authentication/sign-in-msg/sign-in-
 import { SaveChangesService } from '../../../../services/creator-sections/should-save-changes/save-changes.service';
 import { DisplaySaveDraftComponent } from '../../display-save-draft/display-save-draft.component';
 import { DisplayMessageService } from '../../../../services/creator-sections/display-save-draft/display-message.service';
-import { Observable, Subject } from 'rxjs';
-
+import { BehaviorSubject, Subject } from 'rxjs';
 @Component({
   selector: 'app-parent-writing-recipe',
   standalone: true,
@@ -30,6 +28,7 @@ export class ParentWritingRecipeComponent {
   canDeactivateS=inject(SaveChangesService)
   showDisplay=inject(DisplayMessageService)
   showMsg=false
+  shouldDeactivate=new Subject<boolean>()
    constructor(private questions:HttpServiceService,private formService:FormGeneratorServiceService){
     let counter=0
     this.listOfQuestioins=this.questions.question()
@@ -56,12 +55,9 @@ export class ParentWritingRecipeComponent {
     
    }
    canDeactivate() {
-  
-      const deactivateSubject = new Subject<boolean>();
-      let a=window.confirm("Seave changes without exiting")
-      console.log(a)
-      return a;
-      
+    this.showMsg=true
+    console.log("Calling can dev")
+    return this.shouldDeactivate
     
   }
    
