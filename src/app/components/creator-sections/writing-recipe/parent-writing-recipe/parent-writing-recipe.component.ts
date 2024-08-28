@@ -55,6 +55,7 @@ export class ParentWritingRecipeComponent {
     
    }
    canDeactivate() {
+    
     this.showMsg=true
     console.log("Calling can dev")
     return this.shouldDeactivate

@@ -12,7 +12,11 @@
         <textarea placeholder="Enter the procedure" formControlName="about" wrap="hard" (ngModelChange)="run($event)" rows="10" maxlength="600" [placeholder]="'Expalin about the procesdure of step'">
 
         </textarea>
-        <input type="file">
+        <input type="file" (change)="fileUploaded($event)">
+        <div class="imagePreviewDiv">
+          <img src="kitchen-trash-bin.png" (click)="deleteImage()">
+          <img  class="uploadedImage"   [src]="url">
+        </div>
       </div>
       </div>
     </div>
