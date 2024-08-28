@@ -24,21 +24,29 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class ParentWritingRecipeComponent {
   form:FormGroup
   listOfQuestioins
+  signedIn=false
   loadingService=inject(LoadingService)
   canDeactivateS=inject(SaveChangesService)
   showDisplay=inject(DisplayMessageService)
   showMsg=false
+  counter=0
   shouldDeactivate=new Subject<boolean>()
    constructor(private questions:HttpServiceService,private formService:FormGeneratorServiceService){
-    let counter=0
+    questions.get('/write/auth').subscribe((res)=>{
+      console.log(res)
+      if(res==='okay'){
+        this.signedIn=true
+      }
+    })
+    
     this.listOfQuestioins=this.questions.question()
      this.form=formService.getFormObject(this.listOfQuestioins)
      this.form.valueChanges.subscribe((a)=>{
       console.log(a)
-      if(counter===0){
+      if(this.counter===0){
           this.canDeactivateS.saveCahnges.next(true)
           console.log("Made changes")
-          counter++
+          this.counter++
       }
       
      })
@@ -55,7 +63,9 @@ export class ParentWritingRecipeComponent {
     
    }
    canDeactivate() {
-    
+    if(this.counter===0){
+      return true
+    }
     this.showMsg=true
     console.log("Calling can dev")
     return this.shouldDeactivate

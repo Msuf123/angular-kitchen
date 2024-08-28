@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="submitForm($event)">
+<form [formGroup]="form" (ngSubmit)="submitForm($event)" *ngIf="signedIn">
     
 <app-writing-top-bar></app-writing-top-bar>
 <app-writing-first-section [formGroup]="form" [questions]="listOfQuestioins" ></app-writing-first-section>
@@ -6,4 +6,4 @@
 <app-writing-third-section [form]="form"></app-writing-third-section>
 </form>
 <app-display-save-draft *ngIf="showMsg" [obser]="shouldDeactivate"></app-display-save-draft>
-<app-sign-in-msg></app-sign-in-msg>
+<app-sign-in-msg *ngIf="!signedIn"></app-sign-in-msg>

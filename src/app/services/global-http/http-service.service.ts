@@ -23,7 +23,12 @@ export class HttpServiceService {
      if(errors.status===0){
       return new Observable((a)=>a.next('Unable to reach to server'))
      }
+     if(errors.status<=300){
+      console.log(errors)
+      return new Observable((a)=>a.next(errors.error.text))
+     }
      else{
+      
       return new Observable((a)=>a.next('Something went wrong'))
      }
   }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in-msg',
@@ -8,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './sign-in-msg.component.css'
 })
 export class SignInMsgComponent {
+  route=inject(Router)
+  redirect(){
+  this.route.navigate(['login'])
 
+ }
 }
