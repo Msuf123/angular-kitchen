@@ -16,6 +16,7 @@ export class ReadFilesService {
      })
   }
   readBuffer(target:HTMLInputElement){
+    console.log(target,"Indise fo serivce")
     const fileList:FileList=target.files as FileList
     const firstFile:File=fileList[0]
     const fileReader=new FileReader()

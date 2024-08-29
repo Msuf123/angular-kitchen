@@ -31,6 +31,7 @@ export class SignUpComponent{
   const filesExtension=(evnet.target.files[0].type as string).split('/')[1]
   const res=await this.fileReadingService.readFile(evnet.target)
   this.fileDataUrl=res as string
+  console.log(evnet)
   const buffer=await this.fileReadingService.readBuffer(evnet.target) as ArrayBuffer
   this.httpService.uploadImageToServer(buffer,'http://localhost:3000/sign-up/upload-image',filesExtension)
   
