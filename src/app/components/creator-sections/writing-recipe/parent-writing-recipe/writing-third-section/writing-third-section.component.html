@@ -13,10 +13,13 @@
 
         </textarea>
         <input (change)="fileUploaded($event)" accept="image/jpeg,image/png,image/webp" *ngIf="!fileDataUrl" type="file" class="fileUploader">
-        <div class="imagePreviewDiv">
-          <img  class="uploadedImage" *ngIf="fileDataUrl"  [src]="fileDataUrl">
-          <img src="kitchen-trash-bin.png" class="deleteIcon" (click)="deleteImage()">
-          
+        
+        <div class="imagePreviewOuterDiv">
+          <div class="imagePreviewDiv">
+            <img  class="uploadedImage" *ngIf="fileDataUrl"  [src]="fileDataUrl">
+            <span class="uploadProgress" *ngIf="showProgress">{{progress}}</span>
+          </div>
+          <img src="kitchen-trash-bin.png" *ngIf="showTrashBin" class="deleteIcon" (click)="deleteImage()">
         </div>
       </div>
       </div>

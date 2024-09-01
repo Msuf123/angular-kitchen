@@ -9,6 +9,7 @@ import { Observable, catchError, delay, pipe, retry, switchMap, timer } from 'rx
 import { setLoadingTrue } from '../../pipe-operators/creator-section/http-loading.pipe';
 import { LoadingService } from '../loading/loading.service';
 import { uniqueNamesGenerator ,adjectives, colors, animals} from 'unique-names-generator';
+import { UploadStatusService } from '../readFile-single/upload-status/upload-status.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class HttpServiceService {
   httpService=inject(HttpClient)
   injector=inject(Injector)
   urlOfServer=this.injector.get(url)
-
+  uploadStatus=inject(UploadStatusService)
   errorHandling=(errors:HttpErrorResponse)=>{
      if(errors.status===0){
       return new Observable((a)=>a.next('Unable to reach to server'))
@@ -74,15 +75,23 @@ export class HttpServiceService {
     const chunks=10000
     let timesItRan=0
     const totalChunks=dataToUpload.byteLength/chunks
-    console.log(totalChunks+1,Math.floor(totalChunks+1))
+   
     const shortName = uniqueNamesGenerator({ dictionaries: [adjectives, colors, animals] });
    
     const makeRequest=(index:number,endIndex:number,nameOfFile:string)=>{
+     
       this.httpService.post(url,dataToUpload.slice(index,endIndex),{responseType:'text',withCredentials:true,observe:'body',headers:new HttpHeaders({'file-name':nameOfFile+'.'+fileEntension,'total-length':totalChunks+1})}).subscribe((res)=>{
         timesItRan++
-        console.log(res)
-        console.log(`Upload percantage=${(timesItRan/Math.round(totalChunks+1))*100}`,'nUMBER OF TIMES '+timesItRan)
-        if(res==='okay'&&timesItRan<=totalChunks+1){
+        if(res!=='complete'){
+        const progress=Math.floor(Number(res))
+        this.uploadStatus.displayStatus.next(true)
+        this.uploadStatus.progressStatus.next(progress)}
+        else{
+          this.uploadStatus.progressStatus.next(100)
+          this.uploadStatus.displayStatus.next(false)
+          this.uploadStatus.showTrashBin.next(true)
+        }
+        if(res!=='complete'&&timesItRan<=totalChunks+1){
           makeRequest(index+chunks,endIndex+chunks,nameOfFile)
         }
       })
