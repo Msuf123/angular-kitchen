@@ -1,5 +1,5 @@
 import { Component, Input, inject } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormArray, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UploadStatusService } from '../../../../../../services/readFile-single/upload-status/upload-status.service';
 import { CommonModule } from '@angular/common';
 import { ReadFilesService } from '../../../../../../services/readFile-single/read-files.service';
@@ -8,12 +8,14 @@ import { HttpServiceService } from '../../../../../../services/global-http/http-
 @Component({
   selector: 'app-inner-third-section',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,ReactiveFormsModule],
   templateUrl: './inner-third-section.component.html',
   styleUrl: './inner-third-section.component.css'
 })
 export class InnerThirdSectionComponent {
   fileReadingService=inject(ReadFilesService)
+  @Input() formArray!:any
+  @Input() postion!:number
   httpService=inject(HttpServiceService)
   status=inject(UploadStatusService)
   progress=this.status.progressStatus.value
@@ -31,7 +33,7 @@ export class InnerThirdSectionComponent {
     this.status.progressStatus.subscribe((status)=>{
       this.progress=status
       if(status===100){
-        
+        this.steps.at(this.postion).get('imageUrl')!.setValue('res')
       }
     })
   }
@@ -44,6 +46,9 @@ export class InnerThirdSectionComponent {
     this.httpService.uploadImageToServer(buffer,'http://localhost:3000/write/upload-image',filesExtension)
     
   }
+  get steps(){
+      return this.form.get('steps') as FormArray
+     }
   deleteImage(){
     this.fileDataUrl=''
   }

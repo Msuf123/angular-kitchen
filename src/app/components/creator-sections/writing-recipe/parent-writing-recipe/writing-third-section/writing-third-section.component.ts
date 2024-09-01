@@ -22,33 +22,33 @@ status=inject(UploadStatusService)
 progress=this.status.progressStatus.value
 showProgress=this.status.displayStatus.value
 showTrashBin=this.status.showTrashBin.value
-fileDataUrl=''
-constructor(){
-  this.status.displayStatus.subscribe((display)=>{
-    this.showProgress=display
-  })
-  this.status.showTrashBin.subscribe((status)=>{
-    this.showTrashBin=status
-  })
-  this.status.progressStatus.subscribe((status)=>{
-    this.progress=status
-    if(status===100){
-      this.steps.at(0).get('imageUrl')!.setValue('res')
-    }
-  })
-}
+// fileDataUrl=''
+// constructor(){
+//   this.status.displayStatus.subscribe((display)=>{
+//     this.showProgress=display
+//   })
+//   this.status.showTrashBin.subscribe((status)=>{
+//     this.showTrashBin=status
+//   })
+//   this.status.progressStatus.subscribe((status)=>{
+//     this.progress=status
+//     if(status===100){
+//       this.steps.at(0).get('imageUrl')!.setValue('res')
+//     }
+//   })
+// }
 get steps(){
   return this.form.get('steps') as FormArray
 }
-async fileUploaded(evnet:any){
-  const target=evnet.target as HTMLInputElement
-  const filesExtension=(evnet.target.files[0].type as string).split('/')[1]
-  const res=await this.fileReadingService.readFile(target)
-  this.fileDataUrl=res as string
-  const buffer=await this.fileReadingService.readBuffer(target) as ArrayBuffer
-  this.httpService.uploadImageToServer(buffer,'http://localhost:3000/write/upload-image',filesExtension)
+// async fileUploaded(evnet:any){
+//   const target=evnet.target as HTMLInputElement
+//   const filesExtension=(evnet.target.files[0].type as string).split('/')[1]
+//   const res=await this.fileReadingService.readFile(target)
+//   this.fileDataUrl=res as string
+//   const buffer=await this.fileReadingService.readBuffer(target) as ArrayBuffer
+//   this.httpService.uploadImageToServer(buffer,'http://localhost:3000/write/upload-image',filesExtension)
   
-}
+//}
 
 
 addSteps(){
@@ -58,11 +58,11 @@ addSteps(){
     imageUrl:new FormControl('')
   }))
 }
-deleteImage(){
-  this.fileDataUrl=''
-}
-run(e:string){
-console.log(e)
-}
+// deleteImage(){
+//   this.fileDataUrl=''
+// }
+// run(e:string){
+// console.log(e)
+//}
 
 }

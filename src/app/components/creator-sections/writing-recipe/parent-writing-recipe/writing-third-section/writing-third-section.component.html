@@ -1,5 +1,5 @@
 <h1>Enter steps</h1>
 <div [formGroup]="form" class="descriptionSection">
-  <app-inner-third-section *ngFor="let step of steps.controls"></app-inner-third-section>
+  <app-inner-third-section *ngFor="let step of steps.controls;let postion=index" [postion]="postion" [form]="form"></app-inner-third-section>
   <button (click)="addSteps()">+</button>
 </div>
