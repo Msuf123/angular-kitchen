@@ -5,11 +5,12 @@ import { from } from 'rxjs';
 import { ReadFilesService } from '../../../../../services/readFile-single/read-files.service';
 import { HttpServiceService } from '../../../../../services/global-http/http-service.service';
 import { UploadStatusService } from '../../../../../services/readFile-single/upload-status/upload-status.service';
+import { InnerThirdSectionComponent } from './inner-third-section/inner-third-section.component';
 
 @Component({
   selector: 'app-writing-third-section',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule,CommonModule,InnerThirdSectionComponent],
   templateUrl: './writing-third-section.component.html',
   styleUrl: './writing-third-section.component.css'
 })
@@ -31,6 +32,9 @@ constructor(){
   })
   this.status.progressStatus.subscribe((status)=>{
     this.progress=status
+    if(status===100){
+      this.steps.at(0).get('imageUrl')!.setValue('res')
+    }
   })
 }
 get steps(){
@@ -51,7 +55,7 @@ addSteps(){
   this.steps.push(new FormGroup({
     heading:new FormControl(''),
     about:new FormControl(''),
-    imageOfEachDescription:new FormControl('')
+    imageUrl:new FormControl('')
   }))
 }
 deleteImage(){

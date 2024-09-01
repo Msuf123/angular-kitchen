@@ -10,4 +10,5 @@ export class UploadStatusService {
   displayStatus=new BehaviorSubject<boolean>(false)
   progressStatus=new BehaviorSubject<number>(0)
   showTrashBin=new BehaviorSubject<boolean>(false)
+  
 }

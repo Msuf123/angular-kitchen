@@ -14,7 +14,8 @@ export class FormGeneratorServiceService {
       ingridents:new FormArray([new FormControl('',{validators:[Validators.required]})]),
       steps:new FormArray([new FormGroup({
         heading:new FormControl(''),
-        about:new FormControl('')
+        about:new FormControl(''),
+        imageUrl:new FormControl('')
       })])
     }
     arrayOfQuestions.forEach(element => {

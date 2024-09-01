@@ -1,0 +1,25 @@
+<div formArrayName="steps" class="eachStepDiv">
+    <div  class="individualDesc">
+      <div class="">
+        <div class="fomrsSection">
+          <label class="lable">Step {{1}}</label>
+          
+          <input formControlName="heading" placeholder="Enter the name of the step">
+        </div>
+      <div class="description">
+        <textarea placeholder="Enter the procedure" formControlName="about" wrap="hard"  rows="10" maxlength="600" [placeholder]="'Expalin about the procesdure of step'">
+
+        </textarea>
+        <input (change)="fileUploaded($event)"  accept="image/jpeg,image/png,image/webp" *ngIf="!fileDataUrl" type="file" class="fileUploader">
+        
+        <div class="imagePreviewOuterDiv">
+          <div class="imagePreviewDiv">
+            <img  class="uploadedImage" *ngIf="fileDataUrl"  [src]="fileDataUrl">
+            <span class="uploadProgress" *ngIf="showProgress">{{progress}}</span>
+          </div>
+          <img src="kitchen-trash-bin.png" *ngIf="showTrashBin" class="deleteIcon" (click)="deleteImage()">
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
