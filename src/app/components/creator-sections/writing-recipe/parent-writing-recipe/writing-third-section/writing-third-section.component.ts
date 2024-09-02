@@ -21,7 +21,6 @@ httpService=inject(HttpServiceService)
 status=inject(UploadStatusService)
 progress=this.status.progressStatus.value
 showProgress=this.status.displayStatus.value
-showTrashBin=this.status.showTrashBin.value
 // fileDataUrl=''
 // constructor(){
 //   this.status.displayStatus.subscribe((display)=>{

@@ -4,6 +4,7 @@ import { UploadStatusService } from '../../../../../../services/readFile-single/
 import { CommonModule } from '@angular/common';
 import { ReadFilesService } from '../../../../../../services/readFile-single/read-files.service';
 import { HttpServiceService } from '../../../../../../services/global-http/http-service.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-inner-third-section',
@@ -17,20 +18,18 @@ export class InnerThirdSectionComponent {
   @Input() formArray!:any
   @Input() postion!:number
   httpService=inject(HttpServiceService)
-  status=inject(UploadStatusService)
-  progress=this.status.progressStatus.value
+  displayStatus=new BehaviorSubject<boolean>(false)
+  progressStatus=new BehaviorSubject<number>(0)
+  progress=this.progressStatus.value
   @Input() form!:FormGroup
-  showProgress=this.status.displayStatus.value
-  showTrashBin=this.status.showTrashBin.value
+  showProgress=this.displayStatus.value
+  
   fileDataUrl=''
   constructor(){
-    this.status.displayStatus.subscribe((display)=>{
+    this.displayStatus.subscribe((display)=>{
       this.showProgress=display
     })
-    this.status.showTrashBin.subscribe((status)=>{
-      this.showTrashBin=status
-    })
-    this.status.progressStatus.subscribe((status)=>{
+    this.progressStatus.subscribe((status)=>{
       this.progress=status
       if(status===100){
         this.steps.at(this.postion).get('imageUrl')!.setValue('res')

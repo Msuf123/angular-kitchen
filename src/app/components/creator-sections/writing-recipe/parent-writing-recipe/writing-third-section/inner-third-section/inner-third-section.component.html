@@ -19,7 +19,7 @@
                     <img  class="uploadedImage" *ngIf="fileDataUrl"  [src]="fileDataUrl">
                     <span class="uploadProgress" *ngIf="showProgress">{{progress}}</span>
                 </div>
-                <img src="kitchen-trash-bin.png" *ngIf="showTrashBin" class="deleteIcon" (click)="deleteImage()">
+                <img src="kitchen-trash-bin.png" *ngIf="fileDataUrl" class="deleteIcon" (click)="deleteImage()">
                 </div>
             </div>
             </div>

@@ -36,10 +36,6 @@ textarea{
     width: 250px;
     height: 200px;
 }
-.deleteIcon{
-    width: 30px;
-    height: 30px;
-}
 .uploadProgress{
     position: absolute;
     top:0px;

@@ -89,7 +89,7 @@ export class HttpServiceService {
         else{
           this.uploadStatus.progressStatus.next(100)
           this.uploadStatus.displayStatus.next(false)
-          this.uploadStatus.showTrashBin.next(true)
+          
         }
         if(res!=='complete'&&timesItRan<=totalChunks+1){
           makeRequest(index+chunks,endIndex+chunks,nameOfFile)

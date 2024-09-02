@@ -4,6 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import BaseQuestion from '../../../../custom-class/questions-class/creator-write-sec/base.question';
 import { ReadFilesService } from '../../../../services/readFile-single/read-files.service';
 import { HttpServiceService } from '../../../../services/global-http/http-service.service';
+import { UploadStatusService } from '../../../../services/readFile-single/upload-status/upload-status.service';
 
 @Component({
   selector: 'app-individual-input-form',
@@ -15,13 +16,20 @@ import { HttpServiceService } from '../../../../services/global-http/http-servic
 export class IndividualInputFormComponent {
   filereaderService=inject(ReadFilesService)
   httpService=inject(HttpServiceService)
+  status=inject(UploadStatusService)
   classNames={focused:false}
 @Input() formGroup!:FormGroup
 @Input() question!:BaseQuestion
+progress=this.status.progressStatus.value
 errors:boolean=false
 url!:string
 constructor(){
- 
+  this.status.progressStatus.subscribe((status)=>{
+    this.progress=status
+    if(status===100){
+      this.formGroup.get('image')?.setValue('New val')
+    }
+  })
   
 }
 ngAfterViewInit(){
