@@ -24,13 +24,6 @@ progress=this.status.progressStatus.value
 errors:boolean=false
 url!:string
 constructor(){
-  this.status.progressStatus.subscribe((status)=>{
-    this.progress=status
-    if(status===100){
-      this.formGroup.get('image')?.setValue('New val')
-    }
-  })
-  
 }
 ngAfterViewInit(){
   this.formGroup.statusChanges.subscribe(()=>{

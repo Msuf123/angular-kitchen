@@ -18,9 +18,6 @@ export class WritingThirdSectionComponent {
 @Input() form!:FormGroup
 fileReadingService=inject(ReadFilesService)
 httpService=inject(HttpServiceService)
-status=inject(UploadStatusService)
-progress=this.status.progressStatus.value
-showProgress=this.status.displayStatus.value
 // fileDataUrl=''
 // constructor(){
 //   this.status.displayStatus.subscribe((display)=>{

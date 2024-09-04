@@ -8,6 +8,6 @@ export class UploadStatusService {
 
   constructor() { }
   displayStatus=new BehaviorSubject<boolean>(false)
-  progressStatus=new BehaviorSubject<number>(0)
+  progressStatus=new BehaviorSubject<{name:string,status:number}>({name:'',status:0})
   
 }

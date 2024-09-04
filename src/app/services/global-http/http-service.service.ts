@@ -75,23 +75,23 @@ export class HttpServiceService {
     const chunks=10000
     let timesItRan=0
     const totalChunks=dataToUpload.byteLength/chunks
-   
+    console.log(totalChunks)
     const shortName = uniqueNamesGenerator({ dictionaries: [adjectives, colors, animals] });
    
     const makeRequest=(index:number,endIndex:number,nameOfFile:string)=>{
      
       this.httpService.post(url,dataToUpload.slice(index,endIndex),{responseType:'text',withCredentials:true,observe:'body',headers:new HttpHeaders({'file-name':nameOfFile+'.'+fileEntension,'total-length':totalChunks+1})}).subscribe((res)=>{
         timesItRan++
-        if(res!=='complete'){
+        if(!res.includes('.')){
         const progress=Math.floor(Number(res))
         this.uploadStatus.displayStatus.next(true)
-        this.uploadStatus.progressStatus.next(progress)}
+        this.uploadStatus.progressStatus.next({name:'',status:progress})}
         else{
-          this.uploadStatus.progressStatus.next(100)
+          this.uploadStatus.progressStatus.next({name:res,status:100})
           this.uploadStatus.displayStatus.next(false)
           
         }
-        if(res!=='complete'&&timesItRan<=totalChunks+1){
+        if(!res.includes('.')&&timesItRan<=totalChunks+1){
           makeRequest(index+chunks,endIndex+chunks,nameOfFile)
         }
       })
