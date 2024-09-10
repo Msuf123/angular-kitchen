@@ -17,7 +17,7 @@ export class IndividualInputFormComponent {
   filereaderService = inject(ReadFilesService);
   httpService = inject(HttpServiceService);
   status = inject(UploadStatusService);
-  classNames = { focused: false };
+
   @Input() formGroup!: FormGroup;
   @Input() question!: BaseQuestion;
   showProgress = false;

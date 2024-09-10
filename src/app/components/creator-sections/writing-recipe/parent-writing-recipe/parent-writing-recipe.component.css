@@ -21,7 +21,6 @@ form {
     font-weight: 600;
 }
 :host {
-    outline: 2px solid green;
     display: flex;
     width: min(1400px, 90%);
     align-items: center;
