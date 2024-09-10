@@ -1,25 +1,27 @@
-.outerdiv{
-  
-   display: flex;
-   flex-direction: column;
-   align-items: center;
- 
+.outerdiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    outline: 2px solid green;
 }
-textarea{
-    resize: vertical;
+textarea {
+    resize: horizontal;
+    max-width: min(60vw, 900px);
+    min-width: 40vw;
 }
-.indexValue{
+.indexValue {
     font-size: 18px;
     justify-self: end;
     padding: 0px;
     position: relative;
-    top:5px;
+    top: 5px;
     margin: 5px;
 }
-button{
+button {
     margin: auto;
 }
-.ingridents{
+.ingridents {
     border: 2px solid black;
     display: flex;
     flex-direction: column;
@@ -27,24 +29,28 @@ button{
     justify-content: center;
     align-items: start;
 }
-input{
+input {
     border: 0px solid black;
     border-bottom: 2px solid black;
-    
+
     margin: 5px 5px;
 }
-input:focus{
+input:focus {
     outline: none;
 }
-.ingridents img{
+.ingridents img {
     width: 16px;
     padding: 4px;
     position: relative;
     top: 12px;
     margin: 5px;
     border-radius: 5px;
-    
 }
-.ingridents img:hover{
-  background-color: rgb(243, 62, 62);
+.ingridents img:hover {
+    background-color: rgb(243, 62, 62);
+}
+:host {
+    display: block;
+    margin: 10px auto;
+    width: 80%;
 }

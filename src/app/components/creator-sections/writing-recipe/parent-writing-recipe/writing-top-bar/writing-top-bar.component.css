@@ -1,0 +1,8 @@
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    outline: 2px solid blue;
+    width: 90%;
+    margin: 20px auto;
+}
