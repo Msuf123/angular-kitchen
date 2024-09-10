@@ -1,20 +1,32 @@
 <div class="outerdiv">
-  
-  <div class="fomrsSection">
-  <label class="lable">Whats its all about</label>
-  <textarea cols="30" rows="6">
-
-  </textarea>
-</div>
-  <h1>Ingridents</h1>
-  <ng-container [formGroup]="form" >
-      <div formArrayName="ingridents" class="ingridents">
-        <div class="" *ngFor="let i of ingridients.controls;let index=index">
-          <span class="indexValue">{{index+1}}.</span>
-          <input  [formControlName]="index">
-          <img *ngIf="index!==0" (click)="deleteIngridents(index)"  src="kitchen-trash-bin.png">
-        </div>
-      <button (click)="addIngridients()" [disabled]="displayButton">Add</button>
+    <div class="fomrsSection" [formGroup]="form">
+        <label class="lable">Whats its all about</label>
+        <textarea
+            cols="30"
+            rows="6"
+            formControlName="description"
+            placeholder="Write the description of the recipe"
+        >
+        </textarea>
     </div>
-  </ng-container>
+    <h1>Ingridents</h1>
+    <ng-container [formGroup]="form">
+        <div formArrayName="ingridents" class="ingridents">
+            <div
+                class=""
+                *ngFor="let i of ingridients.controls; let index = index"
+            >
+                <span class="indexValue">{{ index + 1 }}.</span>
+                <input [formControlName]="index" />
+                <img
+                    *ngIf="index !== 0"
+                    (click)="deleteIngridents(index)"
+                    src="kitchen-trash-bin.png"
+                />
+            </div>
+            <button (click)="addIngridients()" [disabled]="displayButton">
+                Add
+            </button>
+        </div>
+    </ng-container>
 </div>

@@ -18,6 +18,7 @@
         />
         <ng-template [ngIf]="!url">
             <input
+                class="inputUploader"
                 *ngSwitchCase="'file'"
                 (change)="fileUploaded($event)"
                 type="file"
@@ -36,10 +37,12 @@
         </ng-template>
 
         <ng-container *ngSwitchCase="'textbox'">
-            <textarea>
-          Default value
-        </textarea
+            <textarea
+                [formControlName]="question.key"
+                class="textArea"
+                placeholder="Write the description of the recipe"
             >
+            </textarea>
         </ng-container>
     </ng-container>
 </div>
