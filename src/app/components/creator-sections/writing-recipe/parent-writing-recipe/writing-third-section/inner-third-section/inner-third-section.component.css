@@ -1,4 +1,67 @@
-.deleteIcon{
+.deleteIcon {
     width: 30px;
     height: 30px;
+}
+.eachStepDiv {
+    display: block;
+    margin: auto;
+}
+.individualStepHeading {
+    display: flex;
+    align-items: center;
+}
+.fomrsSection {
+    display: block;
+    margin: 5px auto;
+}
+.description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+textarea {
+    resize: horizontal;
+    max-width: 100%;
+    min-width: 300px;
+    height: auto;
+}
+.eachStepDiv {
+    width: min(900px, 70vw);
+}
+.uploadedImage {
+    width: 250px;
+    height: 200px;
+}
+.uploadProgress {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0.459);
+}
+.imagePreviewOuterDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.imagePreviewDiv {
+    position: relative;
+}
+.individualDesc {
+    outline: 2px solid violet;
+}
+:host {
+    outline: 2px solid red;
+    display: block;
+    width: 80%;
+    margin: 15px auto;
 }
