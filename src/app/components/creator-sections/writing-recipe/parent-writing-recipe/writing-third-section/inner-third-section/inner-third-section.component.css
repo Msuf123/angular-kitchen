@@ -12,8 +12,10 @@
 }
 .fomrsSection {
     display: block;
+
     margin: 5px auto;
 }
+
 .description {
     display: flex;
     flex-direction: column;
@@ -22,8 +24,7 @@
 }
 textarea {
     resize: horizontal;
-    max-width: 100%;
-    min-width: 300px;
+
     height: auto;
 }
 .eachStepDiv {
@@ -57,11 +58,37 @@ textarea {
     position: relative;
 }
 .individualDesc {
-    outline: 2px solid violet;
+    width: 100%;
+    display: block;
 }
 :host {
-    outline: 2px solid red;
     display: block;
-    width: 80%;
+    width: 96%;
     margin: 15px auto;
+    padding: 0px;
+}
+
+@media only screen and (max-width: 964px) {
+    .fomrsSection {
+        width: 130px;
+        margin: 0px;
+    }
+    input {
+        font-size: 22px;
+        width: 100%;
+    }
+    .description textarea {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+    }
+    .fileUploader {
+        width: 100%;
+        margin-top: 10px;
+        font-size: 10px;
+    }
+    .uploadedImage {
+        width: 200px;
+        aspect-ratio: 1;
+    }
 }

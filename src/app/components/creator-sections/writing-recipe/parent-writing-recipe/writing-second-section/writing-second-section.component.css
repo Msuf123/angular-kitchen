@@ -21,7 +21,6 @@ button {
     margin: auto;
 }
 .ingridents {
-    border: 2px solid black;
     display: flex;
     flex-direction: column;
     width: max-content;
@@ -52,4 +51,19 @@ input:focus {
     display: block;
     margin: 10px auto;
     width: 80%;
+}
+
+@media only screen and (max-width: 964px) {
+    .fomrsSection textarea {
+        font-size: 15px;
+        min-height: 150px;
+    }
+    .ingridents input {
+        padding: 5px;
+        width: 140px;
+        font-size: 16px;
+    }
+    .ingridents button {
+        margin-top: 10px;
+    }
 }

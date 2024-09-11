@@ -23,7 +23,9 @@
     position: relative;
     margin-top: 10px;
 }
-
+.fomrsSection {
+    width: max-content;
+}
 .inputTypeText {
     border: 0px solid black;
     border-bottom: 2px solid black;
@@ -119,13 +121,22 @@ input:focus {
         font-weight: 600;
     }
     .fomrsSection:has(.ng-untouched) {
-        border: 2px solid black;
-        padding: 15px;
         width: 80%;
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        position: relative;
-        margin-top: 10px;
+    }
+    .fomrsSection {
+        width: 80%;
+    }
+
+    :host:has(.uploadedImage) {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        justify-self: start;
+        align-self: center;
+        display: block;
+        border: 0px solid black;
+        width: 200px;
+        height: 200px;
     }
 }
