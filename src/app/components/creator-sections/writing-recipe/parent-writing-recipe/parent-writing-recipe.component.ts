@@ -13,6 +13,7 @@ import { SaveChangesService } from "../../../../services/creator-sections/should
 import { DisplaySaveDraftComponent } from "../../display-save-draft/display-save-draft.component";
 import { DisplayMessageService } from "../../../../services/creator-sections/display-save-draft/display-message.service";
 import { BehaviorSubject, Subject } from "rxjs";
+import { ErrorImageComponent } from "../../error-image/error-image.component";
 @Component({
   selector: "app-parent-writing-recipe",
   standalone: true,
@@ -25,6 +26,7 @@ import { BehaviorSubject, Subject } from "rxjs";
     WritingThirdSectionComponent,
     ReactiveFormsModule,
     SignInMsgComponent,
+    ErrorImageComponent,
   ],
   templateUrl: "./parent-writing-recipe.component.html",
   styleUrl: "./parent-writing-recipe.component.css",

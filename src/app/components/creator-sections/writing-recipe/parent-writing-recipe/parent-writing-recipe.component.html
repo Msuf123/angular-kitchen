@@ -1,9 +1,15 @@
 <form [formGroup]="form" (ngSubmit)="submitForm($event)" *ngIf="signedIn">
-    
-<app-writing-top-bar></app-writing-top-bar>
-<app-writing-first-section [formGroup]="form" [questions]="listOfQuestioins" ></app-writing-first-section>
-<app-writing-second-section [form]="form"></app-writing-second-section>
-<app-writing-third-section [form]="form"></app-writing-third-section>
+    <app-writing-top-bar></app-writing-top-bar>
+    <app-writing-first-section
+        [formGroup]="form"
+        [questions]="listOfQuestioins"
+    ></app-writing-first-section>
+    <app-writing-second-section [form]="form"></app-writing-second-section>
+    <app-writing-third-section [form]="form"></app-writing-third-section>
 </form>
-<app-display-save-draft *ngIf="showMsg" [obser]="shouldDeactivate"></app-display-save-draft>
+<app-display-save-draft
+    *ngIf="showMsg"
+    [obser]="shouldDeactivate"
+></app-display-save-draft>
 <app-sign-in-msg *ngIf="!signedIn"></app-sign-in-msg>
+<app-error-image></app-error-image>

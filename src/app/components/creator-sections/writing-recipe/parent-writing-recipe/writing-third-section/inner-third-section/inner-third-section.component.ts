@@ -1,9 +1,10 @@
-import { Component, Input, inject } from "@angular/core";
+import { Component, Injector, Input, inject } from "@angular/core";
 import { FormArray, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { UploadStatusService } from "../../../../../../services/readFile-single/upload-status/upload-status.service";
 import { CommonModule } from "@angular/common";
 import { ReadFilesService } from "../../../../../../services/readFile-single/read-files.service";
 import { HttpServiceService } from "../../../../../../services/global-http/http-service.service";
+import { url } from "../../../../../../app.config";
 
 @Component({
   selector: "app-inner-third-section",
@@ -18,25 +19,40 @@ export class InnerThirdSectionComponent {
   @Input() postion!: number;
   httpService = inject(HttpServiceService);
   status = inject(UploadStatusService);
-  progress = this.status.progressStatus.value;
+  progress = this.status.progressStatus.value.status;
   @Input() form!: FormGroup;
   showProgress = this.status.displayStatus.value;
   uploadedImageFromHere = false;
   fileDataUrl = "";
+  injector = inject(Injector);
+  urls = this.injector.get(url);
+  imageThere = false;
   constructor() {
     this.status.displayStatus.subscribe((display) => {
-      this.showProgress = display;
+      if (!this.imageThere) {
+        this.showProgress = display;
+      } else {
+        this.showProgress = false;
+      }
     });
 
     this.status.progressStatus.subscribe((status) => {
-      console.log("uplaoding");
-      if (
-        status.name !== "" &&
-        this.steps.at(this.postion).get("imageUrl")?.value === "" &&
-        this.uploadedImageFromHere
-      ) {
-        console.log("Done setting names");
-        this.steps.at(this.postion).get("imageUrl")?.setValue(status.name);
+      if (status.name !== "error") {
+        if (
+          status.name !== "" &&
+          this.steps.at(this.postion).get("imageUrl")?.value === "" &&
+          this.uploadedImageFromHere
+        ) {
+          this.steps.at(this.postion).get("imageUrl")?.setValue(status.name);
+          this.imageThere = true;
+        } else {
+          this.progress = status.status;
+        }
+      } else {
+        this.fileDataUrl = "";
+        this.showProgress = false;
+        this.imageThere = false;
+        this.uploadedImageFromHere = false;
       }
     });
   }
@@ -51,7 +67,7 @@ export class InnerThirdSectionComponent {
     )) as ArrayBuffer;
     this.httpService.uploadImageToServer(
       buffer,
-      "http://localhost:3000/write/upload-image",
+      `${this.urls}/write/upload-image`,
       filesExtension,
     );
   }
@@ -59,6 +75,7 @@ export class InnerThirdSectionComponent {
     return this.form.get("steps") as FormArray;
   }
   deleteImage() {
+    this.imageThere = false;
     this.fileDataUrl = "";
   }
   run(e: string) {

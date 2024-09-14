@@ -34,9 +34,9 @@
                             *ngIf="fileDataUrl"
                             [src]="fileDataUrl"
                         />
-                        <span class="uploadProgress" *ngIf="showProgress">{{
-                            progress
-                        }}</span>
+                        <span class="uploadProgress" *ngIf="showProgress"
+                            >Uploading {{ progress }}%</span
+                        >
                     </div>
                     <img
                         src="kitchen-trash-bin.png"
