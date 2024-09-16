@@ -56,7 +56,7 @@ export class ParentWritingRecipeComponent {
   ) {
     questions.get("/write/auth").subscribe((res) => {
       console.log(res);
-
+      res === "okay";
       if (res === "okay") {
         this.signedIn = true;
       }
