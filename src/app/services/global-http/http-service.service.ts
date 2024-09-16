@@ -27,11 +27,15 @@ import {
   animals,
 } from "unique-names-generator";
 import { UploadStatusService } from "../readFile-single/upload-status/upload-status.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { SessionsService } from "../creator-sections/session-error/sessions.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class HttpServiceService {
+  sessionService = inject(SessionsService);
+  router = inject(Router);
   loadingService = inject(LoadingService);
   httpService = inject(HttpClient);
   injector = inject(Injector);
@@ -80,9 +84,14 @@ export class HttpServiceService {
       new Slider({
         lable: "Give a difficulty ness level",
         key: "difficlutyLEvel",
+        defaultValue: "2",
       }),
 
-      new Slider({ lable: "Give a healthy ness leve", key: "healyLevel" }),
+      new Slider({
+        lable: "Give a healthy ness leve",
+        key: "healyLevel",
+        defaultValue: "2",
+      }),
       new TextBox({
         lable: "Approx Price",
         key: "priceOfMeal",
@@ -122,21 +131,29 @@ export class HttpServiceService {
             "total-length": totalChunks + 1,
           }),
         })
-        .subscribe((res) => {
-          timesItRan++;
-          if (!res.includes(".") && res !== "error") {
-            const progress = Math.floor(Number(res));
-            this.uploadStatus.displayStatus.next(true);
-            this.uploadStatus.progressStatus.next({
-              name: "",
-              status: progress,
-            });
+        .pipe(catchError(this.errorHandling))
+        .subscribe((res: any) => {
+          if (res === "Unable to reach to server") {
+            this.router.navigate(["/"]);
+          } else if (res === "Something went wrong") {
+            this.sessionService.setError(true);
           } else {
-            this.uploadStatus.progressStatus.next({ name: res, status: 100 });
-            this.uploadStatus.displayStatus.next(false);
-          }
-          if (!res.includes(".") && timesItRan <= totalChunks + 1) {
-            makeRequest(index + chunks, endIndex + chunks, nameOfFile);
+            timesItRan++;
+            console.log(res);
+            if (!res.includes(".") && res !== "error") {
+              const progress = Math.floor(Number(res));
+              this.uploadStatus.displayStatus.next(true);
+              this.uploadStatus.progressStatus.next({
+                name: "",
+                status: progress,
+              });
+            } else {
+              this.uploadStatus.progressStatus.next({ name: res, status: 100 });
+              this.uploadStatus.displayStatus.next(false);
+            }
+            if (!res.includes(".") && timesItRan <= totalChunks + 1) {
+              makeRequest(index + chunks, endIndex + chunks, nameOfFile);
+            }
           }
         });
     };

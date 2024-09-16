@@ -31,18 +31,24 @@ export class IndividualInputFormComponent {
   constructor() {}
   ngAfterViewInit() {
     this.status.progressStatus.subscribe((status) => {
-      if (!this.imageThere) {
-        if (status.status < 100) {
-          this.showProgress = true;
-          this.progress = status.status;
-        } else if (status.status === 100 && this.uploadedImageFromHere) {
-          let name = this.status.progressStatus.value.name;
-          this.imageThere = true;
-          this.status.progressStatus.next({ name: "", status: 0 });
-          this.formGroup.get("image")?.setValue(status.name);
-          this.showProgress = false;
-          this.uploadedImageFromHere = false;
+      if (status.name !== "error") {
+        if (!this.imageThere) {
+          if (status.status < 100) {
+            this.showProgress = true;
+            this.progress = status.status;
+          } else if (status.status === 100 && this.uploadedImageFromHere) {
+            let name = this.status.progressStatus.value.name;
+            this.imageThere = true;
+            this.status.progressStatus.next({ name: "", status: 0 });
+            this.formGroup.get("image")?.setValue(status.name);
+            this.showProgress = false;
+            this.uploadedImageFromHere = false;
+          }
         }
+      } else {
+        this.uploadedImageFromHere = false;
+        this.url = "";
+        this.imageThere = false;
       }
     });
     this.formGroup.statusChanges.subscribe(() => {
@@ -55,11 +61,11 @@ export class IndividualInputFormComponent {
     this.uploadedImageFromHere = true;
     const target = evnet.target as HTMLInputElement;
     const filesExtension = (evnet.target.files[0].type as string).split("/")[1];
-    console.log(target, "outside");
+
     const res = await this.filereaderService.readFile(target);
 
     this.url = res as string;
-    console.log(target, "outside");
+
     const buffer = (await this.filereaderService.readBuffer(
       target,
     )) as ArrayBuffer;

@@ -5,6 +5,7 @@ import { CommonModule } from "@angular/common";
 import { ReadFilesService } from "../../../../../../services/readFile-single/read-files.service";
 import { HttpServiceService } from "../../../../../../services/global-http/http-service.service";
 import { url } from "../../../../../../app.config";
+import { ErrorImageService } from "../../../../../../services/error-image-upload/error-image.service";
 
 @Component({
   selector: "app-inner-third-section",
@@ -18,6 +19,7 @@ export class InnerThirdSectionComponent {
   @Input() formArray!: any;
   @Input() postion!: number;
   httpService = inject(HttpServiceService);
+  errorService = inject(ErrorImageService);
   status = inject(UploadStatusService);
   progress = this.status.progressStatus.value.status;
   @Input() form!: FormGroup;
@@ -45,14 +47,17 @@ export class InnerThirdSectionComponent {
         ) {
           this.steps.at(this.postion).get("imageUrl")?.setValue(status.name);
           this.imageThere = true;
+          this.status.progressStatus.next({ name: "", status: 0 });
         } else {
           this.progress = status.status;
         }
       } else {
+        this.errorService.setError(true);
         this.fileDataUrl = "";
         this.showProgress = false;
         this.imageThere = false;
         this.uploadedImageFromHere = false;
+        this.status.progressStatus.next({ name: "", status: 0 });
       }
     });
   }

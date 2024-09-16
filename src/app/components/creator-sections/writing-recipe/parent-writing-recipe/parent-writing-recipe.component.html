@@ -12,4 +12,5 @@
     [obser]="shouldDeactivate"
 ></app-display-save-draft>
 <app-sign-in-msg *ngIf="!signedIn"></app-sign-in-msg>
-<app-error-image></app-error-image>
+<app-error-image *ngIf="isThereError"></app-error-image>
+<app-session-expired *ngIf="sessionError"></app-session-expired>

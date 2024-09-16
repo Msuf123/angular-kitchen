@@ -3,6 +3,11 @@ span {
     font-size: 20px;
     width: 80%;
 }
+.outerBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 :host {
     display: flex;
     justify-content: space-around;

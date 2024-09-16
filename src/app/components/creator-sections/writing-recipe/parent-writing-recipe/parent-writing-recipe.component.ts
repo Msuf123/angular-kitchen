@@ -14,6 +14,9 @@ import { DisplaySaveDraftComponent } from "../../display-save-draft/display-save
 import { DisplayMessageService } from "../../../../services/creator-sections/display-save-draft/display-message.service";
 import { BehaviorSubject, Subject } from "rxjs";
 import { ErrorImageComponent } from "../../error-image/error-image.component";
+import { ErrorImageService } from "../../../../services/error-image-upload/error-image.service";
+import { SessionExpiredComponent } from "../../session-expired/session-expired.component";
+import { SessionsService } from "../../../../services/creator-sections/session-error/sessions.service";
 @Component({
   selector: "app-parent-writing-recipe",
   standalone: true,
@@ -27,6 +30,7 @@ import { ErrorImageComponent } from "../../error-image/error-image.component";
     ReactiveFormsModule,
     SignInMsgComponent,
     ErrorImageComponent,
+    SessionExpiredComponent,
   ],
   templateUrl: "./parent-writing-recipe.component.html",
   styleUrl: "./parent-writing-recipe.component.css",
@@ -39,6 +43,10 @@ export class ParentWritingRecipeComponent {
   loadingService = inject(LoadingService);
   canDeactivateS = inject(SaveChangesService);
   showDisplay = inject(DisplayMessageService);
+  showError = inject(ErrorImageService);
+  sessionService = inject(SessionsService);
+  sessionError = this.sessionService.sessionError.value;
+  isThereError = this.showError.displayErrorService.value;
   showMsg = false;
   counter = 0;
   shouldDeactivate = new Subject<boolean>();
@@ -48,12 +56,14 @@ export class ParentWritingRecipeComponent {
   ) {
     questions.get("/write/auth").subscribe((res) => {
       console.log(res);
-      //res==='okay'
-      if (true) {
+
+      if (res === "okay") {
         this.signedIn = true;
       }
     });
-
+    this.sessionService.sessionError.subscribe((state) => {
+      this.sessionError = state;
+    });
     this.listOfQuestioins = this.questions.question();
     this.form = formService.getFormObject(this.listOfQuestioins);
     this.form.valueChanges.subscribe((a) => {
@@ -66,6 +76,9 @@ export class ParentWritingRecipeComponent {
     });
     this.showDisplay.shouldDisplay.subscribe((state) => {
       this.showMsg = state;
+    });
+    this.showError.displayErrorService.subscribe((errorState) => {
+      this.isThereError = errorState;
     });
   }
   submitForm(e: any) {
