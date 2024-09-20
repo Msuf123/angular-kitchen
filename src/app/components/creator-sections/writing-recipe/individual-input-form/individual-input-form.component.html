@@ -16,7 +16,7 @@
             [step]="1"
             value="0"
         />
-        <span *ngSwitchCase="'slider'" class="no1">1</span>
+        <span *ngSwitchCase="'slider'" class="no1" [ngClass]="classes">1</span>
         <span *ngSwitchCase="'slider'" class="no2">2</span>
         <span *ngSwitchCase="'slider'" class="no3">3</span>
         <ng-template [ngIf]="!url">

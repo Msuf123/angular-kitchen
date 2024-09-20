@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InboxComponent } from './inbox.component';
+import { LikedRecipeComponent } from './liked-recipe.component';
 
-describe('InboxComponent', () => {
-  let component: InboxComponent;
-  let fixture: ComponentFixture<InboxComponent>;
+describe('LikedRecipeComponent', () => {
+  let component: LikedRecipeComponent;
+  let fixture: ComponentFixture<LikedRecipeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [InboxComponent]
+      imports: [LikedRecipeComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(InboxComponent);
+    fixture = TestBed.createComponent(LikedRecipeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

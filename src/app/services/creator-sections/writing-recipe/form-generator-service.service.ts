@@ -1,5 +1,13 @@
 import { Injectable } from "@angular/core";
-import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
+import {
+  AbstractControl,
+  FormArray,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from "@angular/forms";
 import BaseQuestion from "../../../custom-class/questions-class/creator-write-sec/base.question";
 
 @Injectable({
@@ -7,6 +15,15 @@ import BaseQuestion from "../../../custom-class/questions-class/creator-write-se
 })
 export class FormGeneratorServiceService {
   constructor() {}
+  isNumber(): ValidatorFn {
+    return (constrol: AbstractControl): ValidationErrors | null => {
+      if (Number.isNaN(constrol.value)) {
+        return { number: "yes" };
+      } else {
+        return null;
+      }
+    };
+  }
   getFormObject(arrayOfQuestions: BaseQuestion[]) {
     let object: any = {
       description: new FormControl(""),
@@ -15,8 +32,8 @@ export class FormGeneratorServiceService {
       ]),
       steps: new FormArray([
         new FormGroup({
-          heading: new FormControl(""),
-          about: new FormControl(""),
+          heading: new FormControl("", { validators: [Validators.required] }),
+          about: new FormControl("", { validators: [Validators.required] }),
           imageUrl: new FormControl(""),
         }),
       ]),

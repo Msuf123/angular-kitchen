@@ -6,7 +6,7 @@ import { ReadFilesService } from "../../../../services/readFile-single/read-file
 import { HttpServiceService } from "../../../../services/global-http/http-service.service";
 import { UploadStatusService } from "../../../../services/readFile-single/upload-status/upload-status.service";
 import { url } from "../../../../app.config";
-
+import { NgClass } from "@angular/common";
 @Component({
   selector: "app-individual-input-form",
   standalone: true,
@@ -28,7 +28,9 @@ export class IndividualInputFormComponent {
   errors: boolean = false;
   url!: string;
   uploadedImageFromHere = false;
+  classes = "";
   constructor() {}
+
   ngAfterViewInit() {
     this.status.progressStatus.subscribe((status) => {
       if (status.name !== "error") {

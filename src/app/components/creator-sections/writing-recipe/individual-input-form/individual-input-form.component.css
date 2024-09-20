@@ -26,6 +26,10 @@
 .fomrsSection {
     width: max-content;
 }
+:host:has(.no1A) .no1 {
+    color: red;
+}
+
 .inputTypeText {
     border: 0px solid black;
     border-bottom: 2px solid black;

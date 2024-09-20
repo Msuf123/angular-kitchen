@@ -1,5 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="submitForm($event)" *ngIf="signedIn">
-    <app-writing-top-bar></app-writing-top-bar>
+    <app-writing-top-bar [form]="form"></app-writing-top-bar>
     <app-writing-first-section
         [formGroup]="form"
         [questions]="listOfQuestioins"
@@ -14,3 +14,4 @@
 <app-sign-in-msg *ngIf="!signedIn"></app-sign-in-msg>
 <app-error-image *ngIf="isThereError"></app-error-image>
 <app-session-expired *ngIf="sessionError"></app-session-expired>
+<app-missing-parameter *ngIf="shouldUploadError"></app-missing-parameter>
