@@ -12,11 +12,12 @@ import { map } from 'rxjs';
 import { ErrorFromServerService } from '../../services/error/error-from-server.service';
 import { ErrorFromServerComponent } from '../global-component/error-from-server/error-from-server.component';
 import { LoadingComponent } from '../global-component/loading/loading.component';
+import { AuthorSectionComponent } from "./author-section/author-section.component";
 
 @Component({
   selector: 'app-details-about-articles',
   standalone: true,
-  imports: [DescriptionComponentComponent,CommonModule,MultiMediaDetailsIntroComponent,ProcedureComponentComponent,CommentSectionComponent,ErrorFromServerComponent,LoadingComponent],
+  imports: [DescriptionComponentComponent,AuthorSectionComponent, CommonModule, MultiMediaDetailsIntroComponent, ProcedureComponentComponent, CommentSectionComponent, ErrorFromServerComponent, LoadingComponent, AuthorSectionComponent],
   templateUrl: './details-about-articles.component.html',
   styleUrl: './details-about-articles.component.css'
 })

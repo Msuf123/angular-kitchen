@@ -1,5 +1,8 @@
-<div class="outerDiv">
+<div class="outerDiv" *ngIf="loggedInd">
     <app-left-options-bar></app-left-options-bar>
-    <router-outlet></router-outlet>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
 </div>
-<!-- <app-loading></app-loading> -->
+<app-loading *ngIf="loadingStatus"></app-loading>
+<app-sign-in-msg *ngIf="!loggedInd"></app-sign-in-msg>

@@ -27,13 +27,14 @@ export class RecipeCardComponent {
   
   constructor(){
     this.individualCard.recipies.next([])
-
+    
     
     this.errorService.erroStatus.next(false)
     this.errorService.erroStatus.subscribe((currentErrorState)=>{
       this.errorState=currentErrorState
     })
     this.individualCard.recipies.subscribe((a)=>{
+      
       this.items=a
     })
     

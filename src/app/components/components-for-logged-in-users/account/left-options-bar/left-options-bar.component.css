@@ -12,3 +12,8 @@
     width: 20px;
     margin: 3px;
 }
+:host{
+    display: block;
+    border: 2px solid black;
+    width: max-content;
+}

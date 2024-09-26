@@ -1,6 +1,9 @@
 .outerDiv{
     border: 2px solid black;
     width: 80vw;
-    display: block;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-template-rows: 1;
     margin: 20px auto;
+
 }
