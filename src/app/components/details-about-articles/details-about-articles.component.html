@@ -16,7 +16,9 @@
     <span>Procdeure</span>
     <app-procedure-component [steps]="steps"></app-procedure-component>
 </div>
+<app-like-dislike></app-like-dislike>
 <app-comment-section></app-comment-section>
 </div>
+<app-login-message *ngIf="userSignedIn"></app-login-message>
 <app-error-from-server *ngIf="errorState"></app-error-from-server>
 <app-loading *ngIf="loadingState"></app-loading>

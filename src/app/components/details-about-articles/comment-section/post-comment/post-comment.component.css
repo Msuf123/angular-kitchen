@@ -1,0 +1,9 @@
+textarea{
+   border: 0px solid black;
+   resize: none;
+   
+   border-bottom: 2px solid rgb(250, 219, 117);
+}
+textarea:focus{
+    outline: 0px solid black;
+}

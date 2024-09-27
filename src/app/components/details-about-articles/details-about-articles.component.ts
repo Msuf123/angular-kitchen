@@ -13,25 +13,33 @@ import { ErrorFromServerService } from '../../services/error/error-from-server.s
 import { ErrorFromServerComponent } from '../global-component/error-from-server/error-from-server.component';
 import { LoadingComponent } from '../global-component/loading/loading.component';
 import { AuthorSectionComponent } from "./author-section/author-section.component";
+import { LoginMessageComponent } from './login-message/login-message.component';
+import { SignedInService } from '../../services/details-recipe/signedIn/signed-in.service';
+import { HttpServiceService } from '../../services/global-http/http-service.service';
+import { LikeDislikeComponent } from './like-dislike/like-dislike.component';
 
 @Component({
   selector: 'app-details-about-articles',
   standalone: true,
-  imports: [DescriptionComponentComponent,AuthorSectionComponent, CommonModule, MultiMediaDetailsIntroComponent, ProcedureComponentComponent, CommentSectionComponent, ErrorFromServerComponent, LoadingComponent, AuthorSectionComponent],
+  imports: [DescriptionComponentComponent,AuthorSectionComponent,LikeDislikeComponent,LoginMessageComponent, CommonModule, MultiMediaDetailsIntroComponent, ProcedureComponentComponent, CommentSectionComponent, ErrorFromServerComponent, LoadingComponent, AuthorSectionComponent],
   templateUrl: './details-about-articles.component.html',
   styleUrl: './details-about-articles.component.css'
 })
 export class DetailsAboutArticlesComponent {
+signedIn=inject(SignedInService)
  service=inject(DetailsRecipeService)
  loading=inject(LoadingService)
  router=inject(ActivatedRoute)
+ http=inject(HttpServiceService)
  errorService=inject(ErrorFromServerService)
  data?:any
  ingredients?:any
  steps?:any
  errorState=false
  loadingState=false
+ userSignedIn=false
  constructor(){
+  
   this.loading.state.subscribe((currentState)=>{
     this.loadingState=currentState
   })
@@ -55,6 +63,12 @@ export class DetailsAboutArticlesComponent {
     this.errorService.erroStatus.next(true)
     this.data=null
   }  
+  })
+  this.http.get('/recipes/userSignedIn').subscribe((a)=>{
+
+  })
+  this.signedIn.displayMsg.subscribe((value)=>{
+    this.userSignedIn=value
   })
  }
 }
