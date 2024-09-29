@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './author-details.component.css'
 })
 export class AuthorDetailsComponent {
-
+  name=""
+  date=""
+  
 }
