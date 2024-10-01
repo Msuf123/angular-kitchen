@@ -43,9 +43,13 @@ export class LikeDislikeComponent {
   }
  }
  save(){
-  if(this.signedIn.isSignedIn.value){
-   
+  if(this.value){
+    this.httpservice.get('/recipes/user-actions/saved/'+this.id).subscribe((a)=>{
+      console.log(a)
+    })
   }
-  this.signedIn.displayMsg.next(true)
- }
+  else{
+    this.signedIn.displayMsg.next(true)
+  } 
+}
 }
