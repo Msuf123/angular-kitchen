@@ -20,12 +20,15 @@ export class AuthorSectionComponent {
   router=inject(ActivatedRoute)
   loading=false
   data=null
+  values:{author:string,date_posted:string,url:string}[]=[{author:"N/a",date_posted:"2024-01-01",url:"Loginuser.png"}]
   constructor(){
     const prmas=this.router.params
     prmas.subscribe((a:any)=>{
-      console.log(a)
+      
       this.http.get(`/recipes/author/${a.id}`).subscribe((res)=>{
-        console.log(res)
+        if(Array.isArray(res)){
+        this.values=res as [{author:string,date_posted:string,url:string}]
+        }
       })
     })
 

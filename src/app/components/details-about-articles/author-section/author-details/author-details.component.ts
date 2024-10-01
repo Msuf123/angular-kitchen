@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-author-details',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './author-details.component.html',
   styleUrl: './author-details.component.css'
 })
 export class AuthorDetailsComponent {
-  name=""
-  date=""
   
+  @Input() url!:string
+  @Input() name!:string
+  @Input() dates!:string
 }

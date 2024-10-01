@@ -1,5 +1,5 @@
 <div class="authorSectionParent">
-<app-loading-author *ngIf="loading"></app-loading-author>
+<app-loading-author *ngIf="loading" ></app-loading-author>
 
-<app-author-details *ngIf="!loading"></app-author-details>
+<app-author-details *ngIf="!loading" [url]="values[0].url" [dates]="values[0].date_posted" [name]="values[0].author"></app-author-details>
 </div>

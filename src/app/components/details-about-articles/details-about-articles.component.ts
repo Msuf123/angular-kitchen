@@ -38,8 +38,9 @@ signedIn=inject(SignedInService)
  errorState=false
  loadingState=false
  userSignedIn=false
+ id=""
  constructor(){
-  
+  this.id=this.router.snapshot.params['id']
   this.loading.state.subscribe((currentState)=>{
     this.loadingState=currentState
   })
@@ -47,8 +48,9 @@ signedIn=inject(SignedInService)
     this.errorState=currentError
   })
   this.loading.state.next(true)
-  const id=this.router.snapshot.params['id']
-  this.service.getRecipesDetails(id).subscribe((responseFromServer:any)=>{
+  
+   
+  this.service.getRecipesDetails(this.id).subscribe((responseFromServer:any)=>{
     this.loading.state.next(false)
     if(responseFromServer!=='Unable to reach to server'&&responseFromServer!=='Something went wrong'){
     responseFromServer=JSON.parse(responseFromServer)
@@ -64,8 +66,14 @@ signedIn=inject(SignedInService)
     this.data=null
   }  
   })
+  this.http.get('/recipes/user-actions/done-actions/'+this.id).subscribe((res)=>{
+    console.log(res)
+  })
   this.http.get('/recipes/userSignedIn').subscribe((a)=>{
-
+   if(a==="okay"){
+    this.signedIn.isSignedIn.next(true)
+   }
+   
   })
   this.signedIn.displayMsg.subscribe((value)=>{
     this.userSignedIn=value

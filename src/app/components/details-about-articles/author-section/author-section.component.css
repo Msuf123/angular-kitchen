@@ -57,7 +57,8 @@ margin-right: 10px;
 }
 .imageLogoAuthorData{
     display: block;
-    width: 40px;
+    width: 50px;
+    border-radius: 10px;
     margin-right: 10px;
 }
 .authorSectionLoadingComponent span{
