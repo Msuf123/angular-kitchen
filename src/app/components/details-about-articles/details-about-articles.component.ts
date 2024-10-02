@@ -8,7 +8,7 @@ import { RecipeDataFromServer } from '../../services/details-recipe/interface-of
 import { CommonModule, JsonPipe } from '@angular/common';
 import { LoadingService } from '../../services/loading/loading.service';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { ErrorFromServerService } from '../../services/error/error-from-server.service';
 import { ErrorFromServerComponent } from '../global-component/error-from-server/error-from-server.component';
 import { LoadingComponent } from '../global-component/loading/loading.component';
@@ -17,6 +17,7 @@ import { LoginMessageComponent } from './login-message/login-message.component';
 import { SignedInService } from '../../services/details-recipe/signedIn/signed-in.service';
 import { HttpServiceService } from '../../services/global-http/http-service.service';
 import { LikeDislikeComponent } from './like-dislike/like-dislike.component';
+import { useractivity } from './user-activity';
 
 @Component({
   selector: 'app-details-about-articles',
@@ -39,6 +40,7 @@ signedIn=inject(SignedInService)
  loadingState=false
  userSignedIn=false
  id=""
+ statusObObject=new BehaviorSubject<useractivity<boolean>>({like:false,saved:false,disliked:false})
  constructor(){
   this.id=this.router.snapshot.params['id']
   this.loading.state.subscribe((currentState)=>{
@@ -67,7 +69,12 @@ signedIn=inject(SignedInService)
   }  
   })
   this.http.get('/recipes/user-actions/done-actions/'+this.id).subscribe((res)=>{
-    console.log(res)
+     if(typeof res!=='string'){
+        this.statusObObject.next(res as useractivity<boolean>)
+     }
+     else{
+      this.statusObObject.next({ like: false, disliked: false, saved: false })
+     }
   })
   this.http.get('/recipes/userSignedIn').subscribe((a)=>{
    if(a==="okay"){

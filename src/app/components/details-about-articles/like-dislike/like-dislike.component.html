@@ -1,3 +1,3 @@
-<button (click)="like()">Like</button>
-<button (click)="dislike()">Dislike</button>
-<button (click)="save()">Save</button>
+<div (click)="like()" [ngClass]="likedClassName">{{values.liked}} <img src="like.png"></div>
+<div (click)="dislike()" [ngClass]="dislikedRecipe">{{values.dislike}} <img src="dislike.png"></div>
+<div (click)="save()" [ngClass]="savedRecipe">{{values.saved}} <img src="accountSavedIcon.png"></div>

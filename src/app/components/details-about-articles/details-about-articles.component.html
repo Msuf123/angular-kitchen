@@ -16,7 +16,7 @@
     <span>Procdeure</span>
     <app-procedure-component [steps]="steps"></app-procedure-component>
 </div>
-<app-like-dislike [id]="id"></app-like-dislike>
+<app-like-dislike [id]="id" [subject]="statusObObject"></app-like-dislike>
 <app-comment-section></app-comment-section>
 </div>
 <app-login-message *ngIf="userSignedIn"></app-login-message>
