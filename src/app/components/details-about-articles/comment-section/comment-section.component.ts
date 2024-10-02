@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { PostCommentComponent } from './post-comment/post-comment.component';
 import { DisplayCommentComponent } from './display-comment/display-comment.component';
 

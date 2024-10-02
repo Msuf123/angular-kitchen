@@ -1,4 +1,6 @@
 <div>
-    <textarea rows="2"></textarea>
-    <button>Post</button>
+    <textarea rows="2" [formControl]="inputField"></textarea>
+    <button (click)="postComment()">Post</button>
 </div>
+
+

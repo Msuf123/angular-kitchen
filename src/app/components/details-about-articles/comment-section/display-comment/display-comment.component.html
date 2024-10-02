@@ -1,1 +1,6 @@
-<p>display-comment works!</p>
+<p *ngIf="!comments">Loading<p>
+<div *ngFor="let comment of comments" class="commentSection">
+    <img src="{{comment.url}}">
+    <span>{{comment.author}}</span>
+    <p>{{comment.data}}</p>
+</div>
