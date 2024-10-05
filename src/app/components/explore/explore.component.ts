@@ -9,6 +9,7 @@ import { LoadingCardsComponent } from './loading-cards/loading-cards.component';
 import { ObserverApiDirective } from '../../services/intersection-observer/observer-api.directive';
 import { LoadingService } from '../../services/loading/loading.service';
 import { CommonModule } from '@angular/common';
+import { IndividualCardService } from '../../services/explore-card/individual-card.service';
 
 @Component({
   selector: 'app-explore',
@@ -20,6 +21,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ExploreComponent {
   loading=inject(LoadingService)
+  recipeCardService=inject(IndividualCardService)
   load=true
  constructor(){
   this.loading.state.next(true)

@@ -1,1 +1,9 @@
-<p>liked-recipe works!</p>
+<div class="gridItems">
+<div *ngFor="let dat of data" class="itmes">
+    <img src="{{dat.thumbnail}}" (click)="nav(dat.id)" class="imageOfDish">
+    <span>{{dat.name}}</span>
+    <button>Dislike</button>
+</div>
+</div>
+<app-loading-prifle-cards [url]="'/account/liked'" [inWhichServiceToAddData]="loadingItemService"></app-loading-prifle-cards>
+<!-- <app-loading-cards [url]="'/account/liked'" [inWhichServiceToAddData]="loadingItemService"></app-loading-cards> -->

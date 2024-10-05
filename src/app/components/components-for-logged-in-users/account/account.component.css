@@ -7,3 +7,9 @@
     margin: 20px auto;
 
 }
+.contnetDiv{
+    width: 100%;
+    overflow: scroll;
+    display: block;
+   
+}
