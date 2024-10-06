@@ -1,0 +1,9 @@
+<div class="gridItems" *ngIf="!loading">
+    <div *ngFor="let dat of data" class="itmes">
+        <img src="{{dat.thumbnail}}" (click)="editDraft(dat.id)" class="imageOfDish">
+        <span>{{dat.name}}</span>
+        <button (click)="deleteDraft(dat.id)">Remove</button>
+    </div>
+    </div>
+<app-loading-prifle-cards *ngIf="loading" [url]="'/account/draft/'" [inWhichServiceToAddData]="loadingItemService" [loadingService]="loadingItemService"></app-loading-prifle-cards>
+    

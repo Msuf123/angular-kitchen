@@ -5,6 +5,7 @@ import { WritingSecondSectionComponent } from "./writing-second-section/writing-
 import { WritingThirdSectionComponent } from "./writing-third-section/writing-third-section.component";
 import {
   AbstractControl,
+  FormArray,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
@@ -26,6 +27,7 @@ import { SessionExpiredComponent } from "../../session-expired/session-expired.c
 import { SessionsService } from "../../../../services/creator-sections/session-error/sessions.service";
 import { FormsInvalidService } from "../../../../services/creator-sections/error-in-forms/forms-invalid.service";
 import { MissingParameterComponent } from "../../missing-parameter/missing-parameter.component";
+import { ActivatedRoute, Router } from "@angular/router";
 @Component({
   selector: "app-parent-writing-recipe",
   standalone: true,
@@ -56,6 +58,7 @@ export class ParentWritingRecipeComponent {
   showDisplay = inject(DisplayMessageService);
   showError = inject(ErrorImageService);
   sessionService = inject(SessionsService);
+  router=inject(ActivatedRoute)
   sessionError = this.sessionService.sessionError.value;
   isThereError = this.showError.displayErrorService.value;
   showMsg = false;
@@ -66,10 +69,20 @@ export class ParentWritingRecipeComponent {
     private questions: HttpServiceService,
     private formService: FormGeneratorServiceService,
   ) {
+    
     questions.get("/write/auth").subscribe((res) => {
-      console.log(res);
+      this.router.url.subscribe((a:any)=>{
+        for(let i of a){
+         for(let j in i){
+          if(i[j]==='edit'){
+            console.log("edit mode")
+          }
+         }
+        }
+      })
+   
       // res === "okay"
-      if (true) {
+      if (res === "okay") {
         this.signedIn = true;
       }
     });
@@ -117,12 +130,47 @@ export class ParentWritingRecipeComponent {
       },
     ]);
     this.form.updateValueAndValidity();
+    this.form.valueChanges.subscribe((a)=>{
+      console.log(a)
+    })
+
   }
   submitForm(e: any) {
     let eventEmitter = e.submitter;
     if (eventEmitter.value === "Publish") {
       console.log(this.form.value);
     }
+  }
+  click(){
+    let ingridents=['Psata','Mleo']
+    let steps=[{ heading: "Boil", about: "cdc", imageUrl: "" },
+      { heading: "Eat", about: "df", imageUrl: "https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/6399a4d27711a5ad2c9bf5cd_ben-sweet-2LowviVHZ-E-unsplash-1.jpeg" }
+   ]
+    let a=this.form.get('ingridents') as FormArray
+    a.clear()
+    console.log(a.length,ingridents.length)
+    while(a.length<ingridents.length){
+      a.push(new FormControl('k'))
+    }
+    let b=this.form.get('steps') as FormArray
+    b.clear()
+    while(b.length<steps.length){
+      b.push( new FormGroup({
+        heading: new FormControl("", { validators: [Validators.required] }),
+        about: new FormControl("", { validators: [Validators.required] }),
+        imageUrl: new FormControl(""),
+      }))
+    }
+    this.form.get('ingridents')?.patchValue(['Pastda','Olive Oil'])
+    this.form.get('steps')?.patchValue([{ heading: "Boil", about: "cdc", imageUrl: "" },
+      { heading: "Eat", about: "df", imageUrl: "https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/6399a4d27711a5ad2c9bf5cd_ben-sweet-2LowviVHZ-E-unsplash-1.jpeg" }
+    ])
+    console.log()
+    this.form.patchValue({name:'k',healyLevel:2,priceOfMeal:12,time:3,description:"hi",
+      difficlutyLEvel:3,
+      image:"https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg"
+      
+    })
   }
   canDeactivate() {
     if (this.counter === 0) {

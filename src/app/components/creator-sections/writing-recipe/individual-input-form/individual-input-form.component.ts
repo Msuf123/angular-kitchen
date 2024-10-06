@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, Injector, Input, inject } from "@angular/core";
+import { CSP_NONCE, Component, Injector, Input, inject } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import BaseQuestion from "../../../../custom-class/questions-class/creator-write-sec/base.question";
 import { ReadFilesService } from "../../../../services/readFile-single/read-files.service";
@@ -32,6 +32,13 @@ export class IndividualInputFormComponent {
   constructor() {}
 
   ngAfterViewInit() {
+    this.formGroup.valueChanges.subscribe((currentState)=>{
+      if(currentState.image!==""){
+        this.url=currentState.image as string
+        this.showProgress=false
+        this.uploadedImageFromHere=true
+      }
+    })
     this.status.progressStatus.subscribe((status) => {
       if (status.name !== "error") {
         if (!this.imageThere) {

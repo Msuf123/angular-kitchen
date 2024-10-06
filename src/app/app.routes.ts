@@ -12,6 +12,7 @@ import { deactivateGuard } from "./guards/creator/can-deactivate-writing/deactiv
 import { ProfileComponent } from "./components/components-for-logged-in-users/profile/profile.component";
 import { SavedRecipeComponent } from "./components/components-for-logged-in-users/saved-recipe/saved-recipe.component";
 import { LikedRecipeComponent } from "./components/components-for-logged-in-users/liked-recipe/liked-recipe.component";
+import { DraftRecipeComponent } from "./components/components-for-logged-in-users/draft-recipe/draft-recipe.component";
 
 export const routes: Routes = [
   {
@@ -34,8 +35,9 @@ export const routes: Routes = [
     children: [
       { path: "", component: ProfileComponent },
       { path: "saved", component: SavedRecipeComponent },
-      { path: "draft", component: ParentWritingRecipeComponent },
+      { path: "draft", component: DraftRecipeComponent },
       { path: "liked", component: LikedRecipeComponent },
+      {path:"edit/draft/:id",component:ParentWritingRecipeComponent}
     ],
   },
   {

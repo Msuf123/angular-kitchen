@@ -1,4 +1,4 @@
-import { Component, Injector, Input, inject } from "@angular/core";
+import { Component, Injector, Input, OnInit, inject } from "@angular/core";
 import { FormArray, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { UploadStatusService } from "../../../../../../services/readFile-single/upload-status/upload-status.service";
 import { CommonModule } from "@angular/common";
@@ -14,7 +14,7 @@ import { ErrorImageService } from "../../../../../../services/error-image-upload
   templateUrl: "./inner-third-section.component.html",
   styleUrl: "./inner-third-section.component.css",
 })
-export class InnerThirdSectionComponent {
+export class InnerThirdSectionComponent implements OnInit {
   fileReadingService = inject(ReadFilesService);
   @Input() formArray!: any;
   @Input() postion!: number;
@@ -37,7 +37,7 @@ export class InnerThirdSectionComponent {
         this.showProgress = false;
       }
     });
-
+     
     this.status.progressStatus.subscribe((status) => {
       if (status.name !== "error") {
         if (
@@ -85,5 +85,12 @@ export class InnerThirdSectionComponent {
   }
   run(e: string) {
     console.log(e);
+  }
+  ngOnInit(): void {
+    let form=this.form.get('steps') as FormArray
+     if(form.at(this.postion).value.imageUrl){
+      this.imageThere=true
+      this.fileDataUrl=form.at(this.postion).value.imageUrl
+     }
   }
 }

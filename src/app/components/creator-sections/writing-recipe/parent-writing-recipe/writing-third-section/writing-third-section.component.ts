@@ -27,7 +27,7 @@ export class WritingThirdSectionComponent {
   get steps() {
     return this.form.get("steps") as FormArray;
   }
-
+ 
   addSteps() {
     this.steps.push(
       new FormGroup({

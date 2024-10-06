@@ -12,10 +12,25 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } fr
 export class WritingSecondSectionComponent  {
 @Input() form!:FormGroup
 displayButton=true
+time=0
+timesToRunLoop=0
 ngOnInit(){
   this.ingridients.statusChanges.subscribe((status)=>{
     this.displayButton=status==='INVALID'?true:false
   })
+  
+  // this.form.valueChanges.subscribe((value)=>{
+  //   if(this.time===0){
+  //     this.time++
+  //     this.timesToRunLoop=this.form.get('ingridents')?.value.length 
+  //     console.log(this.form.get('ingridents')?.value)
+  //     console.log(this.timesToRunLoop,'k')
+  //   value.ingridents.forEach((element:any) => {
+  //     console.log(element)
+  //     this.addIngridients(element)
+  //   });
+  // }
+  // })
 }
 deleteIngridents(index:number){
   this.ingridients.removeAt(index)
@@ -23,7 +38,7 @@ deleteIngridents(index:number){
 get ingridients(){
   return this.form.get('ingridents') as FormArray
 }
-addIngridients(){
-  this.ingridients.push(new FormControl('',{validators:[Validators.required]}))
+addIngridients(value?:string){
+  this.ingridients.push(new FormControl(value||'',{validators:[Validators.required]}))
 }
 }

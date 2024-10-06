@@ -31,7 +31,7 @@
 
         <ng-template [ngIf]="url">
             <div class="imagePreviewDiv">
-                <img src="kitchen-trash-bin.png" (click)="deleteImage()" />
+                <img src="kitchen-trash-bin.png" *ngSwitchCase="'file'" (click)="deleteImage()" />
                 <img *ngSwitchCase="'file'" class="uploadedImage" [src]="url" />
                 <span class="uploadPercentage" *ngIf="showProgress"
                     >Uploading {{ progress }}%</span
