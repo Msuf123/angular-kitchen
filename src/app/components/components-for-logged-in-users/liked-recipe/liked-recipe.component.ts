@@ -20,6 +20,8 @@ export class LikedRecipeComponent {
   loading=true
   data:{id:string,name:string,thumbnail:string}[]=[]
  constructor(){
+  this.loadingItemService.state.next(true)
+  this.loadingItemService.recipies.next([])
   this.loadingItemService.state.subscribe((a)=>{
     this.loading=a
   })
@@ -37,5 +39,16 @@ export class LikedRecipeComponent {
  }
  nav(id:string){
    this.router.navigate(['articles',id])
+ }
+ deleteLiked(id:string){
+  this.http.get('/account/delete-liked/'+id).subscribe((resFromServer)=>{
+    if(resFromServer==='okay'){
+      this.data.forEach((element,k) => {
+        if(element.id===id){
+           this.data.splice(k,1)
+        }
+      });
+    }
+  })
  }
 }
