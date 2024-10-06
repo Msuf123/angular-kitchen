@@ -4,6 +4,7 @@ import { LoadingItmesService } from '../../../services/account/loading-items/loa
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { LoadingPrifleCardsComponent } from '../loading-prifle-cards/loading-prifle-cards.component';
+import { HttpServiceService } from '../../../services/global-http/http-service.service';
 
 @Component({
   selector: 'app-liked-recipe',
@@ -14,12 +15,24 @@ import { LoadingPrifleCardsComponent } from '../loading-prifle-cards/loading-pri
 })
 export class LikedRecipeComponent {
   loadingItemService=inject(LoadingItmesService)
+  http=inject(HttpServiceService)
   router=inject(Router)
+  loading=true
   data:{id:string,name:string,thumbnail:string}[]=[]
  constructor(){
+  this.loadingItemService.state.subscribe((a)=>{
+    this.loading=a
+  })
   this.loadingItemService.recipies.subscribe((a)=>{
     console.log(a)
+    this.http.get('/account/liked').subscribe((res)=>{
+    if(JSON.stringify(a)===JSON.stringify(res)){
+      this.loadingItemService.state.next(false)
+      console.log("They ares mae")
+    }
     this.data=a
+    })
+    
   })
  }
  nav(id:string){

@@ -11,4 +11,5 @@ import { ObserverApiDirective } from '../../../services/intersection-observer/ob
 export class LoadingPrifleCardsComponent {
   @Input() url!:string
 @Input('inWhichServiceToAddData') givenService!:any
+@Input('loadingService') loading!:any
 }

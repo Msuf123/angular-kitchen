@@ -11,7 +11,8 @@ import { LoadingService } from '../loading/loading.service';
 })
 export class ObserverApiDirective {
  private errorService=inject(ErrorFromServerService)
- loading=inject(LoadingService)
+ 
+ @Input() loading!:any
   @Input() individualCard!:any
  @Input() url!:string
  
@@ -23,7 +24,6 @@ constructor(el:ElementRef,http:HttpServiceService){
        if(entry.isIntersecting){
         
         http.get(`${this.url}?offset=${offset}`).subscribe((responseFromServer)=>{
-       
           if(responseFromServer!=="Something went wrong"&&responseFromServer!=="Unable to reach to server"&&Array.isArray(responseFromServer)){
             
             if(responseFromServer.length===0){

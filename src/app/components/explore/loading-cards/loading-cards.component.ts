@@ -11,4 +11,5 @@ import { ObserverApiDirective } from '../../../services/intersection-observer/ob
 export class LoadingCardsComponent {
  @Input() url!:string
 @Input('inWhichServiceToAddData') givenService!:any
+@Input() loadingState!:any
 }

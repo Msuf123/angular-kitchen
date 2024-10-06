@@ -6,7 +6,7 @@ import { ProfileCard } from './profile-card';
   providedIn: 'root'
 })
 export class LoadingItmesService {
-
+  state=new BehaviorSubject<boolean>(true)
   recipies:BehaviorSubject<any>=new BehaviorSubject([])
   addRecipes(data:any[]){
     console.log('Current value',this.recipies.getValue())
