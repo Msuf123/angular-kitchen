@@ -52,6 +52,7 @@ export class ParentWritingRecipeComponent {
   form: FormGroup;
   listOfQuestioins;
   signedIn = false;
+  http=inject(HttpServiceService)
   freeToUpload = inject(FormsInvalidService);
   loadingService = inject(LoadingService);
   canDeactivateS = inject(SaveChangesService);
@@ -133,8 +134,16 @@ export class ParentWritingRecipeComponent {
     this.form.valueChanges.subscribe((a)=>{
       console.log(a)
     })
+    this.http.get('/account/draft//saved-draft/info/VEG015').subscribe((res)=>{
+      console.log(res)
+    })
 
   }
+
+
+
+
+
   submitForm(e: any) {
     let eventEmitter = e.submitter;
     if (eventEmitter.value === "Publish") {
