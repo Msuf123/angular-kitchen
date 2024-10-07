@@ -19,18 +19,7 @@ ngOnInit(){
     this.displayButton=status==='INVALID'?true:false
   })
   
-  // this.form.valueChanges.subscribe((value)=>{
-  //   if(this.time===0){
-  //     this.time++
-  //     this.timesToRunLoop=this.form.get('ingridents')?.value.length 
-  //     console.log(this.form.get('ingridents')?.value)
-  //     console.log(this.timesToRunLoop,'k')
-  //   value.ingridents.forEach((element:any) => {
-  //     console.log(element)
-  //     this.addIngridients(element)
-  //   });
-  // }
-  // })
+  
 }
 deleteIngridents(index:number){
   this.ingridients.removeAt(index)

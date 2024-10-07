@@ -28,6 +28,7 @@ import { SessionsService } from "../../../../services/creator-sections/session-e
 import { FormsInvalidService } from "../../../../services/creator-sections/error-in-forms/forms-invalid.service";
 import { MissingParameterComponent } from "../../missing-parameter/missing-parameter.component";
 import { ActivatedRoute, Router } from "@angular/router";
+import { FinalResponse } from "./interfaces/respose-of-server-draft";
 @Component({
   selector: "app-parent-writing-recipe",
   standalone: true,
@@ -65,6 +66,8 @@ export class ParentWritingRecipeComponent {
   showMsg = false;
   counter = 0;
   shouldUploadError = false;
+  id=""
+  editorMode=false
   shouldDeactivate = new Subject<boolean>();
   constructor(
     private questions: HttpServiceService,
@@ -77,8 +80,39 @@ export class ParentWritingRecipeComponent {
          for(let j in i){
           if(i[j]==='edit'){
             console.log("edit mode")
+            this.editorMode=true
           }
          }
+        }
+        if(this.editorMode){
+          this.router.params.subscribe((a)=>{
+            this.id=a['id']
+            this.http.get('/account/draft/saved-draft/info/'+this.id).subscribe((res)=>{
+              if(typeof res!=="string"){
+                let responseFromServer=res as FinalResponse
+                let ingredients=responseFromServer[1]
+                let ingredientFom=this.form.get('ingridents') as FormArray
+                ingredientFom.clear()
+                while(ingredientFom.length<ingredients.length){
+                  ingredientFom.push(new FormControl(''))
+                }
+                let steps=responseFromServer[2]
+                let stepsForm=this.form.get('steps') as FormArray
+                stepsForm.clear()
+                while(stepsForm.length<steps.length){
+                  stepsForm.push( new FormGroup({
+                    heading: new FormControl("", { validators: [Validators.required] }),
+                    about: new FormControl("", { validators: [Validators.required] }),
+                    imageUrl: new FormControl(""),
+                  }))
+              }
+              console.log(responseFromServer[2])
+              this.form.patchValue({...responseFromServer[0][0],ingredients:responseFromServer[1],steps:responseFromServer[2]})
+              this.form.get('steps')?.patchValue(responseFromServer[2])
+            }
+            })
+          })
+          
         }
       })
    
@@ -87,6 +121,7 @@ export class ParentWritingRecipeComponent {
         this.signedIn = true;
       }
     });
+     
     this.freeToUpload.errorsWhileUploading.subscribe((state) => {
       this.shouldUploadError = state;
     });
@@ -134,9 +169,7 @@ export class ParentWritingRecipeComponent {
     this.form.valueChanges.subscribe((a)=>{
       console.log(a)
     })
-    this.http.get('/account/draft//saved-draft/info/VEG015').subscribe((res)=>{
-      console.log(res)
-    })
+    
 
   }
 
@@ -151,35 +184,10 @@ export class ParentWritingRecipeComponent {
     }
   }
   click(){
-    let ingridents=['Psata','Mleo']
-    let steps=[{ heading: "Boil", about: "cdc", imageUrl: "" },
-      { heading: "Eat", about: "df", imageUrl: "https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/6399a4d27711a5ad2c9bf5cd_ben-sweet-2LowviVHZ-E-unsplash-1.jpeg" }
-   ]
-    let a=this.form.get('ingridents') as FormArray
-    a.clear()
-    console.log(a.length,ingridents.length)
-    while(a.length<ingridents.length){
-      a.push(new FormControl('k'))
-    }
-    let b=this.form.get('steps') as FormArray
-    b.clear()
-    while(b.length<steps.length){
-      b.push( new FormGroup({
-        heading: new FormControl("", { validators: [Validators.required] }),
-        about: new FormControl("", { validators: [Validators.required] }),
-        imageUrl: new FormControl(""),
-      }))
-    }
-    this.form.get('ingridents')?.patchValue(['Pastda','Olive Oil'])
-    this.form.get('steps')?.patchValue([{ heading: "Boil", about: "cdc", imageUrl: "" },
-      { heading: "Eat", about: "df", imageUrl: "https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/6399a4d27711a5ad2c9bf5cd_ben-sweet-2LowviVHZ-E-unsplash-1.jpeg" }
-    ])
-    console.log()
-    this.form.patchValue({name:'k',healyLevel:2,priceOfMeal:12,time:3,description:"hi",
-      difficlutyLEvel:3,
-      image:"https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg"
-      
-    })
+    
+    
+   
+    
   }
   canDeactivate() {
     if (this.counter === 0) {

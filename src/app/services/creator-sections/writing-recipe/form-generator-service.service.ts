@@ -37,6 +37,7 @@ export class FormGeneratorServiceService {
           imageUrl: new FormControl(""),
         }),
       ]),
+      thumbnail:new FormControl("")
     };
     arrayOfQuestions.forEach((element) => {
       object[element.key] = element.required
