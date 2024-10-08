@@ -3,7 +3,7 @@
 <app-side-bar class="sidebar"></app-side-bar>
 <app-bottom-bar class="bottombar" ></app-bottom-bar>
     <div class="exploreChangeableContent">
-        <app-search-bar></app-search-bar>
+        <!-- <app-search-bar></app-search-bar> -->
         <router-outlet></router-outlet>
         <app-loading-cards *ngIf="load" class="loadingOne" [url]="'/get-recipes'" [inWhichServiceToAddData]="recipeCardService" [loadingState]="loading"></app-loading-cards>
     </div>

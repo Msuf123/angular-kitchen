@@ -5,11 +5,16 @@
     grid-template-columns: max-content 1fr;
     grid-template-rows: 1;
     margin: 20px auto;
-
+ 
 }
 .contnetDiv{
     width: 100%;
     overflow: scroll;
     display: block;
    
+}
+@media only screen and (max-width:458px) {
+    .navBar{
+        display: none;
+    }
 }

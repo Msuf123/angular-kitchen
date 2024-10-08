@@ -15,6 +15,7 @@
     border: var(--border);
     border-radius: 50%;
     background-color: var(--common-png-background-color);
+    
 }
 :host{
     margin: 0px;

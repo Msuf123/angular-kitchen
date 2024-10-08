@@ -8,11 +8,12 @@ import { SignInMsgComponent } from "../../authentication/sign-in-msg/sign-in-msg
 import { CommonModule } from "@angular/common";
 import { SessionExpiredComponent } from "../../creator-sections/session-expired/session-expired.component";
 import { ProfileService } from "../../../services/account/profile/profile.service";
+import { MobileOptionBarComponent } from "./mobile-option-bar/mobile-option-bar.component";
 
 @Component({
   selector: "app-account",
   standalone: true,
-  imports: [LeftOptionsBarComponent, RouterModule, LoadingComponent,SignInMsgComponent,CommonModule,SessionExpiredComponent],
+  imports: [LeftOptionsBarComponent,MobileOptionBarComponent, RouterModule, LoadingComponent,SignInMsgComponent,CommonModule,SessionExpiredComponent],
   templateUrl: "./account.component.html",
   styleUrl: "./account.component.css",
 })

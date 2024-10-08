@@ -25,11 +25,12 @@ export class DraftRecipeComponent {
     this.loading=a
   })
   this.loadingItemService.recipies.subscribe((a)=>{
-    console.log(a)
+   
     this.http.get('/account/draft/').subscribe((res)=>{
+      
     if(JSON.stringify(a)===JSON.stringify(res)){
       this.loadingItemService.state.next(false)
-      console.log("They ares same")
+     
     }
   
     this.data=a

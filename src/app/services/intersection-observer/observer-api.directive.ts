@@ -24,6 +24,7 @@ constructor(el:ElementRef,http:HttpServiceService){
        if(entry.isIntersecting){
         
         http.get(`${this.url}?offset=${offset}`).subscribe((responseFromServer)=>{
+          
           if(responseFromServer!=="Something went wrong"&&responseFromServer!=="Unable to reach to server"&&Array.isArray(responseFromServer)){
             
             if(responseFromServer.length===0){
