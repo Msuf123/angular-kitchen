@@ -78,3 +78,13 @@
         
          }
 }
+@media only screen and (max-width:402px) {
+  :host{
+      grid-template-columns: repeat(1,max-content); 
+  }
+
+.outerDiv{
+  width: clamp(180px,75vw,300px);
+  aspect-ratio: 1;
+}
+}
