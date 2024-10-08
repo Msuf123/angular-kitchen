@@ -1,0 +1,21 @@
+:host{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: rgba(0, 0, 0, 0.856);
+    color: white;
+    z-index: 5;
+}
+div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+button{
+    margin-top: 5px;
+}

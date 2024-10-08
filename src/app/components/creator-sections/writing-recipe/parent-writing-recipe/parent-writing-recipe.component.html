@@ -15,4 +15,5 @@
 <app-error-image *ngIf="isThereError"></app-error-image>
 <app-session-expired *ngIf="sessionError"></app-session-expired>
 <app-missing-parameter *ngIf="shouldUploadError"></app-missing-parameter>
+<app-error-draft-reicpe *ngIf="errorDraftId" ></app-error-draft-reicpe>
 <button (click)="click()">Update value</button>

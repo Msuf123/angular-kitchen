@@ -17,7 +17,7 @@ export class DraftRecipeComponent {
   http=inject(HttpServiceService)
   router=inject(Router)
   loading=true
-  data:{id:string,name:string,thumbnail:string}[]=[]
+  data:{id:string,name:string,image_url:string}[]=[]
  constructor(){
   this.loadingItemService.state.next(true)
   this.loadingItemService.recipies.next([])
@@ -31,6 +31,7 @@ export class DraftRecipeComponent {
       this.loadingItemService.state.next(false)
       console.log("They ares same")
     }
+  
     this.data=a
     })
     
@@ -49,6 +50,6 @@ export class DraftRecipeComponent {
   })
  }
  editDraft(id:string){
-  this.router.navigate(['articles',id])
+  this.router.navigateByUrl('/account/edit/'+id)
  }
 }

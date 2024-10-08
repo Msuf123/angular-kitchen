@@ -37,7 +37,7 @@ export const routes: Routes = [
       { path: "saved", component: SavedRecipeComponent },
       { path: "draft", component: DraftRecipeComponent },
       { path: "liked", component: LikedRecipeComponent },
-      {path:"edit/draft/:id",component:ParentWritingRecipeComponent}
+      {path:"edit/:id",component:ParentWritingRecipeComponent}
     ],
   },
   {

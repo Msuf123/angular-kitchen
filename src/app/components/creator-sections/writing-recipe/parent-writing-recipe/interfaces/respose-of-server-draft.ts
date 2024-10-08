@@ -16,4 +16,4 @@ export interface procedureStep{
     description:string
     image_url:string
 }
- export type FinalResponse=[[topSection],[ingredient[]],[procedureStep[]]]
+ export type FinalResponse=[[topSection],ingredient[],procedureStep[]]

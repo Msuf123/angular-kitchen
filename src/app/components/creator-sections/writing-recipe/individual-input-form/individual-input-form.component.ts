@@ -33,6 +33,7 @@ export class IndividualInputFormComponent {
 
   ngAfterViewInit() {
     this.formGroup.valueChanges.subscribe((currentState)=>{
+      // console.log(currentState,"in first section")
       if(currentState.image!==""){
         this.url=currentState.image as string
         this.showProgress=false

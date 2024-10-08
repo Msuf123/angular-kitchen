@@ -28,7 +28,8 @@ import { SessionsService } from "../../../../services/creator-sections/session-e
 import { FormsInvalidService } from "../../../../services/creator-sections/error-in-forms/forms-invalid.service";
 import { MissingParameterComponent } from "../../missing-parameter/missing-parameter.component";
 import { ActivatedRoute, Router } from "@angular/router";
-import { FinalResponse } from "./interfaces/respose-of-server-draft";
+import { FinalResponse, ingredient } from "./interfaces/respose-of-server-draft";
+import { ErrorDraftReicpeComponent } from "../../error-draft-reicpe/error-draft-reicpe.component";
 @Component({
   selector: "app-parent-writing-recipe",
   standalone: true,
@@ -44,6 +45,7 @@ import { FinalResponse } from "./interfaces/respose-of-server-draft";
     ErrorImageComponent,
     SessionExpiredComponent,
     MissingParameterComponent,
+    ErrorDraftReicpeComponent
   ],
   templateUrl: "./parent-writing-recipe.component.html",
   styleUrl: "./parent-writing-recipe.component.css",
@@ -69,6 +71,8 @@ export class ParentWritingRecipeComponent {
   id=""
   editorMode=false
   shouldDeactivate = new Subject<boolean>();
+  errorInDraftRecipe=new BehaviorSubject<boolean>(false)
+  errorDraftId=false
   constructor(
     private questions: HttpServiceService,
     private formService: FormGeneratorServiceService,
@@ -79,7 +83,7 @@ export class ParentWritingRecipeComponent {
         for(let i of a){
          for(let j in i){
           if(i[j]==='edit'){
-            console.log("edit mode")
+            console.log(res)
             this.editorMode=true
           }
          }
@@ -89,12 +93,17 @@ export class ParentWritingRecipeComponent {
             this.id=a['id']
             this.http.get('/account/draft/saved-draft/info/'+this.id).subscribe((res)=>{
               if(typeof res!=="string"){
+                console.log(res,'In ornet')
                 let responseFromServer=res as FinalResponse
                 let ingredients=responseFromServer[1]
                 let ingredientFom=this.form.get('ingridents') as FormArray
+                let ingreidnetsToPush:string[]=[]
                 ingredientFom.clear()
-                while(ingredientFom.length<ingredients.length){
+                console.log(ingredients,'ll')
+                for(let item of ingredients){
+                  
                   ingredientFom.push(new FormControl(''))
+                  ingreidnetsToPush.push(item.name)
                 }
                 let steps=responseFromServer[2]
                 let stepsForm=this.form.get('steps') as FormArray
@@ -106,9 +115,18 @@ export class ParentWritingRecipeComponent {
                     imageUrl: new FormControl(""),
                   }))
               }
-              console.log(responseFromServer[2])
-              this.form.patchValue({...responseFromServer[0][0],ingredients:responseFromServer[1],steps:responseFromServer[2]})
-              this.form.get('steps')?.patchValue(responseFromServer[2])
+              let stepsObjTopatch=[]
+              let ob=responseFromServer[2]
+              for(let i of ob){
+               
+                let objs={order_of_step:i.order_of_step,heading:i.name,about:i.description,imageUrl:i.image_url}
+                stepsObjTopatch.push(objs)
+              }
+              this.form.patchValue({...responseFromServer[0][0],image:responseFromServer[0][0].image_url,ingridents:ingreidnetsToPush,steps:stepsObjTopatch})
+              this.errorInDraftRecipe.next(false)
+            }
+            else{
+              this.errorInDraftRecipe.next(true)
             }
             })
           })
@@ -167,9 +185,11 @@ export class ParentWritingRecipeComponent {
     ]);
     this.form.updateValueAndValidity();
     this.form.valueChanges.subscribe((a)=>{
-      console.log(a)
+
     })
-    
+    this.errorInDraftRecipe.subscribe((currentState)=>{
+      this.errorDraftId=currentState
+    })
 
   }
 

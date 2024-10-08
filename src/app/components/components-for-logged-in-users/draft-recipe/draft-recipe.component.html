@@ -1,7 +1,9 @@
 <div class="gridItems" *ngIf="!loading">
     <div *ngFor="let dat of data" class="itmes">
-        <img src="{{dat.thumbnail}}" (click)="editDraft(dat.id)" class="imageOfDish">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9cSGzVkaZvJD5722MU5A-JJt_T5JMZzotcw&s" *ngIf="!dat.image_url">
+        <img src="{{dat.image_url}}" (click)="editDraft(dat.id)" class="imageOfDish">
         <span>{{dat.name}}</span>
+        <button (click)="editDraft(dat.id)">Edit</button>
         <button (click)="deleteDraft(dat.id)">Remove</button>
     </div>
     </div>
