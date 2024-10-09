@@ -1,8 +1,6 @@
 <div class="bottombar">
-    
-    <div class="eachpath" *ngFor="let button of buttons">
+    <div class="eachpath" *ngFor="let button of buttons" (click)="nav(button.nav)">
         <img src="{{button.img}}" width="30px" height="40px">
         <span>{{button.path}}</span>
-
     </div>
 </div>

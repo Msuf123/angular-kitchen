@@ -1,5 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bottom-bar',
@@ -9,5 +10,9 @@ import { Component } from '@angular/core';
   styleUrl: './bottom-bar.component.css'
 })
 export class BottomBarComponent {
- buttons:{path:string,img:string}[]=[{path:'Home',img:'home.png'},{path:'Inbox',img:'inbox.png'},{path:'Write',img:'edit.png'},{path:'Profile',img:'user.png'}]
+  router=inject(Router)
+ buttons:{path:string,img:string,nav:string}[]=[{path:'Home',img:'home.png',nav:''},{path:'Write',img:'edit.png',nav:'write'},{path:'Profile',img:'user.png',nav:'account'}]
+ nav(path:string){
+  this.router.navigate([path])
+ }
 }
