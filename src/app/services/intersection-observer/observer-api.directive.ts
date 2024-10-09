@@ -37,6 +37,7 @@ constructor(el:ElementRef,http:HttpServiceService){
          }
          else{
            this.errorService.erroStatus.next(true)
+           this.loading.state.next(false)
          }
         })
         offset+=10

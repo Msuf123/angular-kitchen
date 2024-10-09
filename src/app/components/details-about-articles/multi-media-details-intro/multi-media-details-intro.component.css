@@ -11,13 +11,39 @@ video{
 }
 img{
     width: 500px;
+    border-radius: 5px;
 }
 @media screen and (max-width:1547px) {
     :host{
         background-color: transparent;
         grid-column-start: 1;
         grid-column-end: 3;
-        grid-row-start: 2;
-        grid-row-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        align-self: center;
+        display: flex;
+        justify-content: center;
     }
+    
+}
+@media screen and (max-width:554px) {
+    img{
+        width: 300px;
+    }
+    
+}
+
+@media screen and (max-width:324px) {
+    img{
+        width: 230px;
+    }
+    
+}
+
+
+@media screen and (max-width:234px) {
+    img{
+        width: 170px;
+    }
+    
 }

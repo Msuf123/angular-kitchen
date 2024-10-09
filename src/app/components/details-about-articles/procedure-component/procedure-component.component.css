@@ -6,7 +6,7 @@
 .nameHeading{
     display: block;
     font-size: 19px;
-    font-weight: 490;
+    font-weight: 690;
     margin-top: 2px;
 }
 p{
@@ -29,4 +29,39 @@ img{
     display: block;
     width: 90%;
     margin: auto;
+}
+@media screen and (max-width:554px) {
+    p{
+        font-size: 16px;
+    }
+    .nameHeading{
+        font-size: 17px;
+    }
+    .stepNumberHeading{
+        font-size: 19px;
+    }
+    
+    
+}
+@media screen and (max-width:554px) {
+    img{
+        width: 300px;
+    }
+    
+}
+
+@media screen and (max-width:250px) {
+    img{
+        width: 230px;
+        height: 150px;
+    }
+    
+}
+
+
+@media screen and (max-width:234px) {
+    img{
+        width: 170px;
+    }
+    
 }

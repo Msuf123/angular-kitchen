@@ -19,7 +19,7 @@ export class LikeDislikeComponent implements OnChanges{
   obj={ like: false, disliked: false, saved: false }
   likedClassName={recipeLiked:true}
   dislikedRecipe={recipeDisliked:true}
-  savedRecipe={seved:true}
+  savedRecipe={saved:true}
   values={liked:"Like",dislike:"Dislike",saved:"Save"}
   @Input() id!:string
   @Input() subject!:BehaviorSubject<useractivity<boolean>>
@@ -46,11 +46,11 @@ export class LikeDislikeComponent implements OnChanges{
       }
       if(a.saved===true){
         this.values.saved="Already Saved"
-        this.savedRecipe.seved=true
+        this.savedRecipe.saved=true
       }
       else{
         this.values.saved="Save"
-        this.savedRecipe.seved=false
+        this.savedRecipe.saved=false
       }
     })
     
@@ -90,7 +90,7 @@ export class LikeDislikeComponent implements OnChanges{
   if(this.value){
     this.httpservice.get('/recipes/user-actions/saved/'+this.id).subscribe((a)=>{
       if(a==="okay"){
-      this.savedRecipe.seved=true
+      this.savedRecipe.saved=true
       this.values.saved="Already Saved"
       }
     })

@@ -23,6 +23,23 @@ img{
 :host{
     display: flex;
 }
-.seved{
+.saved{
     background-color: rgb(89, 247, 49);
+}
+@media screen and (max-width:322px) {
+    div{
+        font-size: 15px;
+        padding: 1px 3px;
+    }
+}
+
+@media screen and (max-width:286px) {
+    :host{
+       display: flex;
+       align-items: start;
+       flex-direction: column;
+    }
+    div{
+        margin-top: 5px;
+    }
 }

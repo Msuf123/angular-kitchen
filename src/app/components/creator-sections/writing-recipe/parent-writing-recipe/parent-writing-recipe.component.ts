@@ -63,6 +63,7 @@ export class ParentWritingRecipeComponent {
   showError = inject(ErrorImageService);
   sessionService = inject(SessionsService);
   router=inject(ActivatedRoute)
+  routes=inject(Router)
   sessionError = this.sessionService.sessionError.value;
   isThereError = this.showError.displayErrorService.value;
   showMsg = false;
@@ -79,11 +80,14 @@ export class ParentWritingRecipeComponent {
   ) {
     
     questions.get("/write/auth").subscribe((res) => {
+      if(res==="Unable to reach to server"){
+        this.routes.navigate(["/"])
+      }
       this.router.url.subscribe((a:any)=>{
         for(let i of a){
          for(let j in i){
           if(i[j]==='edit'){
-            console.log(res)
+            
             this.editorMode=true
           }
          }
@@ -93,13 +97,13 @@ export class ParentWritingRecipeComponent {
             this.id=a['id']
             this.http.get('/account/draft/saved-draft/info/'+this.id).subscribe((res)=>{
               if(typeof res!=="string"){
-                console.log(res,'In ornet')
+                
                 let responseFromServer=res as FinalResponse
                 let ingredients=responseFromServer[1]
                 let ingredientFom=this.form.get('ingridents') as FormArray
                 let ingreidnetsToPush:string[]=[]
                 ingredientFom.clear()
-                console.log(ingredients,'ll')
+                
                 for(let item of ingredients){
                   
                   ingredientFom.push(new FormControl(''))
@@ -149,7 +153,8 @@ export class ParentWritingRecipeComponent {
     this.listOfQuestioins = this.questions.question();
     this.form = formService.getFormObject(this.listOfQuestioins);
     this.form.valueChanges.subscribe((a) => {
-      if (this.counter === 0) {
+      
+      if (this.counter !== 0) {
         this.canDeactivateS.saveCahnges.next(true);
 
         this.counter++;
@@ -184,9 +189,7 @@ export class ParentWritingRecipeComponent {
       },
     ]);
     this.form.updateValueAndValidity();
-    this.form.valueChanges.subscribe((a)=>{
 
-    })
     this.errorInDraftRecipe.subscribe((currentState)=>{
       this.errorDraftId=currentState
     })
@@ -213,9 +216,8 @@ export class ParentWritingRecipeComponent {
     if (this.counter === 0) {
       return true;
     }
-
     this.showMsg = true;
-    console.log("Calling can dev");
+   
     return this.shouldDeactivate;
   }
 }

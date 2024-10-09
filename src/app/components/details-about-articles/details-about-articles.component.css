@@ -21,15 +21,18 @@
     text-decoration: underline;
     font-weight: 600;
 }
-.listOfIngridients ul{
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    grid-auto-flow: column;
-    grid-template-columns: 0.1fr;
-}
+
+    .listOfIngridients ul{
+        display: grid;
+        row-gap: 5px;
+        grid-auto-flow: rows;
+        grid-column-gap: 50px;
+        grid-template-columns: max-content max-content;
+    }
+
 .listOfIngridients li{
     font-size: 17px;
-   
+   margin-right: 5px;
 }
 .procedureSection{
     margin-top: 30px;
@@ -42,6 +45,16 @@
 :host{
  display: block;
  width: 98vw;
+} 
+
+@media screen and (max-width:1547px) {
+    .headingOfRecipe{
+        grid-row-start:1 ;
+        grid-row-end:2;
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }    
+    
 }
 @media screen and (min-width:1906px) {
     :host{
@@ -56,4 +69,31 @@
         width: 15000;
            
        }
+}
+@media screen and (max-width:1200px) {
+    .listOfIngridients ul{
+        display: grid;
+        
+        grid-auto-flow: rows;
+        grid-column-gap: 50px;
+        grid-template-columns: min-content min-content;
+    }
+}
+@media screen and (max-width:554px) {
+    .listOfIngridients li{
+        font-size: 16px;
+    }
+    
+}
+@media screen and (max-width:270px) {
+    .listOfIngridients li{
+        
+        grid-column-gap: 5px;
+        font-size: 15px;
+    }
+    .listOfIngridients ul{
+        
+        grid-column-gap:13px;
+        
+    }
 }

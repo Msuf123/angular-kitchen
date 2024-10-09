@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { LoadingService } from '../../../services/loading/loading.service';
 
 @Component({
   selector: 'app-error-from-server',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './error-from-server.component.css'
 })
 export class ErrorFromServerComponent {
-
+  
 }

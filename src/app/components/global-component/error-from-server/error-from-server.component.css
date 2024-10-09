@@ -1,0 +1,21 @@
+ :host{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ } 
+ div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-weight: 700;
+ }
+ img{
+    width: 200px;
+ }
+ @media only screen and (max-width:266px) {
+    img{
+        width: 100px;
+    }
+   
+ }

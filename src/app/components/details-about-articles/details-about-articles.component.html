@@ -1,7 +1,7 @@
 <div *ngIf="data">
     <app-author-section></app-author-section>
 <div class="upperPortion">
-    <span>{{data.name}}</span>
+    <span class="headingOfRecipe">{{data.name}}</span>
     <app-multi-media-details-intro [imageUrl]="data.image_url"></app-multi-media-details-intro>
     <app-description-component *ngIf="data.description"  [data]="data.description">
     </app-description-component>

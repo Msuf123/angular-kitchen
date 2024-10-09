@@ -10,7 +10,6 @@ export class IndividualCardService {
   httpService=inject(HttpServiceService)
   recipies:BehaviorSubject<any>=new BehaviorSubject([])
   addRecipes(data:any[]){
-    console.log('Current value',this.recipies.getValue())
     this.recipies.next([...this.recipies.getValue(),...data])
   }
   constructor() { }
