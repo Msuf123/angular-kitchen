@@ -4,6 +4,7 @@
     --creator-write-validInput:rgb(150, 150, 13);
     --creator-write-invalid:red;
     --color-button-orange:orange;
+    --error-background-color:rgba(0, 0, 0, 0.856)
 }
 body{
     padding: 0px;

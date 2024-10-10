@@ -16,3 +16,21 @@ h1 {
 
     width: 100%;
 }
+.deleteImage{
+    width: 20px;
+    margin-bottom: 20px;
+}
+.delteIconsWithStep{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    align-items: center;
+}
+@media only screen and (max-width: 964px) {
+   
+    h1{
+        font-size: 25px;
+    }
+    
+}

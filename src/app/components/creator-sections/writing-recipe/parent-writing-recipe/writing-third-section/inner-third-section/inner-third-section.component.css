@@ -5,15 +5,14 @@
 .eachStepDiv {
     display: block;
     margin: auto;
+    width: max-content;
+    
 }
-.individualStepHeading {
-    display: flex;
-    align-items: center;
-}
+
 .fomrsSection {
     display: block;
 
-    margin: 5px auto;
+    margin: 15px auto;
 }
 
 .description {
@@ -24,8 +23,17 @@
 }
 textarea {
     resize: horizontal;
-
-    height: auto;
+    max-width: min(40vw,850px);
+    width: 500px;
+    min-width: 200px;
+   
+    border: 0px solid black;
+    border-radius: 2px;
+    box-shadow: 0px 0px 10px 1px rgba(63, 63, 63, 0.212);
+    background-color: rgba(0, 0, 0, 0.035);
+}
+textarea:focus{
+    outline: none;
 }
 .eachStepDiv {
     width: min(900px, 70vw);
@@ -60,28 +68,46 @@ textarea {
 .individualDesc {
     width: 100%;
     display: block;
+    
+    display: flex;
+    justify-content: center;
 }
 :host {
     display: block;
     width: 96%;
-    margin: 15px auto;
+    
+    margin: 5px auto;
     padding: 0px;
+    
 }
-
+input{
+    background-color: transparent;
+    border: 0px solid black;
+    border-bottom: 2px solid black;
+}
+input:focus{
+    outline: none;
+}
+.fileUploader{
+    border-bottom: 0px;
+}
 @media only screen and (max-width: 964px) {
     .fomrsSection {
-        width: 130px;
-        margin: 0px;
+        width: 200px;
+        
+    }
+    #inputText{
+        width: max-content;
     }
     input {
         font-size: 22px;
         width: 100%;
     }
-    .description textarea {
-        display: block;
-        width: 100%;
-        margin-top: 10px;
+    .fomrsSection textarea {
+        font-size: 15px;
+        min-height: 150px;
     }
+    
     .fileUploader {
         width: 100%;
         margin-top: 10px;
@@ -91,4 +117,44 @@ textarea {
         width: 200px;
         aspect-ratio: 1;
     }
+    .lable {
+        font-size: 13px;
+        position: absolute;
+        background-color: white;
+        top: -11px;
+        padding: 0px 4px;
+        left: 6px;
+        font-weight: 600;
+    }
 }
+
+    @media only screen and (max-width:306px) {
+        input {
+            font-size: 18px;
+            width: 99%;
+        }
+        .inputUploader {
+            font-size: 13px;
+        }
+        .lable {
+            font-size: 12px;
+            position: absolute;
+            background-color: white;
+            top: -11px;
+            padding: 0px 2px;
+            left: 6px;
+            font-weight: 600;
+        }
+        
+        .fomrsSection{
+            width: 150px;
+        }
+        
+        #inputText{
+            width: 160px;
+        }
+        #texts{
+            min-width: 120px;
+            max-width: 150px;
+        }
+    }

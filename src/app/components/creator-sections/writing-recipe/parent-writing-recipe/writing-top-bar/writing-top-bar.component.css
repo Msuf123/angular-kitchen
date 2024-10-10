@@ -6,3 +6,38 @@
     width: 90%;
     margin: 20px auto;
 }
+button{
+    font-weight: 700;
+    padding: 5px;
+    transition: all 0.2s linear;
+    background-color: transparent;
+}
+.save{
+    
+    border: 2px solid orange;
+    
+}
+button:focus{
+    outline: 2px solid red;
+}
+.save:hover{
+    background-color: orange;
+}
+.publish{
+    border: 2px solid rgb(22, 197, 22);
+}
+.publish:hover{
+    background-color: rgb(22, 197, 22);
+}
+.save:active{
+    background-color: orange;
+}
+.publish:active{
+    background-color: rgb(22, 197, 22);
+}
+@media only screen and (max-width:216px){
+    button{
+        font-size: 12px;
+        padding: 2px;
+    }
+}

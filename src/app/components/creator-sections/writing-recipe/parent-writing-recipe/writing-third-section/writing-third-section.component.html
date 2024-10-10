@@ -1,5 +1,12 @@
 <h1>Enter steps</h1>
 <div [formGroup]="form" class="descriptionSection">
-  <app-inner-third-section *ngFor="let step of steps.controls;let postion=index" [postion]="postion" [form]="form"></app-inner-third-section>
-  <button (click)="addSteps()">+</button>
+  <div *ngFor="let step of steps.controls;let postion=index" class="delteIconsWithStep">
+    <app-inner-third-section  [postion]="postion" [form]="form"></app-inner-third-section>
+    <img class="deleteImage"
+                      *ngIf="postion !== 0"
+                      (click)="deleteIngridents(postion)"
+                      src="kitchen-trash-bin.png"
+                  />
+  </div>
+  <button (click)="addSteps()" [disabled]="addMore">+</button>
 </div>

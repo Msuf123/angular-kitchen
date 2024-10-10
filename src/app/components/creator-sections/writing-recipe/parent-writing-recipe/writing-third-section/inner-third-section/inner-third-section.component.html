@@ -1,7 +1,7 @@
 <div [formGroup]="form" class="eachStepDiv">
     <div class="individualDesc" formArrayName="steps">
         <div [formGroupName]="postion">
-            <div class="fomrsSection">
+            <div class="fomrsSection" >
                 <label class="lable">Step {{ postion + 1 }}</label>
 
                 <input
@@ -10,8 +10,10 @@
                     placeholder="Enter the name of the step"
                 />
             </div>
-            <div class="description">
-                <textarea
+            <div class="fomrsSection" id="inputText">
+                <label class="lable">Whats its all about</label>
+                
+                <textarea id="texts"
                     placeholder="Enter the procedure"
                     formControlName="about"
                     wrap="hard"
@@ -19,14 +21,19 @@
                     [placeholder]="'Expalin about the procesdure of step'"
                 >
                 </textarea>
-                <input
-                    (change)="fileUploaded($event)"
-                    accept="image/jpeg,image/png,image/webp"
-                    *ngIf="!fileDataUrl"
-                    type="file"
-                    class="fileUploader"
-                />
-
+            </div>
+            <div class="description">
+                <div class="fomrsSection">
+                    <label class="lable">Upload Image</label>
+                    
+                    <input
+                        (change)="fileUploaded($event)"
+                        accept="image/jpeg,image/png,image/webp"
+                        *ngIf="!fileDataUrl"
+                        type="file"
+                        class="fileUploader"
+                    />
+                </div>
                 <div class="imagePreviewOuterDiv">
                     <div class="imagePreviewDiv">
                         <img
@@ -47,5 +54,7 @@
                 </div>
             </div>
         </div>
+        
     </div>
+    
 </div>

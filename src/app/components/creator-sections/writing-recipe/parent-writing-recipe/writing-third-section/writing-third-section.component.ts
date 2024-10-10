@@ -23,12 +23,21 @@ export class WritingThirdSectionComponent {
   @Input() form!: FormGroup;
   fileReadingService = inject(ReadFilesService);
   httpService = inject(HttpServiceService);
+  addMore=false
 
   get steps() {
     return this.form.get("steps") as FormArray;
   }
- 
+  deleteIngridents(index:number){
+    this.ingridients.removeAt(index)
+  }
+  get ingridients(){
+    return this.form.get('ingridents') as FormArray
+  }
   addSteps() {
+    if(this.steps.length===14){
+      this.addMore=true
+    }
     this.steps.push(
       new FormGroup({
         heading: new FormControl(""),

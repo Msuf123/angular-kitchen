@@ -126,6 +126,7 @@ span {
     bottom: 1px;
     right: 19px;
 }
+
 @media only screen and (max-width: 964px) {
     input {
         font-size: 22px;
@@ -144,10 +145,18 @@ span {
         font-weight: 600;
     }
     .fomrsSection:has(.ng-untouched) {
-        width: 80%;
+        width: 200px;
+        align-self: center;
+
+        
     }
-    .fomrsSection {
-        width: 80%;
+    .fomrsSection{
+        width: 200px;
+    }
+    :host{
+      
+    align-self: center;
+    width: max-content;
     }
 
     :host:has(.uploadedImage) {
@@ -156,10 +165,39 @@ span {
         grid-row-start: 6;
         grid-row-end: 7;
         justify-self: start;
-        align-self: center;
+       
         display: block;
         border: 0px solid black;
         width: 200px;
         height: 200px;
+        
+    }
+}
+
+@media only screen and (max-width:306px) {
+    input {
+        font-size: 18px;
+        width: 99%;
+    }
+    .inputUploader {
+        font-size: 13px;
+    }
+    .lable {
+        font-size: 12px;
+        position: absolute;
+        background-color: white;
+        top: -11px;
+        padding: 0px 2px;
+        left: 6px;
+        font-weight: 600;
+    }
+    .fomrsSection:has(.ng-untouched) {
+        width: 150px;
+        align-self: center;
+
+        
+    }
+    .fomrsSection{
+        width: 150px;
     }
 }

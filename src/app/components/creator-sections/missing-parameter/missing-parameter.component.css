@@ -1,0 +1,24 @@
+:host{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    color: white;
+    background-color: var(--error-background-color);
+}
+span{
+    font-weight: 500;
+    display: block;
+    width: max-content;
+}
+@media screen and (max-width:278px) {
+    span{
+        font-size: 14px;
+        width: 150px;
+        margin-left: 2px;
+    }
+}

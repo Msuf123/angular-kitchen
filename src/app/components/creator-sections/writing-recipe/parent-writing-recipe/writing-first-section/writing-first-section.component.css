@@ -2,7 +2,7 @@
     display: grid;
     grid-auto-flow: column;
     grid-template-rows: repeat(5, 1fr);
-
+    
     width: 80%;
     align-items: center;
     justify-items: center;
@@ -11,16 +11,32 @@
 :host {
     display: block;
     width: 100%;
+  
 }
 @media only screen and (max-width: 964px) {
     .topWritingSectopn {
         display: grid;
         grid-auto-flow: row;
         grid-template-columns: 1fr;
+        align-items: center;
+        
         row-gap: 10px;
-        width: 90%;
+        
     }
+   
     :host {
         margin-bottom: 30px;
     }
 }
+
+@media screen and (max-width:254px) {
+    .topWritingSectopn{
+      margin-left: 14px;
+    }    
+    }
+    
+    @media screen and (max-width:234px) {
+        .topWritingSectopn{
+          margin-left: 2px;
+        }    
+        }
