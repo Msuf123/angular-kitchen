@@ -1,2 +1,3 @@
-<button (click)="uploadDraft()" class="save">Save As Draft</button>
-<button type="submit" class="publish">Publish</button>
+<button (click)="uploadDraft()" class="save">{{textInUpdate}}</button>
+<button (click)="pulishData()" class="publish">Publish</button>
+<app-upload-thumbnail [formGroup]="form"></app-upload-thumbnail>

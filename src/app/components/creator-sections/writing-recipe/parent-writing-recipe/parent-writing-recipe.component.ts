@@ -88,6 +88,7 @@ export class ParentWritingRecipeComponent {
          for(let j in i){
           if(i[j]==='edit'){
             
+            formService.editMode.next(true)
             this.editorMode=true
           }
          }
@@ -99,6 +100,7 @@ export class ParentWritingRecipeComponent {
               if(typeof res!=="string"){
                 
                 let responseFromServer=res as FinalResponse
+                console.log(responseFromServer)
                 let ingredients=responseFromServer[1]
                 let ingredientFom=this.form.get('ingridents') as FormArray
                 let ingreidnetsToPush:string[]=[]
@@ -126,7 +128,7 @@ export class ParentWritingRecipeComponent {
                 let objs={order_of_step:i.order_of_step,heading:i.name,about:i.description,imageUrl:i.image_url}
                 stepsObjTopatch.push(objs)
               }
-              this.form.patchValue({...responseFromServer[0][0],image:responseFromServer[0][0].image_url,ingridents:ingreidnetsToPush,steps:stepsObjTopatch})
+              this.form.patchValue({...responseFromServer[0][0],priceOfMeal:responseFromServer[0][0].price,time:responseFromServer[0][0].time_to_cook,image:responseFromServer[0][0].image_url,ingridents:ingreidnetsToPush,steps:stepsObjTopatch})
               this.errorInDraftRecipe.next(false)
             }
             else{
@@ -193,7 +195,9 @@ export class ParentWritingRecipeComponent {
     this.errorInDraftRecipe.subscribe((currentState)=>{
       this.errorDraftId=currentState
     })
-
+     this.form.valueChanges.subscribe((state)=>{
+      console.log("hi i am in pramnt",state)
+     })
   }
 
 
@@ -211,7 +215,16 @@ export class ParentWritingRecipeComponent {
     
    
     
+  } 
+
+  onKeydown(event: KeyboardEvent) {
+    
+    if (event.key === 'Enter') {
+     
+      event.preventDefault();
+    }
   }
+
   canDeactivate() {
     if (this.counter === 0) {
       return true;

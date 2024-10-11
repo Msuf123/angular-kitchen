@@ -33,7 +33,6 @@ export class IndividualInputFormComponent {
 
   ngAfterViewInit() {
     this.formGroup.valueChanges.subscribe((currentState)=>{
-      // console.log(currentState,"in first section")
       if(currentState.image!==""){
         this.url=currentState.image as string
         this.showProgress=false
@@ -41,6 +40,7 @@ export class IndividualInputFormComponent {
       }
     })
     this.status.progressStatus.subscribe((status) => {
+      if(this.formGroup.get('image')?.value===""){
       if (status.name !== "error") {
         if (!this.imageThere) {
           if (status.status < 100) {
@@ -60,6 +60,7 @@ export class IndividualInputFormComponent {
         this.url = "";
         this.imageThere = false;
       }
+    }
     });
     this.formGroup.statusChanges.subscribe(() => {
       this.errors = this.formGroup

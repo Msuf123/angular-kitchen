@@ -1,0 +1,37 @@
+<div class="uploadDivThumbnail" [formGroup]="formGroup">
+    <span class="text">{{text}}</span>
+    <div class="fomrsSection" *ngIf="!url">
+        <label class="lable">Upload Thumbnail</label>
+    <ng-template [ngIf]="!url">
+        <input
+            class="inputUploader"
+           
+            (change)="fileUploaded($event)"
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+        />
+    </ng-template>
+    </div>
+<ng-template [ngIf]="url">
+    <div class="imagePreviewDiv">
+        
+        <img class="uploadedImage" [src]="url" />
+        <span class="uploadPercentage" *ngIf="showProgress"
+            >{{ progress }}%</span
+        >
+        
+    </div>
+   
+        <img src="kitchen-trash-bin.png" class="deleteIcon"  (click)="deleteImage()" />
+    
+</ng-template>
+    <!-- <div>
+        <input type="checkbox">
+        <span>Set as same image</span>
+    </div> -->
+    <div class="buttons">
+        <button (click)="cancelPublish()" class="save">Cancel</button>
+        <button (click)="publish()" class="publish">Publish</button>
+    </div>
+    
+</div>

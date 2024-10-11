@@ -59,7 +59,9 @@ input:focus {
     margin: 10px auto;
     width: 80%;
 }
-
+button:focus{
+    outline: 2px solid green;
+}
 @media only screen and (max-width: 964px) {
     .fomrsSection textarea {
         font-size: 15px;

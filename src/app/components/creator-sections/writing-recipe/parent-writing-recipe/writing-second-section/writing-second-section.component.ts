@@ -17,8 +17,17 @@ timesToRunLoop=0
 ngOnInit(){
   this.ingridients.statusChanges.subscribe((status)=>{
     this.displayButton=status==='INVALID'?true:false
+    if(this.ingridients.length===15){
+      this.displayButton=true
+    }
   })
   
+  
+}
+add(el:any){
+  if(el.key==="Enter"){
+   this.addIngridients()
+  }
   
 }
 deleteIngridents(index:number){
@@ -28,6 +37,9 @@ get ingridients(){
   return this.form.get('ingridents') as FormArray
 }
 addIngridients(value?:string){
+  if(this.ingridients.length===15){
+    this.displayButton=true
+  }
   this.ingridients.push(new FormControl(value||'',{validators:[Validators.required]}))
 }
 }

@@ -17,7 +17,7 @@
                 *ngFor="let i of ingridients.controls; let index = index"
             >
                 <span class="indexValue">{{ index + 1 }}.</span>
-                <input [formControlName]="index" />
+                <input [formControlName]="index" (keydown)="add($event)" #ref />
                 <img
                     *ngIf="index !== 0"
                     (click)="deleteIngridents(index)"

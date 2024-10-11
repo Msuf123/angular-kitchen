@@ -9,21 +9,15 @@ import {
   Validators,
 } from "@angular/forms";
 import BaseQuestion from "../../../custom-class/questions-class/creator-write-sec/base.question";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
   providedIn: "root",
 })
 export class FormGeneratorServiceService {
   constructor() {}
-  isNumber(): ValidatorFn {
-    return (constrol: AbstractControl): ValidationErrors | null => {
-      if (Number.isNaN(constrol.value)) {
-        return { number: "yes" };
-      } else {
-        return null;
-      }
-    };
-  }
+ 
+  editMode=new BehaviorSubject(false)
   getFormObject(arrayOfQuestions: BaseQuestion[]) {
     let object: any = {
       description: new FormControl(""),

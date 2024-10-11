@@ -5,7 +5,7 @@ export interface topSection {
     image_url:string
     name:string
     price:number
-    thumbnail:string|null
+    thumbnail:string|null,time_to_cook:string
 }
 export interface ingredient{
     name:string

@@ -23,13 +23,13 @@
                 </textarea>
             </div>
             <div class="description">
-                <div class="fomrsSection">
+                <div class="fomrsSection"  *ngIf="!fileDataUrl">
                     <label class="lable">Upload Image</label>
                     
                     <input
                         (change)="fileUploaded($event)"
                         accept="image/jpeg,image/png,image/webp"
-                        *ngIf="!fileDataUrl"
+                       
                         type="file"
                         class="fileUploader"
                     />
