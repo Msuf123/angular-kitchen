@@ -24,6 +24,13 @@ export class DisplaySaveDraftComponent {
  disableButtons=false
  shouldSave(){
   this.disableButtons=true
+  let price = this.form.get("priceOfMeal")?.getRawValue();
+    let time = this.form.get("time")?.getRawValue();
+  if(price==="" && time===""){
+    this.form.patchValue({priceOfMeal:0,time:0})
+    
+  }
+  
   this.http.post("/write/draft", this.form.value).subscribe((resposeFromServe) => {
     if(resposeFromServe==='okay'){
       this.obser.next(true)

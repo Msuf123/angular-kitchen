@@ -1,5 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="submitForm($event)" (keydown)="onKeydown($event)" *ngIf="signedIn">
-    <app-writing-top-bar [form]="form" [id]="id"></app-writing-top-bar>
+    <app-writing-top-bar [form]="form" [id]="id" [shouldDeactivae]="savedChangesDeactivate"></app-writing-top-bar>
     <app-writing-first-section
         [formGroup]="form"
         [questions]="listOfQuestioins"

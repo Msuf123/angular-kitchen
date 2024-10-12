@@ -147,6 +147,7 @@ export class HttpServiceService {
                 status: progress,
               });
             } else {
+              console.log('uplaod complete')
               this.uploadStatus.progressStatus.next({ name: res, status: 100 });
               this.uploadStatus.displayStatus.next(false);
             }

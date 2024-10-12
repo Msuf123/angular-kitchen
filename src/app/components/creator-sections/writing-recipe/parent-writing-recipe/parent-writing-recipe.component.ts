@@ -21,7 +21,7 @@ import { SignInMsgComponent } from "../../../authentication/sign-in-msg/sign-in-
 import { SaveChangesService } from "../../../../services/creator-sections/should-save-changes/save-changes.service";
 import { DisplaySaveDraftComponent } from "../../display-save-draft/display-save-draft.component";
 import { DisplayMessageService } from "../../../../services/creator-sections/display-save-draft/display-message.service";
-import { BehaviorSubject, Subject } from "rxjs";
+import { BehaviorSubject, of, Subject } from "rxjs";
 import { ErrorImageComponent } from "../../error-image/error-image.component";
 import { ErrorImageService } from "../../../../services/error-image-upload/error-image.service";
 import { SessionExpiredComponent } from "../../session-expired/session-expired.component";
@@ -73,12 +73,12 @@ export class ParentWritingRecipeComponent {
   id=""
   editorMode=false
   shouldDeactivate = new Subject<boolean>();
+  savedChangesDeactivate=new BehaviorSubject<boolean>(false)
   errorInDraftRecipe=new BehaviorSubject<boolean>(false)
   errorDraftId=false
   constructor(
     private questions: HttpServiceService,
     private formService: FormGeneratorServiceService,
-    private location: Location
   ) {
     
     questions.get("/write/auth").subscribe((res) => {
@@ -93,6 +93,10 @@ export class ParentWritingRecipeComponent {
             formService.editMode.next(true)
             this.editorMode=true
           }
+          
+         }
+         if(!this.editorMode){
+          formService.editMode.next(false)
          }
         }
         if(this.editorMode){
@@ -130,6 +134,7 @@ export class ParentWritingRecipeComponent {
                 let objs={order_of_step:i.order_of_step,heading:i.name,about:i.description,imageUrl:i.image_url}
                 stepsObjTopatch.push(objs)
               }
+              console.log(responseFromServer[0][0])
               this.form.patchValue({...responseFromServer[0][0],priceOfMeal:responseFromServer[0][0].price,time:responseFromServer[0][0].time_to_cook,image:responseFromServer[0][0].image_url,ingridents:ingreidnetsToPush,steps:stepsObjTopatch})
               this.errorInDraftRecipe.next(false)
             }
@@ -232,6 +237,10 @@ export class ParentWritingRecipeComponent {
       console.log('I ran')
       return true;
     }
+    if(this.savedChangesDeactivate.value){
+      return true
+    }
+    
     this.showMsg = true;
     return this.shouldDeactivate;
   }

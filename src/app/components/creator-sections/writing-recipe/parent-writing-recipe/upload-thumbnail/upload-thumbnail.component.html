@@ -31,7 +31,8 @@
     </div> -->
     <div class="buttons">
         <button (click)="cancelPublish()" class="save">Cancel</button>
-        <button (click)="publish()" class="publish">Publish</button>
+        <button (click)="publish()" [disabled]="!url" class="publish">Publish</button>
+
     </div>
     
 </div>

@@ -5,6 +5,7 @@ import { url } from '../../../../../app.config';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UploadStatusService } from '../../../../../services/readFile-single/upload-status/upload-status.service';
 import { CommonModule } from '@angular/common';
+import { UploadThumbnailService } from '../../../../../services/creator-sections/display-uplaod-thumbnail/upload-thumbnail.service';
 
 @Component({
   selector: 'app-upload-thumbnail',
@@ -20,51 +21,33 @@ export class UploadThumbnailComponent {
   injector = inject(Injector);
   @Input() formGroup!: FormGroup;
   status = inject(UploadStatusService);
+  thumbnailService=inject(UploadThumbnailService)
   urls = this.injector.get(url);
-  uploadedImageFromHere = false;
+  showProgress=false
   progress = this.status.progressStatus.value.status;
-  imageThere = false;
-  showProgress = false;
+  
   text="You can set a thumbnail for a recipe"
   
-  constructor(){
-     }
-  showVal(){
-    console.log(this.formGroup.value)
-  }
+
   ngAfterViewInit() { 
-    this.formGroup.valueChanges.subscribe((currentState)=>{
-      
-      if(currentState.thumbnail!==""){
-        console.log(currentState)
-        console.log("setting thubmanil")
-        this.url=currentState.thumbnail as string
-        this.showProgress=false
-        this.uploadedImageFromHere=true
-      }
-    })
-    
+   
     this.status.progressStatus.subscribe((status) => {
-      
-      if (status.name !== "error") {
-        if (!this.imageThere) {
+     
+      if (status.name !== "error" && this.formGroup.get("thumbnail")?.value==="") {
+     
           if (status.status < 100) {
             this.showProgress = true;
             this.progress = status.status;
-          } else if (status.status === 100 && this.uploadedImageFromHere) {
-            console.log("upload complete")
+          } else if (status.status === 100) {
+            
             let name = this.status.progressStatus.value.name;
-            this.imageThere = true;
+           
             this.status.progressStatus.next({ name: "", status: 0 });
             this.formGroup.get("thumbnail")?.setValue(name);
             this.showProgress = false;
-            this.uploadedImageFromHere = false;
+            
           }
-        }
-      } else {
-        this.uploadedImageFromHere = false;
-        this.url = "";
-        this.imageThere = false;
+        
       }
     });
   }
@@ -91,10 +74,10 @@ export class UploadThumbnailComponent {
     this.url = "";
   }
   cancelPublish(){
-
+  this.thumbnailService.shouldDisplayThumbnail.next(false)
   }
   publish(){
-this.http.post('/write/draft/publish',{...this.formGroup.value,id:'l'}).subscribe((a)=>{
+this.http.post('/account/draft/publish/saved/VEG023',{...this.formGroup.value}).subscribe((a)=>{
     console.log(a)})
   }
 

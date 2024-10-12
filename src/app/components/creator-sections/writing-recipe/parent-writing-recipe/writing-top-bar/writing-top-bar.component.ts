@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from "@angular/core";
+import { CSP_NONCE, Component, Input, OnInit, inject } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { FormsInvalidService } from "../../../../../services/creator-sections/error-in-forms/forms-invalid.service";
 import { HttpServiceService } from "../../../../../services/global-http/http-service.service";
@@ -7,6 +7,7 @@ import { Router } from "@angular/router";
 import { UploadThumbnailComponent } from "../upload-thumbnail/upload-thumbnail.component";
 import { UploadThumbnailService } from "../../../../../services/creator-sections/display-uplaod-thumbnail/upload-thumbnail.service";
 import { CommonModule } from "@angular/common";
+import { SaveChangesService } from "../../../../../services/creator-sections/should-save-changes/save-changes.service";
 
 @Component({
   selector: "app-writing-top-bar",
@@ -23,6 +24,7 @@ export class WritingTopBarComponent {
   formGenratorService=inject(FormGeneratorServiceService)
   router=inject(Router)
   thumbnailService=inject(UploadThumbnailService)
+  @Input() shouldDeactivae!:any
   textInUpdate="Save as Draft"
   showThumbnail=false
   constructor(){
@@ -51,14 +53,22 @@ export class WritingTopBarComponent {
         if (!Number.isNaN(Number(time))) {
           if(this.textInUpdate==="Save as Draft"){
           this.http.post("/write/draft", this.form.value).subscribe((resposeFromServe) => {
-            if(resposeFromServe==='okay'){
+            if(resposeFromServe==='okay'){ 
+              this.shouldDeactivae.next(true)
               this.router.navigate(['account','draft'])
             }
           });}
           else{
-           
+            console.log("updating",this.form.value)
             this.http.post("/write/draft/update-post",{...this.form.value,id:this.id}).subscribe((a)=>{
-              console.log(a)
+              console.log("Response while saving is ",a)
+              if(a==="okay"){
+                this.shouldDeactivae.next(true)
+              }
+              else{
+                this.formsInvalid.setHasError("Error while savign changes");
+          this.formsInvalid.setIsThereError(true);
+              }
             })
           }
         }
@@ -111,7 +121,20 @@ else{
                     this.formsInvalid.setIsThereError(true);
                    }
                    else{
-                     this.thumbnailService.shouldDisplayThumbnail.next(true)
+                    if(this.textInUpdate==="Save as Draft"){
+                      this.thumbnailService.shouldDisplayThumbnail.next(true)
+                    }
+                    else{
+                      this.http.post("/write/draft/update-post",{...this.form.value,id:this.id}).subscribe((a)=>{
+                        if(a==='okay'){
+                          this.thumbnailService.shouldDisplayThumbnail.next(true)
+                        }
+                        else{
+                          this.formsInvalid.setHasError("Error while connecting to server")
+                          this.formsInvalid.setIsThereError(true);
+                        }
+                      })
+                  }
                     
                    }
                 }
