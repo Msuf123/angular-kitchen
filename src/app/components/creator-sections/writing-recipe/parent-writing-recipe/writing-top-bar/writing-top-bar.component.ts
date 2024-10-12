@@ -6,11 +6,12 @@ import { FormGeneratorServiceService } from "../../../../../services/creator-sec
 import { Router } from "@angular/router";
 import { UploadThumbnailComponent } from "../upload-thumbnail/upload-thumbnail.component";
 import { UploadThumbnailService } from "../../../../../services/creator-sections/display-uplaod-thumbnail/upload-thumbnail.service";
+import { CommonModule } from "@angular/common";
 
 @Component({
   selector: "app-writing-top-bar",
   standalone: true,
-  imports: [UploadThumbnailComponent],
+  imports: [UploadThumbnailComponent,CommonModule],
   templateUrl: "./writing-top-bar.component.html",
   styleUrl: "./writing-top-bar.component.css",
 })

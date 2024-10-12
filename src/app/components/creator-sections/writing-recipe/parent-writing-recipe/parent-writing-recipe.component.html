@@ -10,6 +10,8 @@
 <app-display-save-draft
     *ngIf="showMsg"
     [obser]="shouldDeactivate"
+    [form]="form"
+    (showMsgs)="cangeMsg()"
 ></app-display-save-draft>
 <app-sign-in-msg *ngIf="!signedIn"></app-sign-in-msg>
 <app-error-image *ngIf="isThereError"></app-error-image>

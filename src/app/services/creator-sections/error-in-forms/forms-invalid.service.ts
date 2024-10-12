@@ -7,11 +7,13 @@ import { BehaviorSubject } from "rxjs";
 export class FormsInvalidService {
   errorsWhileUploading = new BehaviorSubject<boolean>(false);
   hasError = new BehaviorSubject<string>("");
-  setIsThereError(value: boolean) {
+  setIsThereError(value: boolean,fun?:any) {
     this.errorsWhileUploading.next(value);
     setTimeout(() => {
       this.setHasError("");
       this.errorsWhileUploading.next(false);
+      if(fun!==undefined){
+      fun.next(true)}
     }, 3000);
   }
   setHasError(value: string) {

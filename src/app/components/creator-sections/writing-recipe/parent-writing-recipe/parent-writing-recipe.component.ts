@@ -12,6 +12,7 @@ import {
   ValidationErrors,
   Validators,
 } from "@angular/forms";
+import { Location } from '@angular/common';
 import { HttpServiceService } from "../../../../services/global-http/http-service.service";
 import { FormGeneratorServiceService } from "../../../../services/creator-sections/writing-recipe/form-generator-service.service";
 import { CommonModule } from "@angular/common";
@@ -77,6 +78,7 @@ export class ParentWritingRecipeComponent {
   constructor(
     private questions: HttpServiceService,
     private formService: FormGeneratorServiceService,
+    private location: Location
   ) {
     
     questions.get("/write/auth").subscribe((res) => {
@@ -155,12 +157,12 @@ export class ParentWritingRecipeComponent {
     this.listOfQuestioins = this.questions.question();
     this.form = formService.getFormObject(this.listOfQuestioins);
     this.form.valueChanges.subscribe((a) => {
-      
-      if (this.counter !== 0) {
+      if(this.form.get('name')?.value!==""){
+      if (this.counter === 0) {
         this.canDeactivateS.saveCahnges.next(true);
 
         this.counter++;
-      }
+      }}
     });
     this.form.getError("number");
     this.showDisplay.shouldDisplay.subscribe((state) => {
@@ -227,10 +229,13 @@ export class ParentWritingRecipeComponent {
 
   canDeactivate() {
     if (this.counter === 0) {
+      console.log('I ran')
       return true;
     }
     this.showMsg = true;
-   
     return this.shouldDeactivate;
+  }
+  cangeMsg(){
+    this.showMsg=false
   }
 }
