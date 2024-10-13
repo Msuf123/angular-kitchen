@@ -1,0 +1,13 @@
+<div class="gridItems" *ngIf="!loading">
+    <div *ngFor="let dat of data" class="itmes">
+        <img src="deafultRecipe.png" id="defualtImage" *ngIf="!dat.thumbnail">
+        <img src="{{dat.thumbnail}}" *ngIf="dat.thumbnail" (click)="nav(dat.id)" class="imageOfDish">
+        <span>{{dat.name}}</span>
+        <div class="buttons">
+          <button (click)="deletePublished(dat.id)">Delete</button>
+        
+        </div>
+    </div>
+    </div>
+<app-loading-prifle-cards *ngIf="loading" [url]="'/account/published'" [inWhichServiceToAddData]="loadingItemService" [loadingService]="loadingItemService"></app-loading-prifle-cards>
+    

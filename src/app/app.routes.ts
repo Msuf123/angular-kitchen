@@ -13,6 +13,7 @@ import { ProfileComponent } from "./components/components-for-logged-in-users/pr
 import { SavedRecipeComponent } from "./components/components-for-logged-in-users/saved-recipe/saved-recipe.component";
 import { LikedRecipeComponent } from "./components/components-for-logged-in-users/liked-recipe/liked-recipe.component";
 import { DraftRecipeComponent } from "./components/components-for-logged-in-users/draft-recipe/draft-recipe.component";
+import { PublishedRecipeComponent } from "./components/components-for-logged-in-users/published-recipe/published-recipe.component";
 
 export const routes: Routes = [
   {
@@ -37,7 +38,8 @@ export const routes: Routes = [
       { path: "saved", component: SavedRecipeComponent },
       { path: "draft", component: DraftRecipeComponent },
       { path: "liked", component: LikedRecipeComponent },
-      {path:"edit/:id",component:ParentWritingRecipeComponent}
+      {path:"edit/:id",component:ParentWritingRecipeComponent},
+      {path:"publish",component:PublishedRecipeComponent}
     ],
   },
   {

@@ -6,6 +6,8 @@ import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UploadStatusService } from '../../../../../services/readFile-single/upload-status/upload-status.service';
 import { CommonModule } from '@angular/common';
 import { UploadThumbnailService } from '../../../../../services/creator-sections/display-uplaod-thumbnail/upload-thumbnail.service';
+import { Router } from '@angular/router';
+import { FormsInvalidService } from '../../../../../services/creator-sections/error-in-forms/forms-invalid.service';
 
 @Component({
   selector: 'app-upload-thumbnail',
@@ -20,8 +22,12 @@ export class UploadThumbnailComponent {
   url!: string;
   injector = inject(Injector);
   @Input() formGroup!: FormGroup;
+  @Input() textOfDraftButton!:string
+  @Input() id!:string
+  formsInvalid = inject(FormsInvalidService);
   status = inject(UploadStatusService);
   thumbnailService=inject(UploadThumbnailService)
+  router=inject(Router)
   urls = this.injector.get(url);
   showProgress=false
   progress = this.status.progressStatus.value.status;
@@ -33,9 +39,10 @@ export class UploadThumbnailComponent {
    
     this.status.progressStatus.subscribe((status) => {
      
-      if (status.name !== "error" && this.formGroup.get("thumbnail")?.value==="") {
-     
+      if (status.name !== "error" && this.formGroup.get("thumbnail")?.value===null) {
+        console.log(this.showProgress)
           if (status.status < 100) {
+            
             this.showProgress = true;
             this.progress = status.status;
           } else if (status.status === 100) {
@@ -77,8 +84,23 @@ export class UploadThumbnailComponent {
   this.thumbnailService.shouldDisplayThumbnail.next(false)
   }
   publish(){
-this.http.post('/account/draft/publish/saved/VEG023',{...this.formGroup.value}).subscribe((a)=>{
-    console.log(a)})
+    if(this.textOfDraftButton==="Save as Draft"){
+      console.log('creaitng new draft')
+    }
+    else{
+      console.log("publsing draft")
+      console.log(this.formGroup.value)
+      this.http.post('/account/draft/publish/saved/'+this.id,this.formGroup.value).subscribe((a)=>{
+      if(a==="okay"){
+        this.router.navigate(['/account/publish'])
+      }
+      else{
+        this.formsInvalid.setHasError("Unable to pusblish the data")
+        this.formsInvalid.setIsThereError(true);
+      }
+  })
+    }
+
   }
 
 }
