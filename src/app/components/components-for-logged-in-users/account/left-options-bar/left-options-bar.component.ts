@@ -15,5 +15,6 @@ export class LeftOptionsBarComponent {
     { name: "Saved", url: "./accountSavedIcon.png", nav: "saved" },
     { name: "Draft", url: "./draft.png", nav: "draft" },
     { name: "Liked", url: "./like.png", nav: "liked" },
+    {name:"Published",url:'./published.png',nav:"publish"}
   ];
 }

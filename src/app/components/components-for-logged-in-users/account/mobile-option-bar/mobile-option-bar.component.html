@@ -1,1 +1,2 @@
-<p>mobile-option-bar works!</p>
+<img src="options.png" (click)="toogleDisplayState(true)">
+<app-mobile-nav-bar-links *ngIf="shouldNavComponentDispaly" (toogleState)="toogleDisplayState($event)"></app-mobile-nav-bar-links>

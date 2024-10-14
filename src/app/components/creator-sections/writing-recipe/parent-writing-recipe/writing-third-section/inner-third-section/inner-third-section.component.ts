@@ -39,6 +39,7 @@ export class InnerThirdSectionComponent implements OnInit {
     });
      
     this.status.progressStatus.subscribe((status) => {
+      //This is the call back that sets error while we find a error in uploaidn the service
       if (status.name !== "error") {
         if (
           status.name !== "" &&

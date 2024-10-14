@@ -24,6 +24,7 @@ export class UploadThumbnailComponent {
   @Input() formGroup!: FormGroup;
   @Input() textOfDraftButton!:string
   @Input() id!:string
+  @Input() shouldDeactivaeSubject!:any
   formsInvalid = inject(FormsInvalidService);
   status = inject(UploadStatusService);
   thumbnailService=inject(UploadThumbnailService)
@@ -38,8 +39,8 @@ export class UploadThumbnailComponent {
   ngAfterViewInit() { 
    
     this.status.progressStatus.subscribe((status) => {
-     
-      if (status.name !== "error" && this.formGroup.get("thumbnail")?.value===null) {
+      console.log(this.formGroup.get("thumbnail")?.value)
+      if (status.name !== "error" && this.formGroup.get("thumbnail")?.value===(null||"")) {
         console.log(this.showProgress)
           if (status.status < 100) {
             
@@ -55,6 +56,11 @@ export class UploadThumbnailComponent {
             
           }
         
+      }
+      else{
+        //we will promt the user to upload thumbnail
+        this.url = "";
+        this.showProgress=false
       }
     });
   }
@@ -85,7 +91,12 @@ export class UploadThumbnailComponent {
   }
   publish(){
     if(this.textOfDraftButton==="Save as Draft"){
-      console.log('creaitng new draft')
+      this.http.post('/write/draft/publish/new-recipe',this.formGroup.value).subscribe((res)=>{
+        if(res==='okay'){
+          this.shouldDeactivaeSubject.next(true)
+          this.router.navigate(['/account/publish'])
+        }
+      })
     }
     else{
       console.log("publsing draft")

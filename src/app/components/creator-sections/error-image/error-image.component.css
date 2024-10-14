@@ -12,5 +12,6 @@ span {
     bottom: 0px;
     left: 0px;
     right: 0px;
+    z-index: 3;
     background-color: rgba(0, 0, 0, 0.8);
 }

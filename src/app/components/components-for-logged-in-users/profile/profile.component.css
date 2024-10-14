@@ -1,7 +1,104 @@
 :host{
     display: block;
-    border: 2px solid black;
+    padding: 5px;
 }
 .outerDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.userName{
+    width: 70%;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.userNameData{
+    font-weight: 600;
+    font-size: 18px;
+}
+.userNameHeading{
+    font-weight: 550;
+    font-size: 17px;
+}
+img{
+    width: 120px;
+    border-radius: 50%;
+
+}
+.buttons{
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
     
+}
+/* @media only screen and (max-width:458px) {
+   .outerDiv{
+    width: 100px;
+    overflow: hidden;
+   }
+} */
+button{
+    font-weight: 700;
+    padding: 5px;
+    transition: all 0.2s linear;
+    background-color: transparent;
+}
+.redClass{
+    
+    border: 2px solid red;
+    
+}
+button:focus{
+    outline: 2px solid red;
+}
+.redClass:hover{
+    background-color: red;
+}
+.orange{
+    border: 2px solid orange;
+}
+.orange:hover{
+    background-color: orange;
+}
+.save:active{
+    background-color: red;
+
+}
+.orange:active{
+    background-color: rgb(22, 197, 22);
+}
+@media screen and (max-width:822px) {
+    .buttons{
+        width: 90%;
+    }
+}
+@media screen and (max-width:662px) {
+    .userNameData{
+        
+        font-size: 16px;
+    }
+    .userNameHeading{
+        font-weight: 550;
+        font-size: 15px;
+    }
+    .userName{
+        width: 100%;
+    }
+}
+@media only screen and (max-width:458px) {
+    .navBar{
+        display: none;
+    }
+    .mobileNavBar{
+        display: block;
+
+    }
+}
+@media only screen and (max-width:216px){
+    button{
+        font-size: 12px;
+        padding: 2px;
+    }
 }

@@ -1,6 +1,10 @@
 <div class="outerDiv">
-    <span>User Name{{userDetails.name}}</span>
     <img [src]="userDetails.url" />
-    <button (click)="logout()">Log Out</button>
-    <button>Delete Account</button>
+    <div class="userName">
+        <span class="userNameHeading">User Name: </span><span class="userNameData">{{userDetails.name}}</span>
+    </div>
+    <div class="buttons">
+        <button (click)="logout()" class="orange">Log Out</button>
+        <button class="redClass">Delete Account</button>
+    </div>
 </div>

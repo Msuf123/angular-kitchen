@@ -40,6 +40,7 @@ export class IndividualInputFormComponent {
       }
     })
     this.status.progressStatus.subscribe((status) => {
+      //inner thrid section componet have the code that sets the error of while uplaoing image
       if(this.formGroup.get('image')?.value===""){
       if (status.name !== "error") {
         if (!this.imageThere) {
