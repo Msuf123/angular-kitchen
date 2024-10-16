@@ -1,10 +1,10 @@
-import { Component, inject, Injector, Input } from '@angular/core';
+import { AfterContentInit, Component, CSP_NONCE, EventEmitter, inject, Injector, Input, OnInit, Output } from '@angular/core';
 import { HttpServiceService } from '../../../../../services/global-http/http-service.service';
 import { ReadFilesService } from '../../../../../services/readFile-single/read-files.service';
 import { url } from '../../../../../app.config';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UploadStatusService } from '../../../../../services/readFile-single/upload-status/upload-status.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import { UploadThumbnailService } from '../../../../../services/creator-sections/display-uplaod-thumbnail/upload-thumbnail.service';
 import { Router } from '@angular/router';
 import { FormsInvalidService } from '../../../../../services/creator-sections/error-in-forms/forms-invalid.service';
@@ -12,7 +12,7 @@ import { FormsInvalidService } from '../../../../../services/creator-sections/er
 @Component({
   selector: 'app-upload-thumbnail',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,FormsModule],
+  imports: [CommonModule,ReactiveFormsModule,FormsModule,NgClass],
   templateUrl: './upload-thumbnail.component.html',
   styleUrl: './upload-thumbnail.component.css'
 })
@@ -25,6 +25,9 @@ export class UploadThumbnailComponent {
   @Input() textOfDraftButton!:string
   @Input() id!:string
   @Input() shouldDeactivaeSubject!:any
+  @Input() lableText!:string
+  @Input() uploadThumbnail!:boolean
+  @Output() toogleThumbnail=new EventEmitter()
   formsInvalid = inject(FormsInvalidService);
   status = inject(UploadStatusService);
   thumbnailService=inject(UploadThumbnailService)
@@ -33,35 +36,69 @@ export class UploadThumbnailComponent {
   showProgress=false
   progress = this.status.progressStatus.value.status;
   
-  text="You can set a thumbnail for a recipe"
-  
+  @Input() text!:string
+  ngOnInit() {
 
-  ngAfterViewInit() { 
+    this.text = this.text || "You can set a thumbnail for a recipe";
+    this.lableText = this.lableText || "Upload Thumbnail";
+    this.uploadThumbnail = this.uploadThumbnail !== undefined ? this.uploadThumbnail : true;
+  }
+  constructor(){
+    
+  }
+  
+  ngAfterContentInit() { 
    
     this.status.progressStatus.subscribe((status) => {
-      console.log(this.formGroup.get("thumbnail")?.value)
-      if (status.name !== "error" && this.formGroup.get("thumbnail")?.value===(null||"")) {
+      if(this.uploadThumbnail){
+          if (status.name !== "error" && this.formGroup.get("thumbnail")?.value===(null||"")) {
+            console.log(this.showProgress)
+              if (status.status < 100) {
+                
+                this.showProgress = true;
+                this.progress = status.status;
+              } else if (status.status === 100) {
+                
+                let name = this.status.progressStatus.value.name;
+              
+                this.status.progressStatus.next({ name: "", status: 0 });
+                this.formGroup.get("thumbnail")?.setValue(name);
+                this.showProgress = false;
+                
+              }
+            
+          }
+          else{
+            //we will promt the user to upload thumbnail
+            this.url = "";
+            this.showProgress=false
+          }
+    }
+    else{
+      if (status.name !== "error") {
         console.log(this.showProgress)
           if (status.status < 100) {
             
             this.showProgress = true;
             this.progress = status.status;
           } else if (status.status === 100) {
+            this.http.get("/account/change-profile-image?url="+this.status.progressStatus.value.name).subscribe((res)=>{
+              let name = this.status.progressStatus.value.name;
             
-            let name = this.status.progressStatus.value.name;
+              this.status.progressStatus.next({ name: "", status: 0 });
+              
+              this.showProgress = false;
+              if(res==='okay'){
+              this.toogleThumbnail.emit(true)}
+            })
            
-            this.status.progressStatus.next({ name: "", status: 0 });
-            this.formGroup.get("thumbnail")?.setValue(name);
-            this.showProgress = false;
+            
             
           }
         
       }
-      else{
-        //we will promt the user to upload thumbnail
-        this.url = "";
-        this.showProgress=false
-      }
+      
+    }
     });
   }
   async fileUploaded(evnet: any) {
@@ -83,7 +120,7 @@ export class UploadThumbnailComponent {
     );
   }
   deleteImage() {
-    
+    this.formGroup.get("thumbnail")?.setValue("")
     this.url = "";
   }
   cancelPublish(){

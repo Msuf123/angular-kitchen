@@ -1,5 +1,5 @@
 <div class="gridItems" *ngIf="!loading">
-    <div *ngFor="let dat of data" class="itmes">
+    <div *ngFor="let dat of data" class="outerDiv">
         <img src="deafultRecipe.png" id="defualtImage" *ngIf="!dat.thumbnail">
         <img src="{{dat.thumbnail}}" *ngIf="dat.thumbnail" (click)="nav(dat.id)" class="imageOfDish">
         <span>{{dat.name}}</span>

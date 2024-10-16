@@ -1,0 +1,86 @@
+.outerDiv{
+   
+    padding: 5px 5px 15px 5px;
+    display: block;
+    width: 300px;
+    height:max-content;
+    background-color: white;
+    box-shadow: 0px 0px 8px 2px  rgb(177, 176, 176);
+    border-radius: 5px;
+}
+.imageOfDish{
+    width: 300px;
+    height: 200px;
+    border-radius: 5px;
+    object-fit: fill;
+}
+.itemName{
+    display: block;
+    font-size: 22px;
+    font-weight: 600;
+}
+.gridItems{
+    padding: 15px;
+    display: grid;
+    gap: 26px 16px;
+    justify-content: start;
+    grid-template-columns: repeat(5,max-content);
+    grid-auto-rows: max-content;
+   
+}
+@media only screen and (max-width:1786px) {
+    :host{grid-template-columns: repeat(4,max-content);
+        
+}
+
+.outerDiv{
+    width: 20vw;
+    aspect-ratio: 1;
+}
+.imageOfDish{
+    width: 100%;
+    aspect-ratio: 1;
+}
+}
+@media only screen and (max-width:1380px) {
+    .gridItems{
+        grid-template-columns: repeat(3,max-content);
+    }
+    .outerDiv{
+        width: 25vw;
+        aspect-ratio: 1;
+    }
+}
+
+@media only screen and (max-width:1030px) {
+    .gridItems{
+        grid-template-columns: repeat(2,max-content);
+        grid-auto-rows: max-content; 
+    }
+    .outerDiv{
+        width: 35vw;
+        
+        
+    }
+    .imageOfDish{
+        width: 100%;
+        aspect-ratio:1;
+    }
+}
+@media only screen and (max-width:684px) {
+    .outerDiv{
+        width: 42vw;
+        
+        
+         }
+}
+@media only screen and (max-width:402px) {
+    .gridItems{
+        grid-template-columns: repeat(1,max-content); 
+    }
+  
+  .outerDiv{
+    width: clamp(180px,75vw,300px);
+    aspect-ratio: 1;
+  }
+  }

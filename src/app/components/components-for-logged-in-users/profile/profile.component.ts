@@ -2,11 +2,15 @@ import { Component, inject } from '@angular/core';
 import { HttpServiceService } from '../../../services/global-http/http-service.service';
 import { ProfileService } from '../../../services/account/profile/profile.service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { UploadThumbnailComponent } from '../../creator-sections/writing-recipe/parent-writing-recipe/upload-thumbnail/upload-thumbnail.component';
+import { AccountComponent } from "../account/account.component";
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, UploadThumbnailComponent, AccountComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
@@ -14,7 +18,11 @@ export class ProfileComponent {
   httpService=inject(HttpServiceService)
   profileSerice=inject(ProfileService)
   routerService=inject(Router)
+  showUploadIconState=false
+  showThubmnail=true
   userDetails={name:"",url:""}
+  formGroup=new FormGroup({})
+  inputThumbnail=false
  constructor(){
 
    this.httpService.get('/account/user-name').subscribe((a)=>{
@@ -42,5 +50,18 @@ export class ProfileComponent {
     console.log('a')
    })
  }
- 
+ showUploadIcon(){
+  console.log('entering')
+  this.showUploadIconState=true
+ }
+ hideUplaadIcon(){
+  console.log('lesivn')
+  this.showUploadIconState=false
+ }
+ showUploadThumbnail(){
+  this.inputThumbnail=true
+ }
+ emmitedThumbnailValueStatus(){
+  this.inputThumbnail=false
+ }
 }

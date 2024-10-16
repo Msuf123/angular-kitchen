@@ -1,11 +1,10 @@
 <div class="uploadDivThumbnail" [formGroup]="formGroup">
     <span class="text">{{text}}</span>
     <div class="fomrsSection" *ngIf="!url">
-        <label class="lable">Upload Thumbnail</label>
+        <label class="lable" *ngIf="uploadThumbnail">{{lableText}}</label>
     <ng-template [ngIf]="!url">
         <input
             class="inputUploader"
-           
             (change)="fileUploaded($event)"
             type="file"
             accept="image/jpeg,image/png,image/webp"
@@ -29,7 +28,7 @@
         <input type="checkbox">
         <span>Set as same image</span>
     </div> -->
-    <div class="buttons">
+    <div class="buttons" *ngIf="uploadThumbnail">
         <button (click)="cancelPublish()" class="save">Cancel</button>
         <button (click)="publish()" [disabled]="!url" class="publish">Publish</button>
 

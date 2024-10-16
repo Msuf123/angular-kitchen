@@ -1,5 +1,10 @@
 <div class="outerDiv">
-    <img [src]="userDetails.url" />
+    <div class="userImageDiv"  (mouseover)="showUploadIcon()" (mouseleave)="hideUplaadIcon()" (click)="showUploadThumbnail()">
+    <div class="uploadIcon" *ngIf="showUploadIconState">
+       <img src="camera.png" class="cameraIcon">
+    </div>
+     <img [src]="userDetails.url"/>
+    </div>
     <div class="userName">
         <span class="userNameHeading">User Name: </span><span class="userNameData">{{userDetails.name}}</span>
     </div>
@@ -8,3 +13,4 @@
         <button class="redClass">Delete Account</button>
     </div>
 </div>
+<app-upload-thumbnail [lableText]="'Upload Image'" *ngIf="inputThumbnail" [uploadThumbnail]="false" text="Set Profile Icon" [formGroup]="formGroup" (toogleThumbnail)="emmitedThumbnailValueStatus()"></app-upload-thumbnail>

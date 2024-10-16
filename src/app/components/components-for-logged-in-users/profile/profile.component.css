@@ -7,6 +7,30 @@
     flex-direction: column;
     align-items: center;
 }
+.userImageDiv{
+    position: relative;
+    width: min-content;
+    border-radius: 50%;
+    border: 2px solid var(--color-button-orange);
+}
+.uploadIcon{
+   border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    background-color: var(--error-background-color);
+}
+.cameraIcon{
+    width: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: white;
+}
 .userName{
     width: 70%;
     display: block;
@@ -23,8 +47,11 @@
     font-size: 17px;
 }
 img{
+    display: block;
     width: 120px;
+    aspect-ratio: 1;
     border-radius: 50%;
+    object-fit: fill;
 
 }
 .buttons{
@@ -88,17 +115,22 @@ button:focus{
     }
 }
 @media only screen and (max-width:458px) {
-    .navBar{
-        display: none;
-    }
-    .mobileNavBar{
-        display: block;
-
-    }
+  
 }
-@media only screen and (max-width:216px){
+@media only screen and (max-width:262px){
     button{
         font-size: 12px;
         padding: 2px;
+    }
+    .userNameData{
+        
+        font-size: 14px;
+    }
+    .userNameHeading{
+        font-weight: 550;
+        font-size: 13px;
+    }
+    img{
+        width: 100px;
     }
 }
