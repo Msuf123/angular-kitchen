@@ -10,7 +10,9 @@
     </div>
     <div class="buttons">
         <button (click)="logout()" class="orange">Log Out</button>
-        <button class="redClass">Delete Account</button>
+        <button class="redClass" (click)="delete()">Delete Account</button>
     </div>
 </div>
-<app-upload-thumbnail [lableText]="'Upload Image'" *ngIf="inputThumbnail" [uploadThumbnail]="false" text="Set Profile Icon" [formGroup]="formGroup" (toogleThumbnail)="emmitedThumbnailValueStatus()"></app-upload-thumbnail>
+<app-error-image *ngIf="isThereError"></app-error-image>
+<app-upload-thumbnail [lableText]="'Upload Image'" [userDetails]="userDetails" *ngIf="inputThumbnail" [uploadThumbnail]="false" text="Set Profile Icon" [formGroup]="formGroup" (toogleThumbnail)="emmitedThumbnailValueStatus()"></app-upload-thumbnail>
+<app-delete-account-confirmation [deleteAccountPopUp]="displayDeleteConfirmation" *ngIf="showConfirmation"></app-delete-account-confirmation>

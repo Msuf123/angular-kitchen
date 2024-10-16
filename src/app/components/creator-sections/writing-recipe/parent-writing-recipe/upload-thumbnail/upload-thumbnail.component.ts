@@ -8,6 +8,7 @@ import { CommonModule, NgClass } from '@angular/common';
 import { UploadThumbnailService } from '../../../../../services/creator-sections/display-uplaod-thumbnail/upload-thumbnail.service';
 import { Router } from '@angular/router';
 import { FormsInvalidService } from '../../../../../services/creator-sections/error-in-forms/forms-invalid.service';
+import { ErrorImageService } from '../../../../../services/error-image-upload/error-image.service';
 
 @Component({
   selector: 'app-upload-thumbnail',
@@ -27,6 +28,7 @@ export class UploadThumbnailComponent {
   @Input() shouldDeactivaeSubject!:any
   @Input() lableText!:string
   @Input() uploadThumbnail!:boolean
+  @Input() userDetails!:{name:string,url:string}
   @Output() toogleThumbnail=new EventEmitter()
   formsInvalid = inject(FormsInvalidService);
   status = inject(UploadStatusService);
@@ -35,7 +37,7 @@ export class UploadThumbnailComponent {
   urls = this.injector.get(url);
   showProgress=false
   progress = this.status.progressStatus.value.status;
-  
+  showError = inject(ErrorImageService);
   @Input() text!:string
   ngOnInit() {
 
@@ -85,17 +87,27 @@ export class UploadThumbnailComponent {
             this.http.get("/account/change-profile-image?url="+this.status.progressStatus.value.name).subscribe((res)=>{
               let name = this.status.progressStatus.value.name;
             
-              this.status.progressStatus.next({ name: "", status: 0 });
+             
               
               this.showProgress = false;
+              this.userDetails.url=this.status.progressStatus.value.name
+              this.status.progressStatus.next({ name: "", status: 0 });
               if(res==='okay'){
-              this.toogleThumbnail.emit(true)}
+              
+              this.toogleThumbnail.emit(true)
+            }
             })
            
             
             
           }
         
+      }
+      else{
+        this.showProgress = false;
+        this.status.progressStatus.next({ name: "", status: 0 });
+        this.toogleThumbnail.emit(true)
+        this.showError.setError(true)
       }
       
     }
@@ -125,6 +137,9 @@ export class UploadThumbnailComponent {
   }
   cancelPublish(){
   this.thumbnailService.shouldDisplayThumbnail.next(false)
+  }
+  cancelShowPopup(){
+    this.toogleThumbnail.emit(true)
   }
   publish(){
     if(this.textOfDraftButton==="Save as Draft"){
