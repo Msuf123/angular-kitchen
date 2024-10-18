@@ -1,10 +1,10 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { CSP_NONCE, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-multi-media-details-intro',
   standalone: true,
-  imports: [AsyncPipe],
+  imports: [AsyncPipe,NgOptimizedImage],
   templateUrl: './multi-media-details-intro.component.html',
   styleUrl: './multi-media-details-intro.component.css'
 })

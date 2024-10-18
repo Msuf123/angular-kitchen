@@ -2,5 +2,7 @@
 <span class="stepNumberHeading">Step:{{i}}</span>
 <span class="nameHeading">{{step.name}}</span>
 <p>{{step.description}}</p>
-<img *ngIf="step.image_url" src="{{step.image_url}}">
+<div class="imageSection" *ngIf="step.image_url">
+    <img  [ngSrc]="step.image_url" fill placeholder>
+</div>
 </div>

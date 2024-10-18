@@ -3,7 +3,7 @@
     padding: 5px 5px 15px 5px;
     display: block;
     width: 300px;
-    height:max-content;
+    height: min-content;
     background-color: white;
     box-shadow: 0px 0px 8px 2px  rgb(177, 176, 176);
     border-radius: 5px;
@@ -18,24 +18,25 @@
     display: block;
     font-size: 22px;
     font-weight: 600;
+    margin-bottom: 4px;
 }
 .gridItems{
     padding: 15px;
     display: grid;
     gap: 26px 16px;
     justify-content: start;
-    grid-template-columns: repeat(5,max-content);
+    grid-template-columns: repeat(4,max-content);
     grid-auto-rows: max-content;
    
 }
 @media only screen and (max-width:1786px) {
-    :host{grid-template-columns: repeat(4,max-content);
+    .gridItems{grid-template-columns: repeat(3,max-content);
         
 }
 
 .outerDiv{
     width: 20vw;
-    aspect-ratio: 1;
+    height: min-content;
 }
 .imageOfDish{
     width: 100%;
@@ -44,11 +45,11 @@
 }
 @media only screen and (max-width:1380px) {
     .gridItems{
-        grid-template-columns: repeat(3,max-content);
+        grid-template-columns: repeat(2,max-content);
     }
     .outerDiv{
         width: 25vw;
-        aspect-ratio: 1;
+        
     }
 }
 
@@ -58,7 +59,7 @@
         grid-auto-rows: max-content; 
     }
     .outerDiv{
-        width: 35vw;
+        width: 250px;
         
         
     }
@@ -67,20 +68,64 @@
         aspect-ratio:1;
     }
 }
-@media only screen and (max-width:684px) {
+@media screen and (max-width:828px) {
+    .gridItems{
+        grid-template-columns: repeat(1,max-content);
+        grid-auto-rows: max-content; 
+    }
+    .outerDiv{
+        width: 300px;
+        
+        
+    }
+    .itemName{
+        font-size: 17px;
+    }
+}
+@media screen and (max-width:614px) {
+    .outerDiv{
+        width: 250px;
+        
+        
+    }
+}
+@media only screen and (max-width:482px) {
     .outerDiv{
         width: 42vw;
         
         
          }
+         .itemName{
+            font-size: 16px;
+        }
+        button{
+            font-size: 13px;
+            padding: 0px 5px;
+        }
 }
-@media only screen and (max-width:402px) {
+@media only screen and (max-width:458px) {
+    .outerDiv{
+        width:300px;
+       
+      }
+}
+
+@media only screen and (max-width:368px) {
     .gridItems{
         grid-template-columns: repeat(1,max-content); 
     }
   
   .outerDiv{
-    width: clamp(180px,75vw,300px);
-    aspect-ratio: 1;
+    width:255px;
+   
   }
   }
+  @media only screen and (max-width:318px){
+    .outerDiv{
+        width: 79vw;
+    }
+    :host{
+        margin: 0px;
+    }
+  }
+

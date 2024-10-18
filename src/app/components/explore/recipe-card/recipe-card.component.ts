@@ -11,7 +11,7 @@ import { ErrorFromServerService } from '../../../services/error/error-from-serve
 @Component({
   selector: 'app-recipe-card',
   standalone: true,
-  imports: [CommonModule,DifficultyLevelComponent,ClickNavigationDirective,NgOptimizedImage,LoadingCardsComponent,ErrorFromServerComponent],
+  imports: [CommonModule,NgOptimizedImage,DifficultyLevelComponent,ClickNavigationDirective,NgOptimizedImage,LoadingCardsComponent,ErrorFromServerComponent],
   templateUrl: './recipe-card.component.html',
   styleUrl: './recipe-card.component.css'
 })

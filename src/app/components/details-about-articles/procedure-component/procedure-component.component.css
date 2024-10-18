@@ -13,13 +13,10 @@ p{
     margin-top: 5px;
     font-size: 18px;
 }
-img{
+.imageSection{
+    position: relative;
     width: 300px;
     height: 250px;
-    object-fit: fill;
-    border-radius: 5px;
-    display: block;
-    margin: auto;
 }
 .outerBox{
   margin: 20px 0px;

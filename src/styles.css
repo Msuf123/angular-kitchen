@@ -26,4 +26,19 @@ input{
     font-weight: 700;
     margin-bottom:5px ;
 }
+.redClass{
+    
+    border: 2px solid red;
+    background-color: transparent;
+    font-size: 600;
+    padding: 2px 5px;
+    transition: all linear 0.2s;
+}
+
+button:focus{
+    outline: 2px solid red;
+}
+.redClass:hover{
+    background-color: red;
+}
 

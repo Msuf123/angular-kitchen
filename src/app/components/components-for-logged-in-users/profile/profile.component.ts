@@ -1,8 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, CSP_NONCE, inject } from '@angular/core';
 import { HttpServiceService } from '../../../services/global-http/http-service.service';
 import { ProfileService } from '../../../services/account/profile/profile.service';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { UploadThumbnailComponent } from '../../creator-sections/writing-recipe/parent-writing-recipe/upload-thumbnail/upload-thumbnail.component';
 import { AccountComponent } from "../account/account.component";
 import { FormGroup } from '@angular/forms';
@@ -14,7 +14,7 @@ import { BehaviorSubject } from 'rxjs';
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, UploadThumbnailComponent,ErrorImageComponent, AccountComponent,DeleteAccountConfirmationComponent],
+  imports: [CommonModule, NgOptimizedImage,UploadThumbnailComponent,ErrorImageComponent, AccountComponent,DeleteAccountConfirmationComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
@@ -31,10 +31,11 @@ export class ProfileComponent {
   formGroup=new FormGroup({})
   inputThumbnail=false
   showDeleteAccountPopup=false
+  loading=false
   isThereError = this.showError.displayErrorService.value;
  constructor(){
-
-   this.httpService.get('/account/user-name').subscribe((a)=>{
+ 
+   this.httpService.get('/account/user-name').subscribe((a:any)=>{
     if(a==="Unable to reach to server"){
      this.routerService.navigate(["/"])
     }
@@ -42,7 +43,11 @@ export class ProfileComponent {
     this.profileSerice.sessionExprired.next(true)
     }
     else{
-      this.profileSerice.userDetails.next(a as {name:string,url:string})
+      let urls=a['url'].split(['upload'])
+      console.log(urls[1])
+      
+      this.profileSerice.userDetails.next({...a,url:urls[1]} as {name:string,url:string})
+      this.loading=true
     }
    })
 

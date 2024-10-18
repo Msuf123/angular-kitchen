@@ -6,10 +6,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 .userImageDiv{
     position: relative;
-    width: min-content;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     border: 2px solid var(--color-button-orange);
 }
@@ -49,10 +51,10 @@
 img{
     display: block;
     width: 120px;
-    aspect-ratio: 1;
+    height: 120px;
     border-radius: 50%;
-    object-fit: fill;
-
+   
+    position:relative;
 }
 .buttons{
     width: 50%;

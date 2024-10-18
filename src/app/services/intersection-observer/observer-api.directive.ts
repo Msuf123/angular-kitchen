@@ -32,6 +32,12 @@ constructor(el:ElementRef,http:HttpServiceService){
               this.loading.state.next(false)
             }
             else{
+              responseFromServer.forEach((element:any) => {
+                let urls=element['thumbnail'].split(['upload'])
+                console.log(urls[1])
+                element.thumbnail=urls[1]
+              });
+              console.log(responseFromServer)
             this.individualCard.addRecipes(responseFromServer as any)
             }
          }

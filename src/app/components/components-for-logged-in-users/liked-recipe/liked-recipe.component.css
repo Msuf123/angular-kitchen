@@ -1,19 +1,131 @@
-.gridItems{
-    width: 100%;
-    outline: 2px solid rgb(207, 90, 90);
-    display: grid;
-    grid-template-columns: repeat(5,1fr);
-}
-.itmes{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: max-content;
-}
-img{
-    width: 200px;
-}
-:host{
+.outerDiv{
+   
+    padding: 5px 5px 15px 5px;
     display: block;
-    width: 100%;
+    width: 300px;
+    height: min-content;
+    background-color: white;
+    box-shadow: 0px 0px 8px 2px  rgb(177, 176, 176);
+    border-radius: 5px;
 }
+.imageOfDish{
+    width: 300px;
+    height: 200px;
+    border-radius: 5px;
+    object-fit: fill;
+}
+.itemName{
+    display: block;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+.gridItems{
+    padding: 15px;
+    display: grid;
+    gap: 26px 16px;
+    justify-content: start;
+    grid-template-columns: repeat(4,max-content);
+    grid-auto-rows: max-content;
+   
+}
+@media only screen and (max-width:1786px) {
+    .gridItems{grid-template-columns: repeat(3,max-content);
+        
+}
+
+.outerDiv{
+    width: 20vw;
+    height: min-content;
+}
+.imageOfDish{
+    width: 100%;
+    aspect-ratio: 1;
+}
+}
+@media only screen and (max-width:1380px) {
+    .gridItems{
+        grid-template-columns: repeat(2,max-content);
+    }
+    .outerDiv{
+        width: 25vw;
+        
+    }
+}
+
+@media only screen and (max-width:1030px) {
+    .gridItems{
+        grid-template-columns: repeat(2,max-content);
+        grid-auto-rows: max-content; 
+    }
+    .outerDiv{
+        width: 250px;
+        
+        
+    }
+    .imageOfDish{
+        width: 100%;
+        aspect-ratio:1;
+    }
+}
+@media screen and (max-width:828px) {
+    .gridItems{
+        grid-template-columns: repeat(1,max-content);
+        grid-auto-rows: max-content; 
+    }
+    .outerDiv{
+        width: 300px;
+        
+        
+    }
+    .itemName{
+        font-size: 17px;
+    }
+}
+@media screen and (max-width:614px) {
+    .outerDiv{
+        width: 250px;
+        
+        
+    }
+}
+@media only screen and (max-width:482px) {
+    .outerDiv{
+        width: 42vw;
+        
+        
+         }
+         .itemName{
+            font-size: 16px;
+        }
+        button{
+            font-size: 13px;
+            padding: 0px 5px;
+        }
+}
+@media only screen and (max-width:458px) {
+    .outerDiv{
+        width:300px;
+       
+      }
+}
+
+@media only screen and (max-width:368px) {
+    .gridItems{
+        grid-template-columns: repeat(1,max-content); 
+    }
+  
+  .outerDiv{
+    width:255px;
+   
+  }
+  }
+  @media only screen and (max-width:318px){
+    .outerDiv{
+        width: 79vw;
+    }
+    :host{
+        margin: 0px;
+    }
+  }
+

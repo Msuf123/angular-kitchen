@@ -3,14 +3,16 @@ video{
 }
 :host{
     background-color: transparent;
-    
+    position: relative;
+    width: 500px;
+    height: 400px;
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 3;
 }
 img{
-    width: 500px;
+    width: 100%;
     border-radius: 5px;
 }
 @media screen and (max-width:1547px) {
@@ -23,27 +25,27 @@ img{
         align-self: center;
         display: flex;
         justify-content: center;
-    }
-    
-}
-@media screen and (max-width:554px) {
-    img{
-        width: 300px;
-    }
-    
-}
-
-@media screen and (max-width:324px) {
-    img{
-        width: 230px;
+        justify-self: center;
+        width: 400px;
+    height: 300px;
     }
     
 }
 
 
-@media screen and (max-width:234px) {
-    img{
-        width: 170px;
-    }
+@media screen and (max-width:426px) {
+   :host{
+    width: 300px;
+    height: 200px;
+   }
+    
+}
+
+
+@media screen and (max-width:316px) {
+    :host{
+        width: 200px;
+        height: 150px;
+       }
     
 }

@@ -1,6 +1,6 @@
 <div *ngFor="let item of items" class="outerDiv" appClickNavigation url="{{item.id}}" (click)="navigate(item.id)">
-    <div>
-        <img src="{{item.thumbnail}}" class="imageOfDish">
+    <div  class="imageOfDishes">
+        <img [ngSrc]="item.thumbnail" fill="" placeholder priority  >
     </div>
     <div class="infoPortion">
         <span class="itemName">{{item.name}}</span>

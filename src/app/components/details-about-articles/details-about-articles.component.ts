@@ -57,6 +57,10 @@ signedIn=inject(SignedInService)
     if(responseFromServer!=='Unable to reach to server'&&responseFromServer!=='Something went wrong'){
     responseFromServer=JSON.parse(responseFromServer)
     console.log(responseFromServer)
+    let urlImage=responseFromServer[0][0]
+    let urls=urlImage['image_url'].split(['upload'])
+    responseFromServer[0][0].image_url=urls[1]
+    
     this.data=responseFromServer[0][0]
     this.ingredients=responseFromServer[0].listOfIngredients
     this.steps=responseFromServer[0].steps

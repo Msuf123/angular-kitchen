@@ -1,9 +1,9 @@
 <div class="outerDiv">
     <div class="userImageDiv"  (mouseover)="showUploadIcon()" (mouseleave)="hideUplaadIcon()" (click)="showUploadThumbnail()">
-    <div class="uploadIcon" *ngIf="showUploadIconState">
-       <img src="camera.png" class="cameraIcon">
-    </div>
-     <img [src]="userDetails.url"/>
+        <div class="uploadIcon" *ngIf="showUploadIconState">
+        <img src="camera.png" class="cameraIcon">
+        </div>
+     <img [ngSrc]="userDetails.url" *ngIf="loading" priority placeholder  fill />
     </div>
     <div class="userName">
         <span class="userNameHeading">User Name: </span><span class="userNameData">{{userDetails.name}}</span>
