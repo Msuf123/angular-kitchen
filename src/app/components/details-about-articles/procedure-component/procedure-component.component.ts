@@ -16,6 +16,7 @@ export class ProcedureComponentComponent implements OnInit ,OnChanges{
         let urls=element['image_url'].split(['upload'])
         
         element['image_url']=urls[1]
+        console.log(element['image_url'])
       });
     }
     ngOnChanges(changes: SimpleChanges): void {

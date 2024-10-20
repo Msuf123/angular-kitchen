@@ -1,7 +1,7 @@
 <div class="gridItems" *ngIf="!loading">
     <div *ngFor="let dat of data" class="outerDiv">
         <img src="deafultRecipe.png" id="defualtImage" *ngIf="!dat.thumbnail">
-        <img src="{{dat.thumbnail}}" *ngIf="dat.thumbnail" (click)="nav(dat.id)" class="imageOfDish">
+        <img [ngSrc]="dat.thumbnail" *ngIf="dat.thumbnail" (click)="nav(dat.id)" class="imageOfDish">
         <span class="itemName">{{dat.name}}</span>
         <div class="buttons">
           <button (click)="deletePublished(dat.id)" class="redClass">Delete</button>

@@ -4,6 +4,7 @@ import { HttpServiceService } from '../../../services/global-http/http-service.s
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LoadingPrifleCardsComponent } from '../loading-prifle-cards/loading-prifle-cards.component';
+import { EmptyDataService } from '../../../services/account/empty-data-from-server/empty-data.service';
 
 @Component({
   selector: 'app-draft-recipe',
@@ -17,6 +18,7 @@ export class DraftRecipeComponent {
   http=inject(HttpServiceService)
   router=inject(Router)
   loading=true
+  displayEmptyService=inject(EmptyDataService)
   data:{id:string,name:string,image_url:string}[]=[]
  constructor(){
   this.loadingItemService.state.next(true)
@@ -26,17 +28,23 @@ export class DraftRecipeComponent {
   })
   this.loadingItemService.recipies.subscribe((a)=>{
    
-    this.http.get('/account/draft/').subscribe((res)=>{
+    this.http.get('/account/draft/').subscribe((res:any)=>{
       
-    if(JSON.stringify(a)===JSON.stringify(res)){
-      this.loadingItemService.state.next(false)
-     
-    }
+      if(JSON.stringify(a)===JSON.stringify(res)){
+        this.loadingItemService.state.next(false)
+        if(a.length===0||0===res.length){
+          console.log("no data")
+          this.displayEmptyService.shouldShowDataMessage.next(true)
+      }
+      else{
+        this.displayEmptyService.shouldShowDataMessage.next(false)
+      }
+        }
+    })
   
     this.data=a
     })
-    
-  })
+  
  }
 
  deleteDraft(id:string){

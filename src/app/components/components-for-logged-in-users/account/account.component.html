@@ -2,8 +2,11 @@
     <app-left-options-bar class="navBar"></app-left-options-bar>
     <app-mobile-option-bar class="mobileNavBar"></app-mobile-option-bar>
     <div class="contnetDiv">
+      <app-empty-dataset *ngIf="shouldShowEmptyMsg"></app-empty-dataset>
       <router-outlet></router-outlet>
+      
     </div>
 </div>
 <app-loading *ngIf="loadingStatus"></app-loading>
 <app-sign-in-msg *ngIf="!loggedInd"></app-sign-in-msg>
+

@@ -9,11 +9,13 @@ import { CommonModule } from "@angular/common";
 import { SessionExpiredComponent } from "../../creator-sections/session-expired/session-expired.component";
 import { ProfileService } from "../../../services/account/profile/profile.service";
 import { MobileOptionBarComponent } from "./mobile-option-bar/mobile-option-bar.component";
+import { EmptyDatasetComponent } from "../empty-dataset/empty-dataset.component";
+import { EmptyDataService } from "../../../services/account/empty-data-from-server/empty-data.service";
 
 @Component({
   selector: "app-account",
   standalone: true,
-  imports: [LeftOptionsBarComponent,MobileOptionBarComponent, RouterModule, LoadingComponent,SignInMsgComponent,CommonModule,SessionExpiredComponent],
+  imports: [LeftOptionsBarComponent,MobileOptionBarComponent,EmptyDatasetComponent, RouterModule, LoadingComponent,SignInMsgComponent,CommonModule,SessionExpiredComponent],
   templateUrl: "./account.component.html",
   styleUrl: "./account.component.css",
 })
@@ -26,6 +28,8 @@ export class AccountComponent {
   httpService=inject(HttpServiceService)
   loadingStatus=this.loading.value
   router=inject(Router)
+  shouldShowEmptyMsg=false
+  serviceOfShowingEmptyDataSet=inject(EmptyDataService)
   constructor(){
     this.loading.subscribe((a)=>{
       this.loadingStatus=a
@@ -49,7 +53,9 @@ export class AccountComponent {
         this.profileService.sessionExprired.subscribe((a)=>{
           this.sessionExpired=a
         })
-
+    this.serviceOfShowingEmptyDataSet.shouldShowDataMessage.subscribe((a)=>{
+      this.shouldShowEmptyMsg=a
+    })
   }
-
+   
 }
