@@ -1,9 +1,7 @@
-<div class="gridItems" *ngIf="!loading">
+<div class="gridItems" >
     <div *ngFor="let dat of data" class="outerDiv">
         <img src="{{dat.thumbnail}}" (click)="nav(dat.id)" class="imageOfDish">
         <span class="itemName">{{dat.name}}</span>
         <button (click)="deleteSaved(dat.id)" class="redClass">Remove</button>
     </div>
     </div>
-<app-loading-prifle-cards *ngIf="loading" [url]="'/account/saved'" [inWhichServiceToAddData]="loadingItemService" [loadingService]="loadingItemService"></app-loading-prifle-cards>
-    

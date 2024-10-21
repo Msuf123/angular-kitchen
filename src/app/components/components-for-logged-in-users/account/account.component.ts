@@ -1,7 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { LeftOptionsBarComponent } from "./left-options-bar/left-options-bar.component";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { LoadingComponent } from "../../global-component/loading/loading.component";
 import { BehaviorSubject } from "rxjs";
 import { HttpServiceService } from "../../../services/global-http/http-service.service";
 import { SignInMsgComponent } from "../../authentication/sign-in-msg/sign-in-msg.component";
@@ -11,11 +10,12 @@ import { ProfileService } from "../../../services/account/profile/profile.servic
 import { MobileOptionBarComponent } from "./mobile-option-bar/mobile-option-bar.component";
 import { EmptyDatasetComponent } from "../empty-dataset/empty-dataset.component";
 import { EmptyDataService } from "../../../services/account/empty-data-from-server/empty-data.service";
+import { LoadingCardsComponent } from "../../explore/loading-cards/loading-cards.component";
 
 @Component({
   selector: "app-account",
   standalone: true,
-  imports: [LeftOptionsBarComponent,MobileOptionBarComponent,EmptyDatasetComponent, RouterModule, LoadingComponent,SignInMsgComponent,CommonModule,SessionExpiredComponent],
+  imports: [LeftOptionsBarComponent,MobileOptionBarComponent,EmptyDatasetComponent, RouterModule, LoadingCardsComponent,SignInMsgComponent,CommonModule,SessionExpiredComponent],
   templateUrl: "./account.component.html",
   styleUrl: "./account.component.css",
 })
