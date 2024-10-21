@@ -14,6 +14,9 @@ import { SavedRecipeComponent } from "./components/components-for-logged-in-user
 import { LikedRecipeComponent } from "./components/components-for-logged-in-users/liked-recipe/liked-recipe.component";
 import { DraftRecipeComponent } from "./components/components-for-logged-in-users/draft-recipe/draft-recipe.component";
 import { PublishedRecipeComponent } from "./components/components-for-logged-in-users/published-recipe/published-recipe.component";
+import { PoliciesComponent } from "./components/policies/policies.component";
+import { TermsComponent } from "./components/terms/terms.component";
+import { WildCardComponent } from "./components/wild-card/wild-card.component";
 
 export const routes: Routes = [
   {
@@ -58,4 +61,13 @@ export const routes: Routes = [
     path: "oauth/x",
     component: XOauthComponent,
   },
+  {path:"policy",
+    component:PoliciesComponent
+  },{
+    path:"terms",
+    component:TermsComponent
+  },{
+    path:"*",
+    component:WildCardComponent
+  }
 ];
