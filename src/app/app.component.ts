@@ -5,7 +5,7 @@ import { ThemeService } from './services/theme/theme.service';
 import { ExploreComponent } from './components/explore/explore.component';
 import { LoadingService } from './services/loading/loading.service';
 import { HttpServiceService } from './services/global-http/http-service.service';
-import { LoadingComponent } from './components/global-component/loading/loading.component';
+
 import { CommonModule } from '@angular/common';
 import { url } from './app.config';
 import { ErrorFromServerComponent } from './components/global-component/error-from-server/error-from-server.component';
@@ -14,7 +14,7 @@ import { ErrorFromServerService } from './services/error/error-from-server.servi
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,TopBarComponent,CommonModule,ExploreComponent,LoadingComponent,ErrorFromServerComponent],
+  imports: [RouterOutlet,TopBarComponent,CommonModule,ExploreComponent,ErrorFromServerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   providers:[ThemeService]

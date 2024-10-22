@@ -2,7 +2,7 @@ import { Component, CSP_NONCE, inject } from '@angular/core';
 import { LoadingItmesService } from '../../../services/account/loading-items/loading-itmes.service';
 import { HttpServiceService } from '../../../services/global-http/http-service.service';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 import { EmptyDataService } from '../../../services/account/empty-data-from-server/empty-data.service';
 import { LoadingCardsComponent } from '../../explore/loading-cards/loading-cards.component';
@@ -10,7 +10,7 @@ import { LoadingCardsComponent } from '../../explore/loading-cards/loading-cards
 @Component({
   selector: 'app-saved-recipe',
   standalone: true,
-  imports: [CommonModule,LoadingCardsComponent],
+  imports: [CommonModule,LoadingCardsComponent,NgOptimizedImage],
   templateUrl: './saved-recipe.component.html',
   styleUrl: './saved-recipe.component.css'
 })
@@ -45,4 +45,9 @@ export class SavedRecipeComponent {
     }
   })
  }
+ url(data:string):string{
+  //Returning optimized url
+  return data.split('upload')[1]
+
+}
 }

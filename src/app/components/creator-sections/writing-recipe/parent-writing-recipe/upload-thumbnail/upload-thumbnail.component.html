@@ -33,7 +33,7 @@
         <button (click)="publish()" [disabled]="!url" class="publish">Publish</button>
 
     </div>
-    <div class="buttons">
+    <div class="buttons" *ngIf="secondCancelButton">
       <button (click)="cancelShowPopup()" class="save">Cancel</button>
     </div>
     

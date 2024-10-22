@@ -49,6 +49,15 @@ export class WritingTopBarComponent {
         this.form.patchValue({priceOfMeal:0,time:0})
         
       }
+      else{
+        if(price===""){
+          this.form.patchValue({priceOfMeal:0})
+        }
+        if(time===""){
+          this.form.patchValue({time:0})
+        }
+      }
+      
       if (!Number.isNaN(Number(price))) {
         if (!Number.isNaN(Number(time))) {
           if(this.textInUpdate==="Save as Draft"){

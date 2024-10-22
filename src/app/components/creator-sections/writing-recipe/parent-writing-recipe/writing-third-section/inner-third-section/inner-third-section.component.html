@@ -46,6 +46,7 @@
                         >
                     </div>
                     <img
+                       [ngClass]="{inactiveButton:disableDeletOption}"
                         src="kitchen-trash-bin.png"
                         *ngIf="fileDataUrl"
                         class="deleteIcon"

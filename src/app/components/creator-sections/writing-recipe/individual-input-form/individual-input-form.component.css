@@ -52,10 +52,15 @@ input:focus {
 .uploadedImage {
     display: block;
     width: 200px;
+    border-radius: 5px;
 }
 .imagePreviewDiv {
     position: relative;
 }
+.inactiveButton{
+    background-color: yellow;
+}
+
 .imagePreviewDiv :first-child {
     position: absolute;
     bottom: -35px;
@@ -100,7 +105,7 @@ input:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.37);
+    background-color: var(--error-background-color);
 }
 :host {
     display: block;

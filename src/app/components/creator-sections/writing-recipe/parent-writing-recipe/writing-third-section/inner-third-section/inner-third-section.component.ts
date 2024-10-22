@@ -22,6 +22,7 @@ export class InnerThirdSectionComponent implements OnInit {
   errorService = inject(ErrorImageService);
   status = inject(UploadStatusService);
   progress = this.status.progressStatus.value.status;
+  disableDeletOption=true
   @Input() form!: FormGroup;
   showProgress = this.status.displayStatus.value;
   uploadedImageFromHere = false;
@@ -49,6 +50,7 @@ export class InnerThirdSectionComponent implements OnInit {
           this.steps.at(this.postion).get("imageUrl")?.setValue(status.name);
           this.imageThere = true;
           this.status.progressStatus.next({ name: "", status: 0 });
+          this.disableDeletOption=true
         } else {
           this.progress = status.status;
         }
@@ -81,8 +83,11 @@ export class InnerThirdSectionComponent implements OnInit {
     return this.form.get("steps") as FormArray;
   }
   deleteImage() {
-    this.imageThere = false;
-    this.fileDataUrl = "";
+    if(!this.disableDeletOption){
+      this.imageThere = false;
+      this.fileDataUrl = "";
+    }
+    
   }
   run(e: string) {
     console.log(e);

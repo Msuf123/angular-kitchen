@@ -1,6 +1,9 @@
-<div class="gridItems" *ngIf="!loading">
+<div class="gridItems">
 <div *ngFor="let dat of data" class="outerDiv">
-    <img src="{{dat.thumbnail}}" (click)="nav(dat.id)" class="imageOfDish">
+    <div class="imageItemDiv">
+        
+        <img [ngSrc]="url(dat.thumbnail)"  fill="" priority  class="imageOfDish">
+      </div>
     <span class="itemName">{{dat.name}}</span>
     <button (click)="deleteLiked(dat.id)" class="redClass">Remove</button>
 </div>

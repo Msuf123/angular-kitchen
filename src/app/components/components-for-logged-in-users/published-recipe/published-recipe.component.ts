@@ -43,4 +43,9 @@ export class PublishedRecipeComponent {
     }
   })
  }
+ url(data:string):string{
+  //Returning optimized url
+  return data.split('upload')[1]
+
+}
 }

@@ -29,6 +29,7 @@ export class IndividualInputFormComponent {
   url!: string;
   uploadedImageFromHere = false;
   classes = "";
+  disableDeletOption=true
   constructor() {}
 
   ngAfterViewInit() {
@@ -46,6 +47,7 @@ export class IndividualInputFormComponent {
         if (!this.imageThere) {
           if (status.status < 100) {
             this.showProgress = true;
+            console.log("Setting uplaod true")
             this.progress = status.status;
           } else if (status.status === 100 && this.uploadedImageFromHere) {
             let name = this.status.progressStatus.value.name;
@@ -54,6 +56,7 @@ export class IndividualInputFormComponent {
             this.formGroup.get("image")?.setValue(status.name);
             this.showProgress = false;
             this.uploadedImageFromHere = false;
+            this.disableDeletOption=false
           }
         }
       } else {
@@ -89,7 +92,8 @@ export class IndividualInputFormComponent {
   }
 
   deleteImage() {
+    if(!this.disableDeletOption){
     this.imageThere = false;
-    this.url = "";
+    this.url = "";}
   }
 }

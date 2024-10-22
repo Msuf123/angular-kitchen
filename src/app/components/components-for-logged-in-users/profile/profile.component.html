@@ -14,5 +14,5 @@
     </div>
 </div>
 <app-error-image *ngIf="isThereError"></app-error-image>
-<app-upload-thumbnail [lableText]="'Upload Image'" [userDetails]="userDetails" *ngIf="inputThumbnail" [uploadThumbnail]="false" text="Set Profile Icon" [formGroup]="formGroup" (toogleThumbnail)="emmitedThumbnailValueStatus()"></app-upload-thumbnail>
+<app-upload-thumbnail [secondCancelButton]="true" [lableText]="'Upload Image'" [userDetails]="userDetails" *ngIf="inputThumbnail" [uploadThumbnail]="false" text="Set Profile Icon" [formGroup]="formGroup" (toogleThumbnail)="emmitedThumbnailValueStatus()"></app-upload-thumbnail>
 <app-delete-account-confirmation [deleteAccountPopUp]="displayDeleteConfirmation" *ngIf="showConfirmation"></app-delete-account-confirmation>

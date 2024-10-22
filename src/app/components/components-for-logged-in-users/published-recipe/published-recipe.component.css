@@ -8,11 +8,14 @@
     box-shadow: 0px 0px 8px 2px  rgb(177, 176, 176);
     border-radius: 5px;
 }
-.imageOfDish{
+.imageItemDiv{
     width: 300px;
     height: 200px;
     border-radius: 5px;
     object-fit: fill;
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
 }
 .itemName{
     display: block;
@@ -28,6 +31,21 @@
     grid-template-columns: repeat(4,max-content);
     grid-auto-rows: max-content;
    
+}
+.publish{
+    margin-left: 15px;
+    border: 2px solid var(--color-button-orange);
+    background-color: transparent;
+    font-size: 600;
+    padding: 2px 5px;
+    transition: all linear 0.2s;
+}
+
+.publish:focus{
+    outline: 2px solid var(--color-button-orange);
+}
+.publish:hover{
+    background-color: var(--color-button-orange);
 }
 @media only screen and (max-width:1786px) {
     .gridItems{grid-template-columns: repeat(3,max-content);
@@ -128,5 +146,4 @@
         margin: 0px;
     }
   }
-
 

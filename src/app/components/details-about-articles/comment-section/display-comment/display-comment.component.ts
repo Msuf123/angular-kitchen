@@ -22,7 +22,7 @@ export class DisplayCommentComponent {
     this.comments=a
   })
   this.http.get('/recipes/comment/'+this.routet.snapshot.params['id']).subscribe((a)=>{
-   
+   console.log("user comments",a)
     this.commentService.displayCommnet.next(a as DisplayComment[])
    
   })

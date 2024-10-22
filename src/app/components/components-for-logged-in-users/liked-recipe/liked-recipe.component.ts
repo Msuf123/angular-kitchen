@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { LoadingCardsComponent } from '../../explore/loading-cards/loading-cards.component';
 import { LoadingItmesService } from '../../../services/account/loading-items/loading-itmes.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { HttpServiceService } from '../../../services/global-http/http-service.service';
@@ -10,7 +10,7 @@ import { EmptyDataService } from '../../../services/account/empty-data-from-serv
 @Component({
   selector: 'app-liked-recipe',
   standalone: true,
-  imports: [LoadingCardsComponent,CommonModule,LoadingCardsComponent],
+  imports: [LoadingCardsComponent,CommonModule,LoadingCardsComponent,NgOptimizedImage],
   templateUrl: './liked-recipe.component.html',
   styleUrl: './liked-recipe.component.css'
 })
@@ -44,4 +44,9 @@ export class LikedRecipeComponent {
     }
   })
  }
+ url(data:string):string{
+  //Returning optimized url
+  return data.split('upload')[1]
+
+}
 }

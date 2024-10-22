@@ -65,7 +65,9 @@ export class ProfileComponent {
  }
  logout(){
   this.httpService.get('/account/logout').subscribe((a)=>{
-    console.log('a')
+    if(a==="okay"){
+      this.routerService.navigate(['/'])
+    }
    })
  }
  showUploadIcon(){

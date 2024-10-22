@@ -29,6 +29,7 @@ export class UploadThumbnailComponent {
   @Input() lableText!:string
   @Input() uploadThumbnail!:boolean
   @Input() userDetails!:{name:string,url:string}
+  @Input() secondCancelButton!:boolean
   @Output() toogleThumbnail=new EventEmitter()
   formsInvalid = inject(FormsInvalidService);
   status = inject(UploadStatusService);

@@ -1,53 +1,153 @@
-:host{
+.outerDiv{
+   
+    padding: 5px 5px 15px 5px;
     display: block;
-  
-    width: 100%;
-    overflow: scroll;
-}
-.gridItems{width: max-content;
-    border: 2px solid green;
-    display: grid;
-    grid-template-columns:repeat(5,max-content);
-    grid-auto-flow: row;
-    gap: 10px;
-
-}
-.itmes{
-    width: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 220px;
-    margin: 10px;
+    width: 300px;
+    height: min-content;
+    background-color: white;
     box-shadow: 0px 0px 8px 2px  rgb(177, 176, 176);
-    border-radius: 10px;
+    border-radius: 5px;
 }
-.itmes span{
-    font-size: 16px;
-    font-weight: 600;
+.imageItemDiv{
+    width: 300px;
+    height: 200px;
+    border-radius: 5px;
+    object-fit: fill;
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+}
+.itemName{
     display: block;
-    width: 94%;
-    margin: auto;
-    text-align: start;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+.gridItems{
+    padding: 15px;
+    display: grid;
+    gap: 26px 16px;
+    justify-content: start;
+    grid-template-columns: repeat(4,max-content);
+    grid-auto-rows: max-content;
+   
+}
+.publish{
+    margin-left: 15px;
+    border: 2px solid var(--color-button-orange);
+    background-color: transparent;
+    font-size: 600;
+    padding: 2px 5px;
+    transition: all linear 0.2s;
 }
 #defualtImage{
-    object-fit: scale-down;
+    width: 98%;
+    height: inherit;
+    object-fit:contain;
 }
-.itmes img{
-    background-repeat: no-repeat;
-    width: 98%; 
-    height: 150px;
-    margin-top: 2px;
-    border-radius: 10px;
+.publish:focus{
+    outline: 2px solid var(--color-button-orange);
 }
-.buttons{
- display: flex;
- width: 100%;
- align-items: center;
- justify-content: space-evenly;
- margin-bottom: 5px;
+.publish:hover{
+    background-color: var(--color-button-orange);
+}
+@media only screen and (max-width:1786px) {
+    .gridItems{grid-template-columns: repeat(3,max-content);
+        
+}
 
+.outerDiv{
+    width: 20vw;
+    height: min-content;
 }
-button{
-    width: 65px;
+.imageOfDish{
+    width: 100%;
+    aspect-ratio: 1;
 }
+}
+@media only screen and (max-width:1380px) {
+    .gridItems{
+        grid-template-columns: repeat(2,max-content);
+    }
+    .outerDiv{
+        width: 25vw;
+        
+    }
+}
+
+@media only screen and (max-width:1030px) {
+    .gridItems{
+        grid-template-columns: repeat(2,max-content);
+        grid-auto-rows: max-content; 
+    }
+    .outerDiv{
+        width: 250px;
+        
+        
+    }
+    .imageOfDish{
+        width: 100%;
+        aspect-ratio:1;
+    }
+}
+@media screen and (max-width:828px) {
+    .gridItems{
+        grid-template-columns: repeat(1,max-content);
+        grid-auto-rows: max-content; 
+    }
+    .outerDiv{
+        width: 300px;
+        
+        
+    }
+    .itemName{
+        font-size: 17px;
+    }
+}
+@media screen and (max-width:614px) {
+    .outerDiv{
+        width: 250px;
+        
+        
+    }
+}
+@media only screen and (max-width:482px) {
+    .outerDiv{
+        width: 42vw;
+        
+        
+         }
+         .itemName{
+            font-size: 16px;
+        }
+        button{
+            font-size: 13px;
+            padding: 0px 5px;
+        }
+}
+@media only screen and (max-width:458px) {
+    .outerDiv{
+        width:300px;
+       
+      }
+}
+
+@media only screen and (max-width:368px) {
+    .gridItems{
+        grid-template-columns: repeat(1,max-content); 
+    }
+  
+  .outerDiv{
+    width:255px;
+   
+  }
+  }
+  @media only screen and (max-width:318px){
+    .outerDiv{
+        width: 79vw;
+    }
+    :host{
+        margin: 0px;
+    }
+  }
+
