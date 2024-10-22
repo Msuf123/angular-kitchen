@@ -22,7 +22,7 @@ export class XOauthComponent implements OnInit {
   twitterSearchPrams = new URLSearchParams({
     response_type: "code",
     client_id: "ZENKdnpmSjVSNlJHbDZvRDVMMm86MTpjaQ",
-    redirect_uri: "https://angular-kitchen.vercel.app/oauth/x",
+    redirect_uri: "https://ec2-3-27-191-229.ap-southeast-2.compute.amazonaws.com/oauth/x",
     state: "2",
     code_challenge: "jkdaf",
     code_challenge_method: "plain",
