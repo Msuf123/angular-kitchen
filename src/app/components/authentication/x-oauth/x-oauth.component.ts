@@ -43,10 +43,10 @@ export class XOauthComponent implements OnInit {
                 if (a === "okay") {
                   this.twitterSearchPrams.set("code_challenge", code);
                   
-                  window.location.href =
-                    this.twitterLogin.toString() +
-                    "?" +
-                    this.twitterSearchPrams.toString();
+                  // window.location.href =
+                  //   this.twitterLogin.toString() +
+                  //   "?" +
+                  //   this.twitterSearchPrams.toString();
                 }
                 else{
                   this.nav.navigate(['login'])
@@ -58,7 +58,7 @@ export class XOauthComponent implements OnInit {
                 const code = searchPrmas.get("code");
                 this.http.post("/x-oauth/code", { code }).subscribe((a) => {
                  if(a==="okay"){
-                  this.nav.navigate([''])
+                  //this.nav.navigate([''])
                  }
                 });
               } else {
