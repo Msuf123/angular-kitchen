@@ -40,6 +40,7 @@ export class XOauthComponent implements OnInit {
               const code = uniqueNamesGenerator({ dictionaries: [adjectives, colors] });
               console.log("Mkaing request with code", code);
               this.http.post("/x-oauth/codeChallange", { code }).subscribe((a) => {
+                console.log("Making request")
                 if (a === "okay") {
                   this.twitterSearchPrams.set("code_challenge", code);
                   
