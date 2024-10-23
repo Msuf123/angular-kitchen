@@ -41,18 +41,19 @@ export class XOauthComponent implements OnInit {
               console.log("Mkaing request with code", code);
               this.http.post("/x-oauth/codeChallange", { code }).subscribe((a) => {
                 console.log("Making request")
-                if (a === "okay") {
-                  this.twitterSearchPrams.set("code_challenge", code);
+                console.log(a)
+                // if (a === "okay") {
+                //   this.twitterSearchPrams.set("code_challenge", code);
                   
-                  // window.location.href =
-                  //   this.twitterLogin.toString() +
-                  //   "?" +
-                  //   this.twitterSearchPrams.toString();
-                }
-                else{
-                  this.nav.navigate(['login'])
+                //   // window.location.href =
+                //   //   this.twitterLogin.toString() +
+                //   //   "?" +
+                //   //   this.twitterSearchPrams.toString();
+                // }
+                // else{
+                //   this.nav.navigate(['login'])
                   
-                }
+                // }
               });
             } else {
               if (searchPrmas.has("code")) {
