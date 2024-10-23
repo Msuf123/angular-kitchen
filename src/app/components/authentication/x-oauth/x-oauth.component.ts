@@ -45,10 +45,10 @@ export class XOauthComponent implements OnInit {
                 if (a === "okay") {
                   this.twitterSearchPrams.set("code_challenge", code);
                   
-                  // window.location.href =
-                  //   this.twitterLogin.toString() +
-                  //   "?" +
-                  //   this.twitterSearchPrams.toString();
+                  window.location.href =
+                    this.twitterLogin.toString() +
+                    "?" +
+                    this.twitterSearchPrams.toString();
                 }
                 else{
                   this.nav.navigate(['login'])
