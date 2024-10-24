@@ -16,7 +16,9 @@ export class DeleteAccountConfirmationComponent {
     this.deleteAccountPopUp.next(false)
   }
   delete(){
-    this.http.get("/")
+    this.http.get("/account/delete").subscribe((a)=>{
+      console.log(a)
+    })
   }
  
 

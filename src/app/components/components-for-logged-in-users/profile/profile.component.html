@@ -3,7 +3,7 @@
         <div class="uploadIcon" *ngIf="showUploadIconState">
         <img src="camera.png" class="cameraIcon">
         </div>
-     <img [ngSrc]="userDetails.url" *ngIf="loading" priority placeholder  fill />
+     <img src="userDetails.url" *ngIf="loading" />
     </div>
     <div class="userName">
         <span class="userNameHeading">User Name: </span><span class="userNameData">{{userDetails.name}}</span>
