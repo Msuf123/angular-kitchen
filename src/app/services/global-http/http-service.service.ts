@@ -134,6 +134,7 @@ export class HttpServiceService {
           /*If we have a error while uplaoading the image  to the api
           they will be handled in the thrid section of recieps form
           */
+         
           if (res === "Unable to reach to server") {
             this.router.navigate(["/"]);
           } else if (res === "Something went wrong") {
@@ -141,6 +142,7 @@ export class HttpServiceService {
           } else {
             timesItRan++;
             if (!res.includes(".") && res !== "error") {
+              
               const progress = Math.floor(Number(res));
               this.uploadStatus.displayStatus.next(true);
               this.uploadStatus.progressStatus.next({

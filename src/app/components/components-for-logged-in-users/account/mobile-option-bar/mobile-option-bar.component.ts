@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MobileNavBarLinksComponent } from '../mobile-nav-bar-links/mobile-nav-bar-links.component';
 import { BehaviorSubject } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { ProfileService } from '../../../../services/account/profile/profile.service';
 
 @Component({
   selector: 'app-mobile-option-bar',
@@ -11,15 +12,16 @@ import { CommonModule } from '@angular/common';
   styleUrl: './mobile-option-bar.component.css'
 })
 export class MobileOptionBarComponent {
-  display=new BehaviorSubject(false)
-  shouldNavComponentDispaly=this.display.value
+  profileService=inject(ProfileService)
+  display=this.profileService.showNavBar.value
+  
   constructor(){
-    this.display.subscribe((state)=>{
-      this.shouldNavComponentDispaly=state
+    this.profileService.showNavBar.subscribe((state)=>{
+      this.display=state
     })
   }
   toogleDisplayState(arg:boolean){
-    console.log(arg,'hi')
-    this.display.next(arg)
+
+    this.profileService.showNavBar.next(arg)
   }
 }

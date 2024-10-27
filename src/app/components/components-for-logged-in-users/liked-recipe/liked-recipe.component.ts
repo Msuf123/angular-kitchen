@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 
 import { HttpServiceService } from '../../../services/global-http/http-service.service';
 import { EmptyDataService } from '../../../services/account/empty-data-from-server/empty-data.service';
+import { ProfileService } from '../../../services/account/profile/profile.service';
 
 @Component({
   selector: 'app-liked-recipe',
@@ -15,7 +16,7 @@ import { EmptyDataService } from '../../../services/account/empty-data-from-serv
   styleUrl: './liked-recipe.component.css'
 })
 export class LikedRecipeComponent {
-  
+  profileSerice=inject(ProfileService)
   http=inject(HttpServiceService)
   router=inject(Router)
   loading=true
@@ -27,8 +28,7 @@ export class LikedRecipeComponent {
     
     this.data=res
     })
-    
-
+    this.profileSerice.showNavBar.next(false)
  }
  nav(id:string){
    this.router.navigate(['articles',id])

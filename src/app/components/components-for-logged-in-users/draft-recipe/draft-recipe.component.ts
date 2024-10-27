@@ -6,6 +6,7 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 import { EmptyDataService } from '../../../services/account/empty-data-from-server/empty-data.service';
 import { LoadingCardsComponent } from '../../explore/loading-cards/loading-cards.component';
+import { ProfileService } from '../../../services/account/profile/profile.service';
 
 @Component({
   selector: 'app-draft-recipe',
@@ -15,7 +16,7 @@ import { LoadingCardsComponent } from '../../explore/loading-cards/loading-cards
   styleUrl: './draft-recipe.component.css'
 })
 export class DraftRecipeComponent {
-  
+  profileSerice=inject(ProfileService)
   http=inject(HttpServiceService)
   router=inject(Router)
   loading=true
@@ -29,7 +30,7 @@ export class DraftRecipeComponent {
   
     this.data=res
     })
-  
+    this.profileSerice.showNavBar.next(false)
  }
 
  deleteDraft(id:string){

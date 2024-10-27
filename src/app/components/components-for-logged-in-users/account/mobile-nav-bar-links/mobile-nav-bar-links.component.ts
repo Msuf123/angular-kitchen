@@ -11,8 +11,8 @@ import { RouterModule } from '@angular/router';
 })
 export class MobileNavBarLinksComponent {
   @Output() toogleState=new EventEmitter()
-  options: { name: string; url: string; nav: string }[] = [
-    { name: "Profile", url: "./accountProfile.png", nav: "/account" },
+  options: { name: string; url: string; nav: string,class?:string }[] = [
+    { name: "Profile", url: "./accountProfile.png", nav: "/account",class:'noActive' },
     { name: "Saved", url: "./accountSavedIcon.png", nav: "saved" },
     { name: "Draft", url: "./draft.png", nav: "draft" },
     { name: "Liked", url: "./like.png", nav: "liked" },

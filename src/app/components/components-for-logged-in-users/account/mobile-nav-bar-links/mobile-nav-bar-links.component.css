@@ -1,13 +1,49 @@
 :host{
-    background-color: black;
+    background-color: var(--error-background-color);
     position: fixed;
+    z-index: 3;
     top: 0px;
     bottom: 0px;
     left: 0px;
     right: 0px;
     color: white;
+    display: block;
+}
+.outerDiv{
+    display: flex;
+    flex-direction: column;
+    background-color:white;
+    width: 150px;
+    z-index: 3;
+    color: black;
+    height: 100dvh;
+}
+.crossButton{
+    font-weight: 700;
+    background-color: red;
+    width: max-content;
+    padding:1px 3px;
+    border-radius: 5px;
+    display: block;
+    margin-left: 130px;
+    margin-top: 3px;
+    margin-bottom: 10px;
+}
+.options{
+    margin:5px 0px;
+    padding: 10px 5px;
+    border-bottom:2px solid black ;
+    display: flex;
+    align-items: center;
+}
+.active{
+    background-color: yellow;
+}
+.noActive{
+   background-color: transparent;
 }
 img{
-    width: 10px;
-    background-color: wheat;
+    width: 17px;
+    margin-left: 10px;
+    
 }

@@ -28,13 +28,11 @@ export class ProfileComponent {
   showUploadIconState=false
   showThubmnail=true
   userDetails={name:"",url:""}
-  formGroup=new FormGroup({})
-  inputThumbnail=false
   showDeleteAccountPopup=false
   loading=false
   isThereError = this.showError.displayErrorService.value;
  constructor(){
- 
+   this.profileSerice.showNavBar.next(false)
    this.httpService.get('/account/user-name').subscribe((a:any)=>{
     if(a==="Unable to reach to server"){
      this.routerService.navigate(["/"])
@@ -43,10 +41,9 @@ export class ProfileComponent {
     this.profileSerice.sessionExprired.next(true)
     }
     else{
-      let urls=a['url'].split(['upload'])
-      console.log(urls[1])
-      
-      this.profileSerice.userDetails.next({...a,url:urls[1]} as {name:string,url:string})
+  
+      console.log(a)
+      this.profileSerice.userDetails.next({...a} as {name:string,url:string})
       this.loading=true
     }
    })
@@ -79,10 +76,7 @@ export class ProfileComponent {
   this.showUploadIconState=false
  }
  showUploadThumbnail(){
-  this.inputThumbnail=true
- }
- emmitedThumbnailValueStatus(){
-  this.inputThumbnail=false
+  this.profileSerice.showUploadThumbnail.next(true)
  }
  delete(){
   this.displayDeleteConfirmation.next(true)

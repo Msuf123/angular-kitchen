@@ -21,7 +21,7 @@
         
     </div>
    
-        <img src="kitchen-trash-bin.png" class="deleteIcon"  (click)="deleteImage()" />
+        <img src="kitchen-trash-bin.png" class="deleteIcon"  [ngClass]="{inactiveButton:disableDeletOption}" (click)="deleteImage()" />
     
 </ng-template>
     <!-- <div>
@@ -29,12 +29,12 @@
         <span>Set as same image</span>
     </div> -->
     <div class="buttons" *ngIf="uploadThumbnail">
-        <button (click)="cancelPublish()" class="save">Cancel</button>
+        <button (click)="cancelPublish()" class="save" [disabled]="disableCancelOperation">Cancel</button>
         <button (click)="publish()" [disabled]="!url" class="publish">Publish</button>
 
     </div>
     <div class="buttons" *ngIf="secondCancelButton">
-      <button (click)="cancelShowPopup()" class="save">Cancel</button>
+      <button (click)="cancelShowPopup()" *ngIf="disableDeletOptionOfUserImg" [ngClass]="{inactiveButton:!disableDeletOption}" class="save">Cancel</button>
     </div>
     
 </div>

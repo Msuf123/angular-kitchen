@@ -1,11 +1,13 @@
 <div class="outerDiv" *ngIf="loggedInd">
     <app-left-options-bar class="navBar"></app-left-options-bar>
     <app-mobile-option-bar class="mobileNavBar"></app-mobile-option-bar>
+    <app-upload-thumbnail [secondCancelButton]="true" [lableText]="'Upload Image'" [userDetails]="userDetails" *ngIf="inputThumbnail" [uploadThumbnail]="false" text="Set Profile Icon" [formGroup]="formGroup" (toogleThumbnail)="emmitedThumbnailValueStatus()"></app-upload-thumbnail>
     <div class="contnetDiv">
       <app-empty-dataset *ngIf="shouldShowEmptyMsg"></app-empty-dataset>
       <router-outlet></router-outlet>
       
     </div>
+
 </div>
 
 <app-sign-in-msg *ngIf="!loggedInd"></app-sign-in-msg>

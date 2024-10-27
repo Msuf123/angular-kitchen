@@ -11,11 +11,13 @@ import { MobileOptionBarComponent } from "./mobile-option-bar/mobile-option-bar.
 import { EmptyDatasetComponent } from "../empty-dataset/empty-dataset.component";
 import { EmptyDataService } from "../../../services/account/empty-data-from-server/empty-data.service";
 import { LoadingCardsComponent } from "../../explore/loading-cards/loading-cards.component";
+import { UploadThumbnailComponent } from "../../creator-sections/writing-recipe/parent-writing-recipe/upload-thumbnail/upload-thumbnail.component";
+import { FormControl, FormGroup } from "@angular/forms";
 
 @Component({
   selector: "app-account",
   standalone: true,
-  imports: [LeftOptionsBarComponent,MobileOptionBarComponent,EmptyDatasetComponent, RouterModule, LoadingCardsComponent,SignInMsgComponent,CommonModule,SessionExpiredComponent],
+  imports: [LeftOptionsBarComponent,MobileOptionBarComponent,EmptyDatasetComponent,UploadThumbnailComponent, RouterModule, LoadingCardsComponent,SignInMsgComponent,CommonModule,SessionExpiredComponent],
   templateUrl: "./account.component.html",
   styleUrl: "./account.component.css",
 })
@@ -30,6 +32,9 @@ export class AccountComponent {
   router=inject(Router)
   shouldShowEmptyMsg=false
   serviceOfShowingEmptyDataSet=inject(EmptyDataService)
+  inputThumbnail=false
+  formGroup=new FormGroup({name:new FormControl()})
+  userDetails={name:"",url:""}
   constructor(){
     this.loading.subscribe((a)=>{
       this.loadingStatus=a
@@ -56,6 +61,14 @@ export class AccountComponent {
     this.serviceOfShowingEmptyDataSet.shouldShowDataMessage.subscribe((a)=>{
       this.shouldShowEmptyMsg=a
     })
+    this.profileService.showUploadThumbnail.subscribe((state)=>{
+      this.inputThumbnail=state
+    })
   }
-   
+  showUploadThumbnail(){
+    this.inputThumbnail=true
+   }
+   emmitedThumbnailValueStatus(){
+    this.inputThumbnail=false
+   } 
 }

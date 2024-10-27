@@ -6,6 +6,7 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 import { EmptyDataService } from '../../../services/account/empty-data-from-server/empty-data.service';
 import { LoadingCardsComponent } from '../../explore/loading-cards/loading-cards.component';
+import { ProfileService } from '../../../services/account/profile/profile.service';
 
 @Component({
   selector: 'app-saved-recipe',
@@ -15,7 +16,7 @@ import { LoadingCardsComponent } from '../../explore/loading-cards/loading-cards
   styleUrl: './saved-recipe.component.css'
 })
 export class SavedRecipeComponent {
-  
+  profileSerice=inject(ProfileService)
   http=inject(HttpServiceService)
   router=inject(Router)
   displayEmptyService=inject(EmptyDataService)
@@ -28,7 +29,7 @@ export class SavedRecipeComponent {
     
     this.data=res
     })
-    
+    this.profileSerice.showNavBar.next(false)
  
  }
  nav(id:string){

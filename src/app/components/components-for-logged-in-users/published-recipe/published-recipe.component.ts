@@ -5,6 +5,7 @@ import { HttpServiceService } from '../../../services/global-http/http-service.s
 import { Router } from '@angular/router';
 import { EmptyDataService } from '../../../services/account/empty-data-from-server/empty-data.service';
 import { LoadingCardsComponent } from '../../explore/loading-cards/loading-cards.component';
+import { ProfileService } from '../../../services/account/profile/profile.service';
 
 @Component({
   selector: 'app-published-recipe',
@@ -14,14 +15,14 @@ import { LoadingCardsComponent } from '../../explore/loading-cards/loading-cards
   styleUrl: './published-recipe.component.css'
 })
 export class PublishedRecipeComponent {
-  
+  profileSerice=inject(ProfileService)
   http=inject(HttpServiceService)
   router=inject(Router)
   loading=true
   data:{id:string,name:string,thumbnail:string}[]=[]
   displayEmptyService=inject(EmptyDataService)
  constructor(){
- 
+  this.profileSerice.showNavBar.next(false)
     this.http.get('/account/published').subscribe((res:any)=>{
     
     this.data=res

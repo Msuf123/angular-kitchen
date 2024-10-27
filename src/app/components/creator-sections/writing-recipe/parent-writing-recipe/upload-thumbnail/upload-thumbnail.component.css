@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+    z-index: 3;
     position: fixed;
     top: 0px;
     bottom: 0px;
@@ -64,6 +64,9 @@
 }
 .deleteIcon:hover{
     background-color: red;
+}
+.inactiveButton{
+    background-color: yellow;
 }
 button{
     font-weight: 700;

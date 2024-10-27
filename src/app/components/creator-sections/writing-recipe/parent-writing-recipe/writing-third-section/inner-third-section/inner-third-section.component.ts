@@ -50,7 +50,7 @@ export class InnerThirdSectionComponent implements OnInit {
           this.steps.at(this.postion).get("imageUrl")?.setValue(status.name);
           this.imageThere = true;
           this.status.progressStatus.next({ name: "", status: 0 });
-          this.disableDeletOption=true
+          this.disableDeletOption=false
         } else {
           this.progress = status.status;
         }
@@ -84,8 +84,10 @@ export class InnerThirdSectionComponent implements OnInit {
   }
   deleteImage() {
     if(!this.disableDeletOption){
+      this.steps.at(this.postion).get("imageUrl")?.setValue("")
       this.imageThere = false;
       this.fileDataUrl = "";
+      this.disableDeletOption=true
     }
     
   }

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { CSP_NONCE, Component, Injector, Input, inject } from "@angular/core";
+import { CSP_NONCE, Component, DoCheck, Injector, Input, inject } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import BaseQuestion from "../../../../custom-class/questions-class/creator-write-sec/base.question";
 import { ReadFilesService } from "../../../../services/readFile-single/read-files.service";
@@ -7,6 +7,7 @@ import { HttpServiceService } from "../../../../services/global-http/http-servic
 import { UploadStatusService } from "../../../../services/readFile-single/upload-status/upload-status.service";
 import { url } from "../../../../app.config";
 import { NgClass } from "@angular/common";
+import { BehaviorSubject } from "rxjs";
 @Component({
   selector: "app-individual-input-form",
   standalone: true,
@@ -14,7 +15,7 @@ import { NgClass } from "@angular/common";
   templateUrl: "./individual-input-form.component.html",
   styleUrl: "./individual-input-form.component.css",
 })
-export class IndividualInputFormComponent {
+export class IndividualInputFormComponent implements DoCheck{
   injector = inject(Injector);
   urls = this.injector.get(url);
   filereaderService = inject(ReadFilesService);
@@ -29,34 +30,49 @@ export class IndividualInputFormComponent {
   url!: string;
   uploadedImageFromHere = false;
   classes = "";
-  disableDeletOption=true
-  constructor() {}
+  disableDeletOptionUpper=true
+
+
+  constructor() {
+  
+  }
+  ngDoCheck(): void {
+    if(this.question.type==='file'){
+    console.log(this.disableDeletOptionUpper,'Current state of Deleteing',this.question.lable)}
+  }
 
   ngAfterViewInit() {
-    this.formGroup.valueChanges.subscribe((currentState)=>{
-      if(currentState.image!==""){
-        this.url=currentState.image as string
-        this.showProgress=false
-        this.uploadedImageFromHere=true
-      }
-    })
+    // this.formGroup.valueChanges.subscribe((currentState)=>{
+    //   if(currentState.image!==""){
+    //     this.url=currentState.image as string
+    //     this.showProgress=false
+    //     this.uploadedImageFromHere=true
+    //   }
+      
+    // })
     this.status.progressStatus.subscribe((status) => {
       //inner thrid section componet have the code that sets the error of while uplaoing image
       if(this.formGroup.get('image')?.value===""){
       if (status.name !== "error") {
         if (!this.imageThere) {
+          
+          
           if (status.status < 100) {
             this.showProgress = true;
-            console.log("Setting uplaod true")
-            this.progress = status.status;
+            
+            this.progress=status.status
+            
           } else if (status.status === 100 && this.uploadedImageFromHere) {
             let name = this.status.progressStatus.value.name;
             this.imageThere = true;
-            this.status.progressStatus.next({ name: "", status: 0 });
-            this.formGroup.get("image")?.setValue(status.name);
             this.showProgress = false;
             this.uploadedImageFromHere = false;
-            this.disableDeletOption=false
+            this.disableDeletOptionUpper=false
+            console.log("enabling delete option",this.disableDeletOptionUpper)
+            this.status.progressStatus.next({ name: "", status: 0 });
+
+            this.formGroup.get("image")?.setValue(status.name);
+            
           }
         }
       } else {
@@ -92,8 +108,12 @@ export class IndividualInputFormComponent {
   }
 
   deleteImage() {
-    if(!this.disableDeletOption){
+   
+    if(!this.disableDeletOptionUpper){
     this.imageThere = false;
-    this.url = "";}
+    this.url = "";
+    this.disableDeletOptionUpper=true
+    this.formGroup.get('image')?.setValue("")
+  }
   }
 }

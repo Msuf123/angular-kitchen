@@ -1,7 +1,7 @@
-<div>
-    <span (click)="click()">X</span>
-    <div *ngFor="let option of options" class="options">
-        <span [routerLink]="option.nav" routerLinkActive="ac">{{
+<div class="outerDiv">
+    <span (click)="click()" class="crossButton">X</span>
+    <div *ngFor="let option of options" class="options" [routerLink]="option.nav" routerLinkActive="active" [ngClass]="option.class">
+        <span>{{
             option.name
         }}</span>
         <img src="{{ option.url }}" />

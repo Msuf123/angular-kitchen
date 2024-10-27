@@ -202,9 +202,7 @@ export class ParentWritingRecipeComponent {
     this.errorInDraftRecipe.subscribe((currentState)=>{
       this.errorDraftId=currentState
     })
-     this.form.valueChanges.subscribe((state)=>{
-      console.log("hi i am in pramnt",state)
-     })
+     
   }
 
 
