@@ -149,13 +149,15 @@ export class UploadThumbnailComponent {
   deleteImage() {
     if(!this.disableDeletOption){
       this.formGroup.get("thumbnail")?.setValue("")
+      this.disableDeletOption=true
     this.url = "";
     }
     
     
   }
   cancelPublish(){
-  this.thumbnailService.shouldDisplayThumbnail.next(false)
+    if(this.showProgress){
+  this.thumbnailService.shouldDisplayThumbnail.next(false)}
   }
   cancelShowPopup(){
     

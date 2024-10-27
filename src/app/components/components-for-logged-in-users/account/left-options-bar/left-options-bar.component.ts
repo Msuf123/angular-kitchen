@@ -10,8 +10,8 @@ import { RouterModule } from "@angular/router";
   styleUrl: "./left-options-bar.component.css",
 })
 export class LeftOptionsBarComponent {
-  options: { name: string; url: string; nav: string }[] = [
-    { name: "Profile", url: "./accountProfile.png", nav: "/account" },
+  options: { name: string; url: string; nav: string,class?:string }[] = [
+    { name: "Profile", url: "./accountProfile.png", nav: "/account",class:'noActive' },
     { name: "Saved", url: "./accountSavedIcon.png", nav: "saved" },
     { name: "Draft", url: "./draft.png", nav: "draft" },
     { name: "Liked", url: "./like.png", nav: "liked" },

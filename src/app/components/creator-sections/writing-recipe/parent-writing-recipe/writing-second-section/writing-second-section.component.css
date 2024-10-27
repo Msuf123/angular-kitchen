@@ -82,11 +82,15 @@ button:focus{
         font-size: 14px;
     }
 }
-@media screen and (max-width:234px) {
+@media screen and (max-width:254px) {
     :host{
         
       margin-left: 5px;
     }  
+    .fomrsSection{
+   
+        margin-left: 10px;
+    }
     .ingridents{
         position: relative;
         left:7px;

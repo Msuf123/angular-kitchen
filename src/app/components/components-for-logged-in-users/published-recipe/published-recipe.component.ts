@@ -34,7 +34,7 @@ export class PublishedRecipeComponent {
    this.router.navigate(['articles',id])
  }
  deletePublished(id:string){
-  this.http.get('/published/delete/'+id).subscribe((resFromServer)=>{
+  this.http.get('/account/published/delete/'+id).subscribe((resFromServer)=>{
     if(resFromServer==='okay'){
       this.data.forEach((element,k) => {
         if(element.id===id){

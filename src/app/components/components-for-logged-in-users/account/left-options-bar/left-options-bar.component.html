@@ -1,8 +1,8 @@
 <div>
-<div *ngFor="let option of options" class="options">
-    <span [routerLink]="option.nav" routerLinkActive="ac">{{
+<div *ngFor="let option of options" class="options"[routerLink]="option.nav" routerLinkActive="active" [ngClass]="option.class">
+    <span >{{
         option.name
     }}</span>
     <img src="{{ option.url }}" />
 </div>
-</div>
+</div> 

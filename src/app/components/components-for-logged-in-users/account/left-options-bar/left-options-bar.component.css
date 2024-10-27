@@ -1,12 +1,16 @@
 .options {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     width: max-content;
     align-items: center;
     justify-content: space-around;
+    border-bottom: 2px solid black;
+    border-radius: 1px;
+    padding: 5px;
+    width: 100px;
 }
-.ac {
-    background-color: red;
+.active {
+    background-color: yellow;
 }
 .options img {
     width: 20px;
@@ -14,6 +18,8 @@
 }
 :host{
     display: block;
-    border: 2px solid black;
     width: max-content;
 }
+.noActive{
+    background-color: transparent;
+ }

@@ -1,17 +1,24 @@
 .outerDiv{
-    border: 2px solid black;
+    
     width: min(1500px,80vw);
     display: grid;
     grid-template-columns: max-content 1fr;
     grid-template-rows: 1;
     margin: 20px auto;
-    position: relative;
+    position: relative; 
+    
+    padding: 0px;
 }
 .contnetDiv{
     width: 100%;
     overflow: scroll;
     display: block;
     z-index: 1;
+  
+}
+:host{
+    display: block;
+  
 }
 .mobileNavBar{
     display: none;
@@ -23,6 +30,7 @@
     .outerDiv{
         margin-top: 50px;
         width: 90%;
+        grid-template-columns: 1fr;
     }
     .mobileNavBar{
         display: block;
@@ -30,16 +38,3 @@
     }
     
 }
-@media only screen and (max-width:318px){
-    .outerDiv{
-        padding: 0px;
-        justify-items: start;
-        margin: 30px 0px;
-    }
-    .contnetDiv{
-        width: 100%;
-       padding: 0px;
-       margin: 0px;
-       
-    }
-  }

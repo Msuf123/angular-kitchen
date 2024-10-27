@@ -34,7 +34,7 @@
 
     </div>
     <div class="buttons" *ngIf="secondCancelButton">
-      <button (click)="cancelShowPopup()" *ngIf="disableDeletOptionOfUserImg" [ngClass]="{inactiveButton:!disableDeletOption}" class="save">Cancel</button>
+      <button (click)="cancelShowPopup()" *ngIf="disableDeletOptionOfUserImg" [ngClass]="{inactiveButton:showProgress}" class="save">Cancel</button>
     </div>
     
 </div>
