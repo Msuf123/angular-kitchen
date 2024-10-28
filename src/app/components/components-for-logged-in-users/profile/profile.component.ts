@@ -10,6 +10,7 @@ import { DeleteAccountConfirmationComponent } from './delete-account-confirmatio
 import { ErrorImageService } from '../../../services/error-image-upload/error-image.service';
 import { ErrorImageComponent } from '../../creator-sections/error-image/error-image.component';
 import { BehaviorSubject } from 'rxjs';
+import { EmptyDataService } from '../../../services/account/empty-data-from-server/empty-data.service';
 
 @Component({
   selector: 'app-profile',
@@ -31,7 +32,9 @@ export class ProfileComponent {
   showDeleteAccountPopup=false
   loading=false
   isThereError = this.showError.displayErrorService.value;
+  displayEmptyService=inject(EmptyDataService)
  constructor(){
+  this.displayEmptyService.shouldShowDataMessage.next(false)
    this.profileSerice.showNavBar.next(false)
    this.httpService.get('/account/user-name').subscribe((a:any)=>{
     if(a==="Unable to reach to server"){
