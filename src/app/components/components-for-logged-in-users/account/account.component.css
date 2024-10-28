@@ -12,9 +12,10 @@
 .contnetDiv{
     width: 100%;
     overflow: scroll;
-    display: block;
+    display: flex;
     z-index: 1;
-  
+   
+
 }
 :host{
     display: block;

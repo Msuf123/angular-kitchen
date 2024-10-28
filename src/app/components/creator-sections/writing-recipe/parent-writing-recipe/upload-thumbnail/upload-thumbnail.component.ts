@@ -38,7 +38,7 @@ export class UploadThumbnailComponent {
   thumbnailService=inject(UploadThumbnailService)
   router=inject(Router)
   urls = this.injector.get(url);
-  showProgress=false
+  showProgress=true
   progress = this.status.progressStatus.value.status;
   showError = inject(ErrorImageService);
   disableDeletOption=true
@@ -166,6 +166,7 @@ export class UploadThumbnailComponent {
   
   }
   publish(){
+    if(!this.showProgress&&url){
     if(this.textOfDraftButton==="Save as Draft"){
       this.http.post('/write/draft/publish/new-recipe',this.formGroup.value).subscribe((res)=>{
         if(res==='okay'){
@@ -186,7 +187,10 @@ export class UploadThumbnailComponent {
       }
   })
     }
-
+  }
+  else{
+    console.log('no image')
+  }
   }
 
 }

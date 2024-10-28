@@ -22,11 +22,16 @@ export class SavedRecipeComponent {
   displayEmptyService=inject(EmptyDataService)
   loading=true
   data:{id:string,name:string,thumbnail:string}[]=[]
+  
  constructor(){
   
-  
+  this.displayEmptyService.shouldShowDataMessage.next(false)
     this.http.get('/account/saved').subscribe((res:any)=>{
-    
+      if(Array.isArray(res)){
+        if(res.length===0){
+         this.displayEmptyService.shouldShowDataMessage.next(true)
+        }
+      }
     this.data=res
     })
     this.profileSerice.showNavBar.next(false)

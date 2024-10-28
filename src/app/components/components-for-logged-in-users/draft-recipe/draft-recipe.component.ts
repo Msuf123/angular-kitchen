@@ -23,10 +23,14 @@ export class DraftRecipeComponent {
   displayEmptyService=inject(EmptyDataService)
   data:{id:string,name:string,image_url:string}[]=[]
  constructor(){
- 
+  this.displayEmptyService.shouldShowDataMessage.next(false)
     this.http.get('/account/draft/').subscribe((res:any)=>{
       console.log(res)
-    
+      if(Array.isArray(res)){
+        if(res.length===0){
+         this.displayEmptyService.shouldShowDataMessage.next(true)
+        }
+      }
   
     this.data=res
     })

@@ -18,14 +18,19 @@ import { ProfileService } from '../../../services/account/profile/profile.servic
 export class LikedRecipeComponent {
   profileSerice=inject(ProfileService)
   http=inject(HttpServiceService)
+  emptyDatasetService=inject(EmptyDataService)
   router=inject(Router)
   loading=true
   data:{id:string,name:string,thumbnail:string}[]=[]
   displayEmptyService=inject(EmptyDataService)
  constructor(){
-  
+  this.displayEmptyService.shouldShowDataMessage.next(false)
     this.http.get('/account/liked').subscribe((res:any)=>{
-    
+    if(Array.isArray(res)){
+      if(res.length===0){
+       this.emptyDatasetService.shouldShowDataMessage.next(true)
+      }
+    }
     this.data=res
     })
     this.profileSerice.showNavBar.next(false)

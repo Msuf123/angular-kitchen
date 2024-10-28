@@ -22,9 +22,14 @@ export class PublishedRecipeComponent {
   data:{id:string,name:string,thumbnail:string}[]=[]
   displayEmptyService=inject(EmptyDataService)
  constructor(){
+  this.displayEmptyService.shouldShowDataMessage.next(false)
   this.profileSerice.showNavBar.next(false)
     this.http.get('/account/published').subscribe((res:any)=>{
-    
+      if(Array.isArray(res)){
+        if(res.length===0){
+         this.displayEmptyService.shouldShowDataMessage.next(true)
+        }
+      }
     this.data=res
     })
     

@@ -29,8 +29,8 @@
         <span>Set as same image</span>
     </div> -->
     <div class="buttons" *ngIf="uploadThumbnail">
-        <button (click)="cancelPublish()" class="save" [disabled]="disableCancelOperation">Cancel</button>
-        <button (click)="publish()" [disabled]="!url" class="publish">Publish</button>
+        <button (click)="cancelPublish()" class="save" [disabled]="progress">Cancel</button>
+        <button (click)="publish()" [disabled]="!url&&!showProgress" [ngClass]="{inactiveButton:!url&&!showProgress}" class="publish">Publish</button>
 
     </div>
     <div class="buttons" *ngIf="secondCancelButton">

@@ -69,10 +69,6 @@ export class XOauthComponent implements OnInit {
             }
   }
   }
-  push(){
-    this.http.get('/x-oauth/code').subscribe((a)=>{
-      console.log(a)
-    })
-  }
+ 
   constructor() {}
 }
