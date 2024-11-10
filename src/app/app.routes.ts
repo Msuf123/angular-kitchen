@@ -17,6 +17,7 @@ import { PublishedRecipeComponent } from "./components/components-for-logged-in-
 import { PoliciesComponent } from "./components/policies/policies.component";
 import { TermsComponent } from "./components/terms/terms.component";
 import { WildCardComponent } from "./components/wild-card/wild-card.component";
+import { PlannerComponent } from "./components/planner/planner.component";
 
 export const routes: Routes = [
   {
@@ -66,7 +67,8 @@ export const routes: Routes = [
   },{
     path:"terms",
     component:TermsComponent
-  },{
+  },{path:"plan",component:PlannerComponent}
+  ,{
     path:"*",
     component:WildCardComponent
   }

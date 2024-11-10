@@ -1,0 +1,13 @@
+.daysFlex{
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    
+}
+.tiemsFlex{
+    display: flex;
+}
+.tiemsFlexOuter{
+    display: flex;
+    background-color: rgb(72, 255, 0);
+}
