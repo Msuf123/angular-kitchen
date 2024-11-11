@@ -18,6 +18,9 @@ import { PoliciesComponent } from "./components/policies/policies.component";
 import { TermsComponent } from "./components/terms/terms.component";
 import { WildCardComponent } from "./components/wild-card/wild-card.component";
 import { PlannerComponent } from "./components/planner/planner.component";
+import { PraentHomeComponent } from "./components/planner/inner-components/home/praent-component/praent-component.component";
+import { AllPlansComponent } from "./components/planner/inner-components/all-plans/all-plans/all-plans.component";
+import { UserDietProgressComponent } from "./components/planner/inner-components/your-progress/user-diet-progress/user-diet-progress.component";
 
 export const routes: Routes = [
   {
@@ -67,9 +70,18 @@ export const routes: Routes = [
   },{
     path:"terms",
     component:TermsComponent
-  },{path:"plan",component:PlannerComponent}
+  },{
+    path:"plan",
+    component:PlannerComponent,
+    children:[
+      {path:"",component:PraentHomeComponent},
+      {path:"all-plans",component:AllPlansComponent},
+      {path:"diet-prgress",component:UserDietProgressComponent}
+    ]
+  }
   ,{
     path:"*",
-    component:WildCardComponent
+    component:WildCardComponent,
+    
   }
 ];

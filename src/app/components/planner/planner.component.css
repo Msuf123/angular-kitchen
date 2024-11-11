@@ -1,0 +1,8 @@
+:host{
+    display: grid;
+    grid-template-rows:max-content 1fr max-content;
+    height: 100dvh;
+}
+.router-outlet{
+    overflow: scroll;
+}
