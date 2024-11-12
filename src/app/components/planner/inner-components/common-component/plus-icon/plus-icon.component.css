@@ -1,25 +1,110 @@
-.circle{
-    background-color: rgb(255, 150, 30);
-    width: 50px;
+.outerDiv{
+   
+    width: 450px;
     height: 50px;
+    position: relative;
+    display: block;
+    --background-colors:rgba(255, 214, 30, 0.925);
+    --shadow-color: rgba(255, 214, 30, 0.836);
+    --spread-of-color:15px;
+}
+.circle{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 110px;
+    right: 0px;
+    background-color:var(--background-colors) ;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    box-shadow: 0 0px 8px 4px orange;
+    box-shadow: 0 0px var(--spread-of-color) 7px rgba(255, 170, 12, 0.877);
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 2px;
+}
+.outerDiv:hover img{
+   
+    transform: rotate(90deg);
+}
+.leftItem{
+    position: absolute;
+    left: 0px;
+    top: 7px;
+    background-color: var(--background-colors);
+    padding: 5px 8px;
+    margin: 0px;
+    margin-top: 7.5px;
+    display: block;
+    width: 105px;
+    height: 28px;
+    border-radius: 5px;
+    box-shadow: -3px 0px var(--spread-of-color) 7px var(--shadow-color);
+    z-index: 2;
+    
+}
+
+span{
+    font-size: 18px;
+    font-weight: 600;
+     font-family: "Roboto Slab", serif;
+        font-optical-sizing: auto;
+        font-weight:600;
+        font-style: normal;
+        transition: 0.2s all linear;
+       display: inline-block;
+       transition: transform 0.1s linear;
+       transition: color 0.2s linear;
+       width: 100%;
+       margin: 0px;
+      
+}
+span:hover{
+  
+    text-decoration: underline;
+    transform: translate(0px,-3px);
+}
+.rightOption{
+    position: absolute;
+    background-color: var(--background-colors);
+    padding: 5px 8px;
+    margin: 0px;
+    top: 7px;
+    left: 110px;
+    margin-top: 7.5px;
+    margin-left: 54px;
+    width: 255px;
+    display: grid;
+    grid-template-columns: max-content max-content;
+    border-radius: 5px;
+    box-shadow: 3px 0px var(--spread-of-color) 7px var(--shadow-color);
+    z-index: 1;
+    height: 28px;
+    font-size: 19.1px;
+    
+}
+.rightOption :first-child{
+    margin-left: 24px;
+    font-size: 19.1px;
+    
+}
+.rightOption :nth-child(2){
+    margin-left: 24px;
+    
+    width: max-content;
+    
 }
 img{
     width: 25px;
     transition: all 0.2s linear ;
 }
-.circle:hover img{
-   
-    transform: rotate(90deg);
-}
+
 :host{
     display: block;
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
     height: 100px;
+  
 }

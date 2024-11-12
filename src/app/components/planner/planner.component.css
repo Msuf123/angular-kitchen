@@ -4,5 +4,5 @@
     height: 100dvh;
 }
 .router-outlet{
-    overflow: scroll;
+    overflow: hidden;
 }

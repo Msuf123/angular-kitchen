@@ -1,8 +1,18 @@
-<div class="circle">
-    
-        <span>All plans</span>
-        <img src="planner-add-icon.png">
-        <span>New Plan</span>
-        <span>Progress</span>
-  
+<div class="outerDiv">
+        <div (mouseenter)="entered()" (mouseleave)="left()">
+                <div class="leftItem" [ngStyle]="{marginLeft:leftPostion+'px',opacity:opacityLeft}">
+                        <span>New Plan</span>
+                </div>
+                <div class="circle" >
+                
+                        
+                        <img src="planner-add-icon.png">
+                        
+                
+                </div>
+                <div class="rightOption" [ngStyle]="{marginLeft:rightPostion+'px',opacity:opacityLeft}">
+                        <span>All Plan</span>
+                        <span>Your Progress</span>
+                </div>
+       </div>
 </div>
