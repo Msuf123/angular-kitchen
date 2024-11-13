@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { DaysComponent } from './days/days.component';
 import { BehaviorSubject, throwIfEmpty } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { DaysBannerComponent } from './days-banner/days-banner.component';
 
 @Component({
   selector: 'app-work-area',
   standalone: true,
-  imports: [DaysComponent,CommonModule],
+  imports: [DaysComponent,CommonModule,DaysBannerComponent],
   templateUrl: './work-area.component.html',
   styleUrl: './work-area.component.css'
 })

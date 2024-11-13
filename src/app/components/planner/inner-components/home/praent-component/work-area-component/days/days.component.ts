@@ -10,6 +10,10 @@ import { Observable } from 'rxjs';
 })
 export class DaysComponent {
  @Input() times$!:Observable<number[]>
+ 
+ constructor(){
+
+ }
  addDays(){
   
  }

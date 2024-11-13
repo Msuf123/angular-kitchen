@@ -4,10 +4,72 @@
     width: max-content;
     
 }
+.outerDecBox{
+    width: 100%;
+
+    display: flex;
+}
 .tiemsFlex{
     display: flex;
 }
 .tiemsFlexOuter{
-    display: flex;
-    background-color: rgb(72, 255, 0);
+    display:flex;
+    justify-content: stretch;
+    align-items: stretch;
+  
+}
+.tiemsFlexOuter button{
+    
+    width: 100px;
+    height: 100px;
+}
+.decBox{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(189, 24, 24);
+    position: relative;
+    overflow: hidden;
+    
+}
+.seperatorLine{
+    border: 2px solid black;
+    height: 0px;
+    width: 272px;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 0px;
+    left: -138px;
+}
+
+.time{
+    position: absolute;
+    right: 5px;
+    font-size: 18px;
+}
+.Time{
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border: 2px solid black;
+}
+.day{
+    position: absolute;
+    font-size: 18px;
+    bottom: 0px;
+}
+.AddButtonToAddDays{
+    width: 100px;
+    height: 100px;
+}
+.outerLining{
+    border: 2px solid black;
+  
+}
+.outerLiningOrange{
+   
+   width: 100px;
+    border: 2px solid black;
+}
+:host{
+    margin-top: 35px;
 }

@@ -1,12 +1,30 @@
 <div class="daysFlex">
+    <div class="outerDecBox">
+            <div class="decBox">
+                    <span class="time">Time</span>
+                    <div class="seperatorLine"></div>
+                    <span class="day">Day</span>
+            </div>
+            <div *ngFor="let i of (times$|async)" class="Time">
+                Time
+            </div>
+            <div class="outerLining">
+               <button (click)="addTime()"class="AddButtonToAddDays" >+</button>
+            </div>
+     </div>
     <div class="tiemsFlexOuter">
         <div>
-            <div class="tiemsFlex" *ngFor="let i of days$|async" >
+            <div class="tiemsFlex" *ngFor="let i of days$|async;let j=index" >
+                <app-days-banner [days]="'Day'+j"></app-days-banner>
                 <app-days *ngFor="let i of (times$|async)"></app-days>
                 
             </div>
         </div>
-        <button (click)="addTime()">+</button>
+        <div class="outerLiningOrange">
+    
+        </div>
     </div>
-<button (click)="addDays()">+</button>
+    <div class="outerLining">
+<button (click)="addDays()" class="AddButtonToAddDays">+</button>
+</div>
 </div>

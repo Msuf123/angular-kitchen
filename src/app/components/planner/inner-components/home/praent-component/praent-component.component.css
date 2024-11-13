@@ -1,5 +1,6 @@
 :host{
-    display: block;
-    background-color: blue;
-    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
