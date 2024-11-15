@@ -5,8 +5,8 @@
                     <div class="seperatorLine"></div>
                     <span class="day">Day</span>
             </div>
-            <div *ngFor="let i of (times$|async)" class="Time">
-                Time
+            <div *ngFor="let i of (times$|async);let j=index" (click)="editTime(j)" class="Time">
+              {{i}}
             </div>
             <div class="outerLining">
                <button (click)="addTime()"class="AddButtonToAddDays" >+</button>
@@ -14,9 +14,9 @@
      </div>
     <div class="tiemsFlexOuter">
         <div>
-            <div class="tiemsFlex" *ngFor="let i of days$|async;let j=index" >
-                <app-days-banner [days]="'Day'+j"></app-days-banner>
-                <app-days *ngFor="let i of (times$|async)"></app-days>
+            <div class="tiemsFlex" *ngFor="let i of days$|async;let yAxis=index" >
+                <app-days-banner [days]="i" (click)="editDay(yAxis)"></app-days-banner>
+                <app-days *ngFor="let i of (times$|async);let xAxis=index" [dislayEditor$]="displayEditor$" [index]="[xAxis,yAxis]" [inputEditorType$]="editorType$" [mealLable]="getIndividualMeal(xAxis,yAxis)"></app-days>
                 
             </div>
         </div>
@@ -28,3 +28,4 @@
 <button (click)="addDays()" class="AddButtonToAddDays">+</button>
 </div>
 </div>
+<app-pop-up [displayPopup$]="displayEditor$" [typeOFAction$]="editorType$" *ngIf="displayEditor$|async"></app-pop-up>

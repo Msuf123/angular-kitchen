@@ -106,5 +106,5 @@ img{
     align-items: start;
     justify-content: center;
     height: 100px;
-  
+   z-index: 0;
 }
