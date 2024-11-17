@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
-import { EditDay, EditTime } from './custom-function-of-store';
+import { AddDays, AddTime, EditDay, EditTime } from './custom-function-of-store';
 
 export interface WorkAreaData{
   loading:boolean,
@@ -41,8 +41,8 @@ export class WorkAreaLocalStoreService extends ComponentStore<any> {
   readonly getXAxis$=this.select(this.getAllData$,(state)=>state.xAxis)
   readonly getYAxis$=this.select(this.getAllData$,(state)=>state.yAxis)
   readonly getMeals$=this.select(this.getAllData$,(state)=>state.mealsData)
-  readonly addTimes=this.updater((state:WorkAreaData,vlaue:string)=>({...state,data:{...state.data,xAxis:[...state.data.xAxis,vlaue]}}))
-  readonly addDays=this.updater((state:WorkAreaData)=>({...state,data:{...state.data,yAxis:[...state.data.yAxis,'Days'+(state.data.yAxis.length+1)]}}))
+  readonly addTimes=this.updater((state:WorkAreaData,vlaue:string)=>({...state,data:{...state.data,xAxis:[...state.data.xAxis,vlaue],mealsData:AddTime(state)}}))
+  readonly addDays=this.updater((state:WorkAreaData)=>({...state,data:{...state.data,yAxis:[...state.data.yAxis,'Days'+(state.data.yAxis.length+1)],mealsData:AddDays(state)}}))
   readonly editTime=this.updater((state:WorkAreaData,actionLoad:InputActionOfEditDate)=>({...state,data:{...state.data,xAxis:EditTime(state.data.xAxis,actionLoad.vlaue,actionLoad.index)}}))
   readonly editDay=this.updater((state:WorkAreaData,actionLoad:InputActionOfEditDate)=>({...state,data:{...state.data,yAxis:EditDay(state.data.yAxis,actionLoad.vlaue,actionLoad.index)}}))
   readonly editMeal=this.updater((state:WorkAreaData,actionLoad:IndividualData)=>({...state,data:state.data}))
