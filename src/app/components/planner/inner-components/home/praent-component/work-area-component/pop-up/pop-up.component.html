@@ -1,8 +1,9 @@
-<div>
-    <div>
-        <span (click)="hide()">X</span>
-        <span (click)="showCoordinates()">Click</span>
-         <app-edit-meal *ngIf="(typeOFAction$|async)?.type==='mainDay'"></app-edit-meal>
-        <app-edit-time-day *ngIf="(typeOFAction$|async)?.type==='timeLable'||(typeOFAction$|async)?.type==='daysLable'" [lable]="(typeOFAction$|async)?.type" [position]="(typeOFAction$|async)?.postion"></app-edit-time-day>
-    </div>
+<div class="outerDiv">
+        <div class="hideButton">
+         <span (click)="hide()" >X</span>
+        </div>
+         <app-edit-meal   *ngIf="(typeOFAction$|async)?.type==='mainDay'" ></app-edit-meal> 
+        
+        <app-edit-time-day [lable]="(typeOFAction$|async)?.type" [displayPopup$]="displayPopup$" [position]="(typeOFAction$|async)?.postion" *ngIf="(typeOFAction$|async)?.type==='timeLable'||(typeOFAction$|async)?.type==='daysLable'"></app-edit-time-day>
+    
 </div>

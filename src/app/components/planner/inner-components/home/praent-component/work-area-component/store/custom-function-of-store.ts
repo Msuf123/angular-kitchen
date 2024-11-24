@@ -19,7 +19,7 @@ export function AddTime(currentState:WorkAreaData):IndividualData[]{
   let xCoordinateToInsert=currentState.data.xAxis.length
   let modifiedArray:IndividualData[]=[...currentState.data.mealsData]
   for(let i=0;i<currentNumberOfDays;i++){
-    modifiedArray.push({xAxis:xCoordinateToInsert,yAxis:i,mealName:'Meal Number'+i,calories:500,mealsItem:['Rice ','Rajma']})
+    modifiedArray.push({xAxis:xCoordinateToInsert,yAxis:i,mealName:'',calories:0,mealsItem:[]})
   }
   return modifiedArray
 
@@ -29,7 +29,7 @@ export function AddDays(currentState:WorkAreaData):IndividualData[]{
   let yCoordinateToInsert=currentState.data.yAxis.length
   let modifiedArray:IndividualData[]=[...currentState.data.mealsData]
   for(let i=0;i<currentNumberOfTime;i++){
-    modifiedArray.push({xAxis:i,yAxis:yCoordinateToInsert,mealName:'Meal Number'+i,calories:500,mealsItem:['Rice ','Rajma']})
+    modifiedArray.push({xAxis:i,yAxis:yCoordinateToInsert,mealName:'',calories:0,mealsItem:[]})
   }
   return modifiedArray
 }

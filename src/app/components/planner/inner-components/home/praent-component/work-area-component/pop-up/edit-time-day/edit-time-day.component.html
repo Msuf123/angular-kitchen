@@ -1,3 +1,4 @@
-<span>Current Value</span>
-<input placeholder="Lable" [(ngModel)]="vlaueOfInput">
+<span>Current Value:{{day}}</span>
+<input placeholder="Lable" [(ngModel)]="vlaueOfInput" (keydown)="logger($event)">
+
 <button (click)="setTimeOrDate()">Okay</button>

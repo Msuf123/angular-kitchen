@@ -23,7 +23,7 @@ interface InputActionOfEditDate{
 }
 @Injectable()
 
-export class WorkAreaLocalStoreService extends ComponentStore<any> {
+export class WorkAreaLocalStoreService extends ComponentStore<WorkAreaData> {
 
   constructor() {
     let initialState:WorkAreaData={
@@ -36,6 +36,7 @@ export class WorkAreaLocalStoreService extends ComponentStore<any> {
     } 
     super(initialState)
   }
+  
   readonly getLoadingStatus$=this.select((state)=>state.loading)
   readonly getAllData$=this.select((state)=>state.data)
   readonly getXAxis$=this.select(this.getAllData$,(state)=>state.xAxis)

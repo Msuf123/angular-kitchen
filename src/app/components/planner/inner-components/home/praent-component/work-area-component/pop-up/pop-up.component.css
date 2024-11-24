@@ -5,4 +5,29 @@
     left: 0px;
     right: 0px;
     background-color: var(--error-background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.outerDiv{
+    display: flex;
+    flex-direction: column;
+     border-radius: 5px;
+     overflow: hidden;
+    background-color: white;
+    height: 200px;
+    
+}
+.hideButton{
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: end;
+    cursor: pointer;
+}
+.hideButton span{
+    display: block;
+    width: max-content;
+    padding: 4px 8px;
+    text-align: center;
+    background-color: red;
 }

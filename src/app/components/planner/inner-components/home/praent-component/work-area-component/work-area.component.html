@@ -16,7 +16,8 @@
         <div>
             <div class="tiemsFlex" *ngFor="let i of days$|async;let yAxis=index" >
                 <app-days-banner [days]="i" (click)="editDay(yAxis)"></app-days-banner>
-                <app-days *ngFor="let i of (times$|async);let xAxis=index" [dislayEditor$]="displayEditor$" [index]="[xAxis,yAxis]" [inputEditorType$]="editorType$" [mealLable]="getIndividualMeal(xAxis,yAxis)"></app-days>
+                <app-days *ngFor="let i of (times$|async);let xAxis=index" [dislayEditor$]="displayEditor$" [index]="[xAxis,yAxis]"
+                 [inputEditorType$]="editorType$" [mealLable]="getIndividualMeal(xAxis,yAxis)"></app-days>
                 
             </div>
         </div>
@@ -28,4 +29,4 @@
 <button (click)="addDays()" class="AddButtonToAddDays">+</button>
 </div>
 </div>
-<app-pop-up [displayPopup$]="displayEditor$" [typeOFAction$]="editorType$" *ngIf="displayEditor$|async"></app-pop-up>
+<app-pop-up [displayPopup$]="displayEditor$" [typeOFAction$]="editorType$" *ngIf="displayEditor$|async" ></app-pop-up> 

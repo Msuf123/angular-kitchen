@@ -21,7 +21,7 @@ export class WorkAreaComponent {
  days$=this.storeService.getYAxis$
  times$=this.storeService.getXAxis$
  displayEditor$=new BehaviorSubject<boolean>(false)
- meals=[]
+ meals:any[]=[]
  constructor(){
   this.storeService.getMeals$.subscribe((state)=>{
     this.meals=state

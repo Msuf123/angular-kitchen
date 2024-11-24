@@ -30,11 +30,11 @@ export class IndividualInputFormComponent implements DoCheck{
   url!: string;
   uploadedImageFromHere = false;
   classes = "";
-  disableDeletOptionUpper=true
+  disableDeletOptionUpper
 
 
   constructor() {
-  
+  this.disableDeletOptionUpper=false
   }
   ngDoCheck(): void {
     if(this.question.type==='file'){
@@ -42,14 +42,15 @@ export class IndividualInputFormComponent implements DoCheck{
   }
 
   ngAfterViewInit() {
-    // this.formGroup.valueChanges.subscribe((currentState)=>{
-    //   if(currentState.image!==""){
-    //     this.url=currentState.image as string
-    //     this.showProgress=false
-    //     this.uploadedImageFromHere=true
-    //   }
+    this.formGroup.valueChanges.subscribe((currentState)=>{
+      if(currentState.image!==""){
+        this.url=currentState.image as string
+        this.showProgress=false
+        this.uploadedImageFromHere=true
+        this.disableDeletOptionUpper=false
+      }
       
-    // })
+    })
     this.status.progressStatus.subscribe((status) => {
       //inner thrid section componet have the code that sets the error of while uplaoing image
       if(this.formGroup.get('image')?.value===""){
@@ -59,7 +60,7 @@ export class IndividualInputFormComponent implements DoCheck{
           
           if (status.status < 100) {
             this.showProgress = true;
-            
+            this.disableDeletOptionUpper=true
             this.progress=status.status
             
           } else if (status.status === 100 && this.uploadedImageFromHere) {
