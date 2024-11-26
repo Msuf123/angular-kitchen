@@ -19,13 +19,13 @@
   
 }
 .tiemsFlexOuter button{
-    
-    width: 100px;
-    height: 100px;
+     
+    width: var(--each-box-width-default);
+    height: var(--each-box-width-default);
 }
 .decBox{
-    width: 100px;
-    height: 100px;
+    width: var(--each-box-width-default);
+    height: var(--each-box-width-default);
     background-color: rgb(189, 24, 24);
     position: relative;
     overflow: hidden;
@@ -47,8 +47,8 @@
     font-size: 18px;
 }
 .Time{
-    width: 100px;
-    height: 100px;
+    width: var(--each-box-width-default);
+    height: var(--each-box-width-default);
     background-color: white;
     border: 2px solid black;
 }
@@ -58,8 +58,8 @@
     bottom: 0px;
 }
 .AddButtonToAddDays{
-    width: 100px;
-    height: 100px;
+    width: var(--each-box-width-default);
+    height: var(--each-box-width-default);
 }
 .outerLining{
     border: 2px solid black;
@@ -67,7 +67,7 @@
 }
 .outerLiningOrange{
    
-   width: 100px;
+   width: var(--each-box-width-default);
     border: 2px solid black;
 }
 :host{

@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
 import { StirngChecker } from '../../../../../../../../GlobalFunctions/GlobalFunctionsForString';
+import { SelectDaysToRepeatComponent } from './select-days-to-repeat/select-days-to-repeat.component';
 
 @Component({
   selector: 'app-edit-time-day',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,SelectDaysToRepeatComponent],
   templateUrl: './edit-time-day.component.html',
   styleUrl: './edit-time-day.component.css'
 }) 
@@ -32,7 +33,7 @@ ngOnInit(): void {
   })
   this.currentValuesOfTime.subscribe((arrayOfTime)=>{
   
-    this.day=arrayOfTime[(this.position as number[])[0]]
+    this.time=arrayOfTime[(this.position as number[])[0]]
   })
 }
 

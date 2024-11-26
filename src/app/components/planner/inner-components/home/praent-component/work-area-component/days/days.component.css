@@ -1,6 +1,6 @@
 .innerItems{
     display: block;
-    width: 100px;
-    height: 100px;
+    width: var(--each-box-width-default);
+    height: var(--each-box-width-default);
     border: 2px solid black;
 }

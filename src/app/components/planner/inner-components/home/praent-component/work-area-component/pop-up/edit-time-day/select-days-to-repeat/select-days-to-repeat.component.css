@@ -1,0 +1,32 @@
+.heading{
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+}
+.daysOuterDiv{
+    margin-top: 10px;
+}
+.eachDay{
+    display: inline-block;
+    margin: 10px;
+    font-size: 16px;
+    text-decoration: underline;
+    cursor: pointer;
+    color: rgba(158, 158, 158, 0.842);
+    font-weight: 550;
+}
+.divSpan{
+    display: inline-block;
+}
+.noBlockDay {
+ color: black;
+}
+.daySelected{
+    color: rgb(27, 221, 27);
+}
+:host{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}

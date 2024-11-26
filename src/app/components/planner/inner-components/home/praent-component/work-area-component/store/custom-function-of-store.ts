@@ -1,4 +1,4 @@
-import { IndividualData, WorkAreaData } from "./work-area-local-store.service"
+import { daysValue, IndividualData, WorkAreaData } from "./work-area-local-store.service"
 
 export function EditTime(arg:string[],valueToReplace:string,index:number[]):string[]{
   let filteredArray=arg.filter((value,indexArray)=>indexArray!==index[0])
@@ -32,4 +32,15 @@ export function AddDays(currentState:WorkAreaData):IndividualData[]{
     modifiedArray.push({xAxis:i,yAxis:yCoordinateToInsert,mealName:'',calories:0,mealsItem:[]})
   }
   return modifiedArray
+}
+export function EditRepeatingData(day:daysValue,index:number,state:daysValue[][]):daysValue[][]{
+  let arrayToEdit=state[index]
+  if(arrayToEdit.includes(day)){
+    const startIndex=arrayToEdit.indexOf(day)
+     arrayToEdit.splice(startIndex,1)
+  }
+  else{
+    arrayToEdit.push(day)
+  }
+  return state
 }

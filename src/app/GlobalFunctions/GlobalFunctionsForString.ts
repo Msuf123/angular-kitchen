@@ -10,7 +10,10 @@ export class StirngChecker{
          }
 
       }
-      modifiedString+=inputString[inputString.length-1]
+      if(inputString[inputString.length-1]!==" "){
+         modifiedString+=inputString[inputString.length-1]
+      }
+      
       return modifiedString
     }
 }

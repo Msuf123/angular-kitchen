@@ -1,4 +1,5 @@
-<span>Current Value:{{day}}</span>
+<span *ngIf="lable==='daysLable'" class="topSpan">Current Value:{{day}}</span>
+<span *ngIf="lable==='timeLable'" class="topSpan">Current Value:{{time}}</span>
 <input placeholder="Lable" [(ngModel)]="vlaueOfInput" (keydown)="logger($event)">
-
+<app-select-days-to-repeat *ngIf="lable==='daysLable'" [postion]="position"></app-select-days-to-repeat>
 <button (click)="setTimeOrDate()">Okay</button>

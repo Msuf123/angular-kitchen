@@ -1,4 +1,4 @@
 :host{
-    width: 100px;
-    height: 100px;
+    width:var(--each-box-width-default);
+    height: var(--each-box-width-default);
 }

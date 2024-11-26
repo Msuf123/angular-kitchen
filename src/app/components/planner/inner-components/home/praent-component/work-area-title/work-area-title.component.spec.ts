@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OptionsComponent } from './options.component';
+import { WorkAreaTitleComponent } from './work-area-title.component';
 
-describe('OptionsComponent', () => {
-  let component: OptionsComponent;
-  let fixture: ComponentFixture<OptionsComponent>;
+describe('WorkAreaTitleComponent', () => {
+  let component: WorkAreaTitleComponent;
+  let fixture: ComponentFixture<WorkAreaTitleComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OptionsComponent]
+      imports: [WorkAreaTitleComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(OptionsComponent);
+    fixture = TestBed.createComponent(WorkAreaTitleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

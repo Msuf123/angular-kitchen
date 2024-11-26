@@ -8,6 +8,9 @@
     --white-color-box-shadow:rgb(177, 176, 176);
     --white-color-top-bar-drop-down-shadow:rgb(214, 214, 214);
     --box-shadow:orange;
+    /*Work Area*/
+    --each-box-width-default:100px;
+    
 }
 body{
     padding: 0px;

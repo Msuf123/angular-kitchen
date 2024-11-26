@@ -8,6 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 .outerDiv{
     display: flex;
@@ -15,7 +16,9 @@
      border-radius: 5px;
      overflow: hidden;
     background-color: white;
-    height: 200px;
+    height: max-content;
+    padding-bottom: 10px;
+    width: 300px;
     
 }
 .hideButton{

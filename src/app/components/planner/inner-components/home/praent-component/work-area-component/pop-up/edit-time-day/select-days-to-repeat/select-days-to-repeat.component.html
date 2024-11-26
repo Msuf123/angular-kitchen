@@ -1,1 +1,7 @@
-<p>select-days-to-repeat works!</p>
+<span class="heading">Select days to repeat:</span>
+<div class="daysOuterDiv">
+    <div *ngFor="let day of days;let i =index;"  class="divSpan">
+<span class="listItems" [ngClass]="{noBlockDay:daysThatAreAvailable.includes(day),daySelected:daysOfTakenByThisDay.includes(day)}"
+ class="eachDay" (click)="selectDay(daysThatAreAvailable.includes(day),i)">{{day}}</span>
+<div>
+</div>

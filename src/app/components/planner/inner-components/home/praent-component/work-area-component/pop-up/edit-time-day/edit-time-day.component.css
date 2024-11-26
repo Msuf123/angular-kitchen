@@ -6,3 +6,19 @@
     padding: 0px 10px;
     height: 100%;
 }
+.topSpan{
+    margin: 10px 0px 0px 0px;
+    font-size: 20px;
+    font-weight: 700;
+}
+input{
+    display: block;
+    margin: 10px 0px;
+
+}
+input:focus{
+    outline: 1px solid black;
+}
+button{
+    margin: 10px 0px 20px 0px;
+}
