@@ -1,9 +1,9 @@
-<div>
-    <span>Edit Meal</span>
-    <input placeholder="Meal Lable">
-    <app-time-selector></app-time-selector>
-    <textarea placeholder="Tell what you eat"></textarea>
-    <input placeholder="Total Calories">
+<div class="outerSpan" [formGroup]="fomsGroup">
+    <span class="heading">Edit Meal</span>
+    <input placeholder="Meal Lable" formControlName="lable">
+    <app-time-selector [formGroup]="fomsGroup"></app-time-selector>
+    <textarea placeholder="2 Burgers,Pasta,100ml Cold Drink" formControlName="foods"></textarea>
+    <input placeholder="Total Calories" formControlName="totalCaloreis">
     <button>Use A.I to calculate Calories</button>
     <button>Add</button>
     

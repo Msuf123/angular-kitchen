@@ -39,11 +39,28 @@ ngOnInit(): void {
 
 setTimeOrDate(){
  if(this.lable==="timeLable"){
- this.storeService.editTime({index:this.position as number[],vlaue:StirngChecker.blankString(this.vlaueOfInput)})
+   let stringToEdit = StirngChecker.blankString(this.vlaueOfInput)
+   if(stringToEdit==="undefined"){
+    //Test this code if my callback is delayed then the value passed to dispach will be undfined
+     this.currentValuesOfTime.subscribe((value)=>{
+       stringToEdit = value[(this.position as number[])[0]]
+       
+   })
+   }
+ this.storeService.editTime({index:this.position as number[],vlaue:stringToEdit})
   this.displayPopup$.next(false)
- }
+ } 
+
  else{
-  this.storeService.editDay({index:this.position as number[],vlaue:StirngChecker.blankString(this.vlaueOfInput)})
+   let stringToEdit = StirngChecker.blankString(this.vlaueOfInput)
+   if (stringToEdit === "undefined") {
+     //Test this code if my callback is delayed then the value passed to dispach will be undfined
+     this.currentValueOfDays.subscribe((value) => {
+       stringToEdit = value[(this.position as number[])[1]]
+
+     })
+   }
+  this.storeService.editDay({index:this.position as number[],vlaue:stringToEdit})
   this.displayPopup$.next(false)
  }
 }

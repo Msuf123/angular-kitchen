@@ -6,6 +6,9 @@
 .daysOuterDiv{
     margin-top: 10px;
 }
+span{
+    user-select: none;
+}
 .eachDay{
     display: inline-block;
     margin: 10px;

@@ -1,0 +1,25 @@
+.outerSpan{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+input,textarea{
+    border:0px solid black;
+    border-bottom: 2px solid black;
+    font-size: 17px;
+    padding: 4px;
+
+}
+textarea{
+    font-size: 16px;
+    resize: vertical;
+}
+input:focus{
+    outline: none;
+}
+.heading{
+    font-size: 22px;
+    font-weight: 600;
+    display: block;
+}
