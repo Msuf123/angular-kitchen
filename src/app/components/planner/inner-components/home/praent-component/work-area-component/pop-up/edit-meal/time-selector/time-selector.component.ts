@@ -11,6 +11,7 @@ import { StirngChecker } from '../../../../../../../../../GlobalFunctions/Global
 })
 export class TimeSelectorComponent {
   @Input() formGroup!:FormGroup
+  @Input() formGroupName!:string
   constructor(){
 
 

@@ -1,11 +1,11 @@
 <ng-container [formGroup]="formGroup">
-<div formGroupName="timeOnEat">
+<div [formGroupName]="formGroupName">
   <input placeholder="00" formControlName="hours">
   <span>:</span>
-  <input placeholder="00" >
+  <input placeholder="00" formControlName="minutes">
   <div class="amPmSelector">
     <span>Am</span>
-    <!-- <span>Pm</span> -->
+    
   </div>
 </div>
 </ng-container>

@@ -3,7 +3,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+} 
+ textarea.ng-invalid,.kkk.ng-invalid{
+    outline: 2px solid red;
 }
+
 input,textarea{
     border:0px solid black;
     border-bottom: 2px solid black;

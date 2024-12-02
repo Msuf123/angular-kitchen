@@ -1,10 +1,17 @@
 <div class="outerSpan" [formGroup]="fomsGroup">
     <span class="heading">Edit Meal</span>
     <input placeholder="Meal Lable" formControlName="lable">
-    <app-time-selector [formGroup]="fomsGroup"></app-time-selector>
+    <div>
+    <span>Before Meal</span>
+    <app-time-selector [formGroup]="fomsGroup" [formGroupName]="'timeBefore'"></app-time-selector>
+    </div>
+    <div>
+    <span>On Meal</span>
+    <app-time-selector [formGroup]="fomsGroup" [formGroupName]="'timeOnEat'"></app-time-selector>
+    </div>
     <textarea placeholder="2 Burgers,Pasta,100ml Cold Drink" formControlName="foods"></textarea>
-    <input placeholder="Total Calories" formControlName="totalCaloreis">
+    <input placeholder="Total Calories" class="kkk" formControlName="totalCaloreis">
     <button>Use A.I to calculate Calories</button>
-    <button>Add</button>
+    <button (click)="formSubmission()">Add</button>
     
 </div>
