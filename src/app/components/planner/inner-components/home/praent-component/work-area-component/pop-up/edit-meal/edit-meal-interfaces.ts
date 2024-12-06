@@ -6,7 +6,9 @@ export interface FormStructure {
     totalCaloreis?: string | null | undefined;
 }
 
-interface FormStructureTime {
+export interface FormStructureTime {
     hours?: string | null | undefined;
     minutes?: string | null | undefined;
+    period?:period
 }
+export type period="A.M"|"P.M"

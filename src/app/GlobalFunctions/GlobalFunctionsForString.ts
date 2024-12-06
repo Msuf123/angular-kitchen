@@ -28,7 +28,7 @@ export class StirngChecker{
           }
 
        }
-       console.log('running',modifiedString,inputString)
+      
        return modifiedString
      
       

@@ -15,9 +15,6 @@ import { EditMealComponent } from './edit-meal/edit-meal.component';
 export class PopUpComponent {
  @Input() typeOFAction$!:BehaviorSubject<EditorInterfaceData>
  @Input() displayPopup$!:BehaviorSubject<any>
- showCoordinates(){
-  console.log(this.typeOFAction$.value?.postion)
- }
  hide(){
   this.displayPopup$.next(false)
  }

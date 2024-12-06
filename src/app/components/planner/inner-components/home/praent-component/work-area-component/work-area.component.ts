@@ -44,6 +44,7 @@ export class WorkAreaComponent {
   this.displayEditor$.next(true)
  }
  getIndividualMeal(xAxis:number,yAxis:number):IndividualData{
+  
   let sortedArray= this.meals.filter((currentMeal:IndividualData)=>{
     if(currentMeal.xAxis===xAxis&&currentMeal.yAxis===yAxis){
       return true
@@ -53,6 +54,7 @@ export class WorkAreaComponent {
     }
    
   })
+ 
   return sortedArray[0]
  }
 

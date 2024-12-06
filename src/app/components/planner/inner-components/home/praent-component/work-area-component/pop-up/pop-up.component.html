@@ -2,7 +2,7 @@
         <div class="hideButton">
          <span (click)="hide()" >X</span>
         </div>
-         <app-edit-meal   *ngIf="(typeOFAction$|async)?.type==='mainDay'" ></app-edit-meal> 
+         <app-edit-meal   *ngIf="(typeOFAction$|async)?.type==='mainDay'" [position]="(typeOFAction$|async)?.postion" ></app-edit-meal> 
         
         <app-edit-time-day [lable]="(typeOFAction$|async)?.type" [displayPopup$]="displayPopup$" [position]="(typeOFAction$|async)?.postion" *ngIf="(typeOFAction$|async)?.type==='timeLable'||(typeOFAction$|async)?.type==='daysLable'"></app-edit-time-day>
     

@@ -7,7 +7,12 @@
  textarea.ng-invalid,.kkk.ng-invalid{
     outline: 2px solid red;
 }
-
+textarea.ng-untouched{
+    outline: none;
+}
+.kkk.ng-untouched{
+    outline: none;
+}
 input,textarea{
     border:0px solid black;
     border-bottom: 2px solid black;
@@ -26,4 +31,14 @@ input:focus{
     font-size: 22px;
     font-weight: 600;
     display: block;
+}
+.mealTimeSelector{
+   
+    display: flex;
+    align-items: center;
+}
+.timeSelection{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
 }

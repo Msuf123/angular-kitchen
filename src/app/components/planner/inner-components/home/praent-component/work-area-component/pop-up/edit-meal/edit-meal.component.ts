@@ -1,27 +1,36 @@
-import { Component, CSP_NONCE, inject } from '@angular/core';
+import { Component, CSP_NONCE, inject, Input, OnInit } from '@angular/core';
 import { TimeSelectorComponent } from './time-selector/time-selector.component';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StirngChecker } from '../../../../../../../../GlobalFunctions/GlobalFunctionsForString';
 import { FormStructure } from './edit-meal-interfaces';
+import { MealTimingSelectorComponent } from './meal-timing-selector/meal-timing-selector.component';
+import { IndividualData, WorkAreaLocalStoreService } from '../../store/work-area-local-store.service';
+import { CustomFunctions } from './CustomFunctions/CustomFunction';
 
 @Component({
   selector: 'app-edit-meal',
   standalone: true,
-  imports: [TimeSelectorComponent,ReactiveFormsModule],
+  imports: [MealTimingSelectorComponent,ReactiveFormsModule],
   templateUrl: './edit-meal.component.html',
   styleUrl: './edit-meal.component.css'
 })
-export class EditMealComponent {
+export class EditMealComponent implements OnInit {
+  @Input() position!: number[] | undefined
+  localStoreService =inject(WorkAreaLocalStoreService)
   fomsService=inject(FormBuilder)
+  currentDataInTheStore:IndividualData[]=[]
+  mealsData=this.localStoreService.getMeals$
   oldValuesOfForm= this.fomsService.group({
     lable: ['old form',],
     timeBefore: this.fomsService.group({
       hours: ['', Validators.required],
-      minutes: ['', Validators.required]
+      minutes: ['', Validators.required],
+      period:['',Validators.required]
     }),
     timeOnEat: this.fomsService.group({
       hours: ['', Validators.required],
-      minutes: ['', Validators.required]
+      minutes: ['', Validators.required],
+      period: ['', Validators.required]
     }),
     foods: ['', Validators.required],
     totalCaloreis: ['', Validators.required]
@@ -30,20 +39,25 @@ export class EditMealComponent {
     lable:['',],
     timeBefore:this.fomsService.group({
       hours:['',Validators.required],
-      minutes:['',Validators.required]
+      minutes:['',Validators.required],
+      period: ['A.M', Validators.required]
     }),
     timeOnEat:this.fomsService.group({
       hours:['',Validators.required],
-      minutes:['',Validators.required]
+      minutes:['',Validators.required],
+      period: ['A.M', Validators.required]
     }),
     foods:['',Validators.required],
     totalCaloreis:['',Validators.required]
   })
   constructor(){
-   console.log(this.oldValuesOfForm.get("timeBefore")?.get("hours")?.value)
+ 
+   this.mealsData.subscribe((state)=>{
+   this.currentDataInTheStore=state
    
+   })
     this.fomsGroup.valueChanges.subscribe((formState)=>{
-     
+      console.log(formState.timeBefore)
       if (this.oldValuesOfForm.get('timeBefore')?.value.hours !==formState.timeBefore?.hours){
         this.controlUserInput(formState.timeBefore?.hours as string, 13, (value: string, functionToExecute: any, customFunction: boolean, oldValue: number) => ({
           timeBefore: { hours: customFunction ? functionToExecute(value) : oldValue.toString() }
@@ -60,7 +74,9 @@ export class EditMealComponent {
           timeBefore: { minutes :customFunction?functionToExecute(value):oldValue.toString()}
         }), this.fomsGroup)
       }
-      
+      else if (this.oldValuesOfForm.get('timeBefore')?.value.period!==formState.timeBefore?.period){
+        this.oldValuesOfForm.patchValue({timeBefore:{period:formState.timeBefore?.period}})
+      }
 
       else if (this.oldValuesOfForm.get('timeOnEat')?.value.hours !== formState.timeOnEat?.hours) {
         console.log("Changing the user input of the hours")
@@ -118,12 +134,23 @@ export class EditMealComponent {
     }
 
   }
+  ngOnInit(): void {
+    if(Array.isArray(this.position)){
+      for(let i=0;i<this.currentDataInTheStore.length;i++){
+        if(this.currentDataInTheStore[i].xAxis===this.position[0]&&this.currentDataInTheStore[i].yAxis===this.position[1]){
+          console.log(this.currentDataInTheStore[i])
+          this.fomsGroup.patchValue(this.currentDataInTheStore[i] as any)
+        }
+      }
+    }
+  }
   formSubmission(){
     if (this.fomsGroup.get('foods')?.hasError('required')){
       console.log("Has error")
     }
     else{
-    console.log('Form submistted with value',this.fomsGroup.value)
+      const objToUpdate = { ...this.fomsGroup.value, foods:CustomFunctions.getFoodsArrayBasedOnTheInput(this.fomsGroup.value.foods as string),xAxis:(this.position as number[])[0],yAxis:(this.position as number[])[1]}
+    this.localStoreService.editMeal(objToUpdate)
     }
   }
 }

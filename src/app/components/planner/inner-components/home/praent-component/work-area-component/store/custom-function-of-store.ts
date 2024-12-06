@@ -19,7 +19,7 @@ export function AddTime(currentState:WorkAreaData):IndividualData[]{
   let xCoordinateToInsert=currentState.data.xAxis.length
   let modifiedArray:IndividualData[]=[...currentState.data.mealsData]
   for(let i=0;i<currentNumberOfDays;i++){
-    modifiedArray.push({xAxis:xCoordinateToInsert,yAxis:i,mealName:'',calories:0,mealsItem:[]})
+    modifiedArray.push({xAxis:xCoordinateToInsert,yAxis:i,lable:'',totalCaloreis:0,foods:[],timeBefore:{hours:"0",minutes:"0",period:"A.M"},timeOnEat:{hours:"0",minutes:"0",period:"P.M"}})
   }
   return modifiedArray
 
@@ -29,7 +29,7 @@ export function AddDays(currentState:WorkAreaData):IndividualData[]{
   let yCoordinateToInsert=currentState.data.yAxis.length
   let modifiedArray:IndividualData[]=[...currentState.data.mealsData]
   for(let i=0;i<currentNumberOfTime;i++){
-    modifiedArray.push({xAxis:i,yAxis:yCoordinateToInsert,mealName:'',calories:0,mealsItem:[]})
+    modifiedArray.push({ xAxis: i, yAxis: yCoordinateToInsert, lable: '', totalCaloreis: 0, foods: [], timeBefore: { hours: "0", minutes: "0", period: "A.M" }, timeOnEat: { hours: "0", minutes: "0", period: "P.M" } })
   }
   return modifiedArray
 }
@@ -43,4 +43,13 @@ export function EditRepeatingData(day:daysValue,index:number,state:daysValue[][]
     arrayToEdit.push(day)
   }
   return state
+}
+export function EditMeals(inputObject:IndividualData,allState:IndividualData[]):IndividualData[]{
+  let originalArray=[...allState]
+  for(let i=0;i<allState.length;i++){
+     if(originalArray[i].xAxis===inputObject.xAxis&&originalArray[i].yAxis===inputObject.yAxis){
+      originalArray[i]=inputObject
+     }
+  }
+  return originalArray
 }

@@ -1,11 +1,9 @@
 <ng-container [formGroup]="formGroup">
-<div [formGroupName]="formGroupName">
+<div [formGroupName]="formGroupName" class="timeSelectorOuterDiv">
   <input placeholder="00" formControlName="hours">
   <span>:</span>
   <input placeholder="00" formControlName="minutes">
-  <div class="amPmSelector">
-    <span>Am</span>
-    
-  </div>
+  <app-period-meridiem formControlName="period" class="custom"></app-period-meridiem>
 </div>
+
 </ng-container>

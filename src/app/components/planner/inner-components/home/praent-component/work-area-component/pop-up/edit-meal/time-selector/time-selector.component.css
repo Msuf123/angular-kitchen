@@ -1,9 +1,21 @@
 :host{
     display: flex;
-    border: 2px solid black;
+    margin-left: 5px;
     width: max-content;
 }
 input{
     width: 20px;
     font-size: 16px;
+    border: 0px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.562);
+}
+input:focus{
+    outline: none;
+}
+.timeSelectorOuterDiv{
+    display: flex;
+    align-items: center;
+}
+.custom.ng-touched{
+    background-color: rebeccapurple;
 }
