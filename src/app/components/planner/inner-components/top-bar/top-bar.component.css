@@ -4,8 +4,17 @@
     padding: 5px;
     margin-top: 0px;
     box-shadow: 0px 0px 20px 1px var(--white-color-top-bar-drop-down-shadow);
+    height: 100px;
 }
 img{
     width: 100px;
+    height: 100px;
     border-radius: 50%;
+}
+.outerDivOfTheTopBarComponent{
+    display:flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    height: max-content;
 }

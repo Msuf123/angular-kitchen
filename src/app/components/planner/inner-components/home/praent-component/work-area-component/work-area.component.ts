@@ -28,7 +28,6 @@ export class WorkAreaComponent {
     console.log(state)
   })
  }
-
  addTime(){
   this.storeService.addTimes('Moringin')
  }

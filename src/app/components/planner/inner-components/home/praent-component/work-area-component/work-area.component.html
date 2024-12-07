@@ -28,5 +28,7 @@
     <div class="outerLining">
 <button (click)="addDays()" class="AddButtonToAddDays">+</button>
 </div>
+
 </div>
+
 <app-pop-up [displayPopup$]="displayEditor$" [typeOFAction$]="editorType$" *ngIf="displayEditor$|async" ></app-pop-up> 
